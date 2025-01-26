@@ -45,7 +45,7 @@ const loginUserFromDB = async (payload: TLoginUser) => {
 };
 const findAllUserFromDB = async () => {
   const result = await UserModel.find();
-  console.log('result', result);
+  // console.log('result', result);
   return result;
 };
 
