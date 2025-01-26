@@ -4,8 +4,8 @@ import { StatusCodes } from 'http-status-codes';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../config';
 import { TUserRole } from '../modules/users/user.interface';
-import { User } from '../modules/users/user.model';
 import AppError from '../errors/AppError';
+import { UserModel } from '../modules/users/user.model';
 
 export const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -23,13 +23,11 @@ export const auth = (...requiredRoles: TUserRole[]) => {
       token,
       config.jwt_access_secret_token as string,
     ) as JwtPayload;
-
-    const { role, userId, iat } = decoded;
-
+    const { role, userEmail } = decoded;
 
     // --------------------
 
-    const user = await User.isUserExistsByCustomId(userId);
+    const user = await UserModel.isUserExistsByCustomEmail(userEmail);
 
     // Check user exist or no!
     if (!user) {
@@ -44,19 +42,6 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     // check user is blocked or not!
     if (user.status === 'blocked') {
       throw new AppError(StatusCodes.FORBIDDEN, 'This user is blocked!');
-    }
-
-    if (
-      user.passwordChangeAt &&
-      User.isJWTIssuedBeforePasswordChanged(
-        user.passwordChangeAt,
-        iat as number,
-      )
-    ) {
-      throw new AppError(
-        StatusCodes.UNAUTHORIZED,
-        `You are not a UNAUTHORIZED`,
-      );
     }
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new AppError(StatusCodes.UNAUTHORIZED, `You are a UNAUTHORIZED`);

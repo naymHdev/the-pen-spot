@@ -8,11 +8,13 @@ const userSchema = new Schema<TUser, UserPassHas>({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   email: {
     type: String,
     required: true,
     unique: true,
+    trim: true,
   },
   password: {
     type: String,
@@ -54,8 +56,8 @@ userSchema.post('save', function (doc, next) {
   next();
 });
 
-userSchema.statics.isUserExistsByCustomId = async function (id: string) {
-  return await UserModel.findOne({ id }).select('+password');
+userSchema.statics.isUserExistsByCustomEmail = async function (email: string) {
+  return await UserModel.findOne({ email }).select('+password');
 };
 
 userSchema.statics.isUserPasswordMatch = async function (
