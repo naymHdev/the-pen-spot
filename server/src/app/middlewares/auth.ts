@@ -11,6 +11,8 @@ export const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
 
+    // console.log('token', token);
+
     if (!token) {
       throw new AppError(
         StatusCodes.UNAUTHORIZED,
@@ -19,15 +21,22 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     }
 
     // verify invalid jwt token
-    const decoded = jwt.verify(
-      token,
-      config.jwt_access_secret_token as string,
-    ) as JwtPayload;
+    let decoded;
+    try {
+      decoded = jwt.verify(
+        token,
+        config.jwt_access_secret_token as string,
+      ) as JwtPayload;
+    } catch {
+      throw new AppError(StatusCodes.UNAUTHORIZED, 'Invalid or expired token');
+    }
     const { role, userEmail } = decoded;
 
     // --------------------
 
     const user = await UserModel.isUserExistsByCustomEmail(userEmail);
+
+    // console.log('existingUser', decoded);
 
     // Check user exist or no!
     if (!user) {
@@ -43,10 +52,11 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     if (user.status === 'blocked') {
       throw new AppError(StatusCodes.FORBIDDEN, 'This user is blocked!');
     }
+
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new AppError(StatusCodes.UNAUTHORIZED, `You are a UNAUTHORIZED`);
     }
-    // decoded undefined∏
+    // decoded undefined
     req.user = decoded as JwtPayload;
     next();
   });

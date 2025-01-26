@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { TUser, UserPassHas } from './user.interface';
-import { UserStatus } from './user.constant';
+import { Role, Status } from './user.constant';
 import bcrypt from 'bcrypt';
 import config from '../../config';
 
@@ -23,12 +23,18 @@ const userSchema = new Schema<TUser, UserPassHas>({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: {
+      values: Role,
+      message: '{VALUE} is not supported',
+    },
     default: 'user',
   },
   status: {
     type: String,
-    enum: UserStatus,
+    enum: {
+      values: Status,
+      message: '{VALUE} is not supported',
+    },
     required: true,
     default: 'active',
   },
