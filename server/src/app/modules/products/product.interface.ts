@@ -13,7 +13,6 @@ export type TProductsCategory =
   | 'Other';
 
 export type TStationeryProduct = {
-  id: string;
   name: string;
   description?: string;
   category: TProductsCategory;
