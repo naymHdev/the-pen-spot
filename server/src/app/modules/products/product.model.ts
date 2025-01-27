@@ -8,7 +8,10 @@ const StationeryProductSchema = new Schema<TStationeryProduct>({
   category: {
     type: String,
     required: true,
-    enum: { values: ProductCategory, message: 'Needed a product category!' },
+    enum: {
+      values: Object.values(ProductCategory),
+      message: 'Needed a product category!',
+    },
   },
   price: { type: Number, required: true, min: 0 },
   stockQuantity: { type: Number, required: true, min: 0 },
@@ -29,7 +32,10 @@ const StationeryProductSchema = new Schema<TStationeryProduct>({
     type: String,
     required: true,
     default: 'available',
-    enum: { values: ProductStatus, message: 'Must added product status' },
+    enum: {
+      values: Object.values(ProductStatus),
+      message: 'Needed a product status!',
+    },
   },
 });
 
