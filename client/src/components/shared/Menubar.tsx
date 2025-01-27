@@ -4,8 +4,8 @@ const Menubar = () => {
   return (
     <>
       <div>
-        <div className=" container mx-auto py-5">
-          <div className="hidden lg:grid grid-cols-5 items-center">
+        <div className=" container mx-auto">
+          <div className="hidden lg:grid grid-cols-5 items-center py-5">
             <div className=" col-span-1">
               <div className=" flex items-center gap-3">
                 <List />
@@ -28,9 +28,9 @@ const Menubar = () => {
             <div className=" col-span-1">
               <div className="text-sm font-medium flex items-center gap-3 justify-end">
                 <Sparkles />
-                <p className=" ">
+                <p className="">
                   Summer sale discount
-                  <span className=" text-secondary">50% off.</span>
+                  <span className=" text-secondary px-1">50% off.</span>
                 </p>
               </div>
             </div>

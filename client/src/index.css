@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-nunito);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 @theme {
   --font-family-nunito: "Nunito", sans-serif;
 
@@ -8,8 +19,4 @@
   --color-foreground: #666666;
   --color-secondary: #e85069;
   --color-accent: #f59e0b;
-}
-
-body {
-  font-family: var(--font-family-nunito);
 }
