@@ -10,10 +10,12 @@ export type TProductsCategory =
   | 'Folders'
   | 'Calculators'
   | 'Paper'
+  | 'Books'
   | 'Other';
 
 export type TStationeryProduct = {
   name: string;
+  author?: string;
   description?: string;
   category: TProductsCategory;
   price: number;

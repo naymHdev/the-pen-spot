@@ -4,6 +4,7 @@ import { ProductCategory, ProductStatus } from './product.constant';
 
 const StationeryProductSchema = new Schema<TStationeryProduct>({
   name: { type: String, required: true, trim: true, unique: true },
+  author: { type: String, trim: true },
   description: { type: String, required: true, trim: true },
   category: {
     type: String,

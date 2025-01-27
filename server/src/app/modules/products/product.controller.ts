@@ -13,4 +13,17 @@ const createStationaryProduct = catchAsync(async (req, res) => {
   });
 });
 
-export const ProductController = { createStationaryProduct };
+const getALlStationaryProduct = catchAsync(async (req, res) => {
+  const result = await ProductServices.getAllProductFromDB(req.query);
+  sendResponse(res, {
+    success: true,
+    message: 'Product found successfully',
+    statusCode: StatusCodes.CREATED,
+    data: result,
+  });
+});
+
+export const ProductController = {
+  createStationaryProduct,
+  getALlStationaryProduct,
+};

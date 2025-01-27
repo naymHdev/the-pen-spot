@@ -6,6 +6,12 @@ const stationeryValidationsProductSchema = z.object({
     name: z.string({ required_error: 'Product name required!' }).min(5, {
       message: 'Product name must be at least 5 characters long',
     }),
+    author: z
+      .string({ required_error: 'Author name required!' })
+      .min(3, {
+        message: 'Author name must be at least 3 characters long',
+      })
+      .optional(),
     description: z.string({ required_error: 'Description must be required' }),
     category: z.enum(ProductCategory as [string, ...string[]], {
       required_error: 'Product category is required',

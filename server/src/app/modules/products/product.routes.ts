@@ -10,4 +10,8 @@ router.post(
   ProductController.createStationaryProduct,
 );
 
+router.get(
+  '/get-all-stationary-products',
+  ProductController.getALlStationaryProduct,
+);
 export const ProductRoutes = router;
