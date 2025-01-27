@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-family-nunito: "Nunito", sans-serif;
+
+  --color-primary-text: #02213a;
+  --color-primary-bg: #f7f7f7;
+  --color-foreground: #666666;
+  --color-secondary: #e85069;
+  --color-accent: #f59e0b;
+}
+
+body {
+  font-family: var(--font-family-nunito);
+}

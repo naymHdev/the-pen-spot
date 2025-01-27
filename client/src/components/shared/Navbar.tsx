@@ -1,34 +1,43 @@
-import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import logo from "../../assets/images/logo.svg";
+import { Heart, Search, ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-white shadow-md w-full">
-        <div className="container mx-auto flex items-center justify-between p-4">
-          {/* Logo */}
-          <div className="text-2xl font-bold text-blue-600">MyLogo</div>
-
-          {/* Navigation Items - Hidden on Mobile */}
-          <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
-            <li className="hover:text-blue-600 cursor-pointer">Home</li>
-            <li className="hover:text-blue-600 cursor-pointer">About</li>
-            <li className="hover:text-blue-600 cursor-pointer">Services</li>
-            <li className="hover:text-blue-600 cursor-pointer">Contact</li>
-          </ul>
-
-          {/* Login/Signup Buttons */}
-          <div className="hidden md:flex space-x-4">
-            <Button className=" border">Login</Button>
-            <Button>Sign Up</Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Menu size={28} className="text-gray-700" />
+      <div className=" bg-primary-bg">
+        <div className=" container mx-auto ">
+          <div className=" py-6 hidden lg:grid grid-cols-5 items-center justify-between">
+            <div className=" col-span-1">
+              <img src={logo} alt="The Pen Spot Logo" />
+            </div>
+            <div className="col-span-3">
+              <div className="relative w-full">
+                <Input
+                  className="w-full bg-white rounded-full pl-4 pr-10 border-none"
+                  type="search"
+                  placeholder="Search"
+                />
+                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground" />
+              </div>
+            </div>
+            <div className=" col-span-1">
+              <div className=" flex items-center justify-around">
+                <div className="flex items-center gap-2">
+                  <Button className="text-primary-text hover:text-secondary font-medium uppercase">
+                    LOGIN / Register
+                  </Button>
+                </div>
+                <div className=" flex items-center justify-center space-x-5">
+                  <Heart />
+                  <ShoppingCart />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
     </>
   );
 };
