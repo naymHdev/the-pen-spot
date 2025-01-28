@@ -8,7 +8,7 @@ const MainLayout = () => {
     <>
       <Navbar />
       <Menubar />
-      {/* <MobileNavbar /> */}
+      <MobileNavbar />
       <Outlet />
     </>
   );

@@ -25,8 +25,9 @@ const MobileNavbar = () => {
 
   return (
     <nav className=" bg-primary-bg fixed top-0 right-0 w-full z-50">
-      <div className="container mx-auto flex items-center justify-between py-5 px-5">
+      <div className="container mx-auto lg:hidden flex items-center justify-between py-5 px-5">
         {/* Mobile Menu Button */}
+        <img src={logo} alt="Logo" />
         <button className="md:hidden" onClick={toggleMenu}>
           {!isOpen && <Menu size={28} />}
         </button>
@@ -35,14 +36,14 @@ const MobileNavbar = () => {
         <div
           className={`fixed  top-2 left-0 h-full w-full shadow-lg transform ${
             isOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out md:hidden bg-primary-bg`}
+          } transition-transform duration-300 ease-in-out md:hidden `}
         >
           <div className="p-6">
-            <img src={logo} alt="Logo" />
+            {/* <img src={logo} alt="Logo" /> */}
             <button onClick={toggleMenu} className="absolute top-4 right-4">
               <X size={28} />
             </button>
-            <ul className="mt-8 space-y-4">
+            <ul className="mt-16 space-y-4">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <div
