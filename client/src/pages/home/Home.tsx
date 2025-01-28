@@ -4,7 +4,7 @@ import Commitment from "./Commitment";
 const Home = () => {
   return (
     <>
-      <Banner />
+      {/* <Banner /> */}
       <Commitment />
     </>
   );

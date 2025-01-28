@@ -2,8 +2,26 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import logo from "../../assets/images/logo.svg";
 import { Heart, Search, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
+import { verifyToken } from "@/utils/verifyToken";
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(useCurrentToken);
+
+  // check user exists
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
+  // console.log("user", user);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <div className=" bg-primary-bg">
@@ -25,9 +43,24 @@ const Navbar = () => {
             <div className=" col-span-1">
               <div className=" flex items-center justify-around">
                 <div className="flex items-center gap-2">
-                  <Button className="text-primary-text hover:text-secondary font-medium uppercase">
-                    LOGIN / Register
-                  </Button>
+                  {user ? (
+                    <>
+                      <Button
+                        onClick={handleLogout}
+                        className="text-primary-text hover:text-secondary font-medium uppercase"
+                      >
+                        Logout
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/login">
+                        <Button className="text-primary-text hover:text-secondary font-medium uppercase">
+                          LOGIN / Register
+                        </Button>
+                      </Link>
+                    </>
+                  )}
                 </div>
                 <div className=" flex items-center justify-center space-x-5">
                   <Heart />
