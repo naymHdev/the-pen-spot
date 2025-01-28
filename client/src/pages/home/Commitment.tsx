@@ -42,7 +42,7 @@ const Commitment = () => {
               <div>
                 <img
                   className=" w-16 h-full"
-                  src="/src/assets/icons/gift-card.png"
+                  src="/src/assets/icons/gift-cards.png"
                   alt=""
                 />
               </div>

@@ -1,6 +1,9 @@
 import TPButton from "../buttons/TPButton";
-
+import logo from "../../assets/images/logo.svg";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <>
       <div className="bg-primary-bg">
@@ -33,7 +36,97 @@ const Footer = () => {
               </form>
             </div>
           </div>
-          <footer></footer>
+          <footer className="mt-10 pb-6 grid grid-cols-1 lg:grid-cols-8 gap-10">
+            <div className=" col-span-1 lg:col-span-3">
+              <img src={logo} alt="Website Logo" />
+              <p className=" text-foreground font-medium mt-6">
+                Discover premium stationery that inspires creativity and
+                elevates your workspace. Stay organized and stylish with our
+                curated collection.
+              </p>
+            </div>
+            <div className=" col-span-1 lg:col-span-5">
+              <div className=" grid grid-cols-1 lg:grid-cols-7 gap-10 justify-between">
+                <div className=" col-span-1 lg:col-span-2">
+                  <h2 className=" text-lg font-semibold text-primary-text">
+                    Help
+                  </h2>
+                  <ul className="mt-4 font-medium text-primary-text space-y-3">
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Track My Order
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Contact Information
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Privacy Policy
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Return & Refund Policy
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Shipping Policy
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Terms of Service
+                    </li>
+                  </ul>
+                </div>
+                <div className=" col-span-1 lg:col-span-2">
+                  <h2 className=" text-lg font-semibold text-primary-text">
+                    Shop
+                  </h2>
+                  <ul className="mt-4 font-medium text-primary-text space-y-3">
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Home
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Books
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Trending
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      Best Sell
+                    </li>
+                    <li className="hover:underline hover:text-secondary hover:cursor-pointer">
+                      All Products
+                    </li>
+                  </ul>
+                </div>
+                <div className=" col-span-1 lg:col-span-3">
+                  <h2 className=" text-lg font-semibold text-primary-text">
+                    About
+                  </h2>
+                  <div className="mt-4 flex flex-wrap gap-6 items-center">
+                    <a className=" text-3xl text-sky-400" href="">
+                      <Facebook size={40} />
+                    </a>
+                    <a className=" text-3xl text-orange-700" href="">
+                      <Instagram size={40} />
+                    </a>
+                    <a className=" text-3xl text-red-700" href="">
+                      <Youtube size={40} />
+                    </a>
+                    <a className=" text-3xl text-sky-400" href="">
+                      <Twitter size={40} />
+                    </a>
+                    <a className=" text-3xl text-sky-400" href="">
+                      <Linkedin size={40} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+        <div className=" w-full border border-foreground opacity-20" />
+        <div className="bg-primary-text">
+          <div className=" py-4 container mx-auto">
+            <p className="text-center font-medium text-white">
+              © {currentYear} The Pen Spot. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </>
