@@ -27,7 +27,7 @@ const Banner = () => {
             </div>
             <div className="col-span-1 lg:col-span-2 bg-[url(/src/assets/images/h5_Bg_slider.jpg)]">
               <div className=" flex flex-col gap-5">
-                <div className="bg-[url(/src/assets/images/h5_banner2.jpg)] bg-center bg-no-repeat bg-cover h-[276px] relative">
+                <div className="bg-[url(/src/assets/images/h5_banner2.jpg)] bg-center bg-no-repeat bg-cover h-[245px] relative">
                   <div className=" absolute top-10 left-10">
                     <h4 className=" text-white">Office / Home</h4>
                     <h2 className=" mt-3 text-4xl font-medium text-white">
@@ -43,7 +43,7 @@ const Banner = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-[url(/src/assets/images/h5_banner3.jpg)] bg-center bg-no-repeat bg-cover h-[276px] relative">
+                <div className="bg-[url(/src/assets/images/h5_banner3.jpg)] bg-center bg-no-repeat bg-cover h-[245px] relative">
                   <div className=" absolute top-10 left-10">
                     <h4 className=" text-white">Office Adhesive</h4>
                     <h2 className=" mt-3 text-4xl font-medium text-white">

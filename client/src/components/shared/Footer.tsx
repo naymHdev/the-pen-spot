@@ -13,7 +13,7 @@ const Footer = () => {
               <h2 className=" text-2xl font-semibold text-primary-text">
                 Stay Inspired with Our Stationery Updates
               </h2>
-              <p className=" font-medium text-sm text-foreground mt-2">
+              <p className=" font-medium text-sm text-primary-text mt-2">
                 Join our newsletter and get the latest updates on premium
                 stationery, exclusive discounts, and creative inspiration
                 delivered to your inbox. Be the first to explore new arrivals
@@ -23,7 +23,7 @@ const Footer = () => {
             <div className=" relative">
               <form>
                 <input
-                  className="bg-white rounded-full w-[500px] px-4 py-2 border border-primary-text focus:outline-none"
+                  className="bg-white rounded-full lg:w-[500px] px-4 py-2 border border-primary-text focus:outline-none"
                   type="email"
                   placeholder="Enter your email"
                 />
@@ -39,7 +39,7 @@ const Footer = () => {
           <footer className="mt-10 pb-6 grid grid-cols-1 lg:grid-cols-8 gap-10">
             <div className=" col-span-1 lg:col-span-3">
               <img src={logo} alt="Website Logo" />
-              <p className=" text-foreground font-medium mt-6">
+              <p className=" text-primary-text font-medium mt-6">
                 Discover premium stationery that inspires creativity and
                 elevates your workspace. Stay organized and stylish with our
                 curated collection.
@@ -120,7 +120,6 @@ const Footer = () => {
             </div>
           </footer>
         </div>
-        <div className=" w-full border border-foreground opacity-20" />
         <div className="bg-primary-text">
           <div className=" py-4 container mx-auto">
             <p className="text-center font-medium text-white">
