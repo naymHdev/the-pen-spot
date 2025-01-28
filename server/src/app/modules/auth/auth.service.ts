@@ -1,12 +1,13 @@
 import { StatusCodes } from 'http-status-codes';
 import AppError from '../../errors/AppError';
 import { UserModel } from '../users/user.model';
-import { createToken } from './auth.utils';
+import { createToken, verifyToken } from './auth.utils';
 import config from '../../config';
 import { TLoginUser } from './auth.interface';
 
 const loginUserFromDB = async (payload: TLoginUser) => {
   const user = await UserModel.isUserExistsByCustomEmail(payload.email);
+  // console.log('user login', user);
 
   // Check user exist or no!
   if (!user) {
@@ -37,12 +38,62 @@ const loginUserFromDB = async (payload: TLoginUser) => {
     config.jwt_access_expire_in as string,
   );
 
+  const refreshToken = createToken(
+    jwtPayload,
+    config.jwt_refresh_secret_token as string,
+    config.jwt_refresh_expire_in as string,
+  );
+
   return {
     token,
+    refreshToken,
   };
 
   // ------ END Login ------
 };
+
+const refreshToken = async (token: string) => {
+  // checking if the given token is valid
+  const decoded = verifyToken(token, config.jwt_refresh_secret_token as string);
+
+  const { userEmail } = decoded;
+
+  // checking if the user is exist
+  const user = await UserModel.isUserExistsByCustomEmail(userEmail);
+
+  if (!user) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'This user is not found !');
+  }
+  // checking if the user is already deleted
+  const isDeleted = user?.isDeleted;
+
+  if (isDeleted) {
+    throw new AppError(StatusCodes.FORBIDDEN, 'This user is deleted !');
+  }
+
+  // checking if the user is blocked
+  const userStatus = user?.status;
+
+  if (userStatus === 'blocked') {
+    throw new AppError(StatusCodes.FORBIDDEN, 'This user is blocked ! !');
+  }
+
+  const jwtPayload = {
+    userEmail: user.email,
+    role: user.role,
+  };
+
+  const accessToken = createToken(
+    jwtPayload,
+    config.jwt_access_secret_token as string,
+    config.jwt_access_expire_in as string,
+  );
+
+  return {
+    accessToken,
+  };
+};
+
 const findAllUserFromDB = async () => {
   const result = await UserModel.find();
   // console.log('result', result);
@@ -51,5 +102,6 @@ const findAllUserFromDB = async () => {
 
 export const AuthServices = {
   loginUserFromDB,
-  findAllUserFromDB
+  findAllUserFromDB,
+  refreshToken,
 };

@@ -30,7 +30,7 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     } catch {
       throw new AppError(StatusCodes.UNAUTHORIZED, 'Invalid or expired token');
     }
-    const { role, userEmail } = decoded;
+    const { userEmail, role } = decoded;
 
     // --------------------
 
@@ -57,7 +57,7 @@ export const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(StatusCodes.UNAUTHORIZED, `You are a UNAUTHORIZED`);
     }
     // decoded undefined
-    req.user = decoded as JwtPayload;
+    req.user = decoded as JwtPayload & { role: string };
     next();
   });
 };
