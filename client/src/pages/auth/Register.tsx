@@ -1,6 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import google from "../../assets/icons/google.png";
 import facebook from "../../assets/icons/facebook.png";
+import bigSale from "../../assets/images/registration-big-sale.jpg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -13,9 +14,13 @@ const Register = () => {
     <>
       <div>
         <div className="container mx-auto">
-          <div className=" grid grid-cols-1 lg:grid-cols-7 p-8">
-            <div className=" col-span-1 lg:col-span-3 bg-primary-bg">
-              <img src="" alt="" />
+          <div className=" grid grid-cols-1 lg:grid-cols-7 p-8 items-center justify-center">
+            <div className=" col-span-1 lg:col-span-3 bg-primary-bg rounded-3xl">
+              <img
+                className=" w-full h-full rounded-3xl"
+                src={bigSale}
+                alt="The Pen Spot Registration Big Sale"
+              />
             </div>
             <div className=" relative col-span-1 lg:col-span-4">
               <div className=" flex items-center justify-center h-[100vh]">
