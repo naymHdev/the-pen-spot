@@ -6,6 +6,7 @@ import Register from "../pages/auth/Register";
 import AllProducts from "@/pages/allProducts/AllProducts";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
+import CreateProduct from "@/pages/admin/CreateProduct";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "admin-dashboard",
         element: <AdminDashboard />,
+      },
+      {
+        path: "create-product",
+        element: <CreateProduct />,
       },
     ],
   },
