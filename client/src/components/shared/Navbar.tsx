@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
+import UserAvatar from "./UserAvatar";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -45,12 +46,7 @@ const Navbar = () => {
                 <div className="flex items-center gap-2">
                   {user ? (
                     <>
-                      <Button
-                        onClick={handleLogout}
-                        className="text-primary-text hover:text-secondary font-medium uppercase"
-                      >
-                        Logout
-                      </Button>
+                      <UserAvatar handleLogout={handleLogout} user={user} />
                     </>
                   ) : (
                     <>

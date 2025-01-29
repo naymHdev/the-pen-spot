@@ -1,4 +1,5 @@
 import { baseApi } from "@/redux/api/baseApi";
+import { TQueryParam } from "@/types/globalTypes";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,7 +18,24 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+
+    getMe: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+        return {
+          url: "/users/me",
+          method: "GET",
+          params: params,
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useGetMeQuery } = authApi;
