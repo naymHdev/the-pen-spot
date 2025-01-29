@@ -2,12 +2,39 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import google from "../../assets/icons/google.png";
 import facebook from "../../assets/icons/facebook.png";
 import bigSale from "../../assets/images/registration-big-sale.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { toast } from "sonner";
 
 const Register = () => {
+  const [signUp] = useRegisterMutation();
+  const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Sign in...");
+    const userData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const res = await signUp(userData);
+
+      if (res.data) {
+        toast.success(res.data.message, { id: toastId });
+        return navigate("/login");
+      } else if (res?.error) {
+        toast.error(res.error.data.message, { id: toastId });
+        return navigate("/register");
+      } else {
+        toast.error("Sign in failed!", { id: toastId });
+      }
+    } catch {
+      toast.error("Sign in failed!", { id: toastId });
+      return navigate("/register");
+    }
   };
 
   return (
