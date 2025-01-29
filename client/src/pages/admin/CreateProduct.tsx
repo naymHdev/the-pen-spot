@@ -1,8 +1,9 @@
-
 const CreateProduct = () => {
   return (
-    <>CreateProduct</>
-);
+    <>
+      <div></div>
+    </>
+  );
 };
 
 export default CreateProduct;

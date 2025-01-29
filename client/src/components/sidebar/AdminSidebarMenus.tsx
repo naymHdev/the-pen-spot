@@ -5,7 +5,6 @@ import { MenuItem } from "react-pro-sidebar";
 const AdminSidebarMenus = () => {
   return (
     <>
-      {" "}
       <MenuItem icon={<House size={20} />}>
         <Link to="/">Home</Link>
       </MenuItem>

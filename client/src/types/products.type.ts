@@ -1,25 +1,39 @@
+export type TProductStatus = "available" | "out_of_stock" | "discontinued";
+
+export type TProductsCategory =
+  | "Notebooks"
+  | "Pens"
+  | "Pencils"
+  | "Markers"
+  | "Erasers"
+  | "Staplers"
+  | "Folders"
+  | "Calculators"
+  | "Paper"
+  | "Books"
+  | "Other";
+
 export type TDiscount = {
   percentage: number;
   validUntil: string;
 };
 
 export type TProducts = {
-  _id: string;
-  discount: TDiscount;
   name: string;
-  author: string;
-  description: string;
-  category: string;
+  author?: string;
+  description?: string;
+  category: TProductsCategory;
   price: number;
   stockQuantity: number;
-  brand: string;
-  color: string;
-  size: string;
-  material: string;
+  brand?: string;
+  color?: string;
+  size?: string;
+  material?: string;
   images: string[];
   sku: string;
-  rating: number;
-  isFeatured: boolean;
-  tags: string[];
-  status: string;
+  rating?: number;
+  isFeatured?: boolean;
+  tags?: string[];
+  discount?: TDiscount;
+  status: TProductStatus;
 };
