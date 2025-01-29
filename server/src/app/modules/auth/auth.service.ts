@@ -96,7 +96,6 @@ const refreshToken = async (token: string) => {
 
 const findAllUserFromDB = async () => {
   const result = await UserModel.find();
-  // console.log('result', result);
   return result;
 };
 

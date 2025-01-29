@@ -30,7 +30,7 @@ const refreshToken = catchAsync(async (req, res) => {
   const { refreshToken } = req.cookies;
   const result = await AuthServices.refreshToken(refreshToken);
 
-  console.log('refreshToken_controller', result);
+  // console.log('refreshToken_controller', result);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

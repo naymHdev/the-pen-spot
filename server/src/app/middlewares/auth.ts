@@ -36,7 +36,7 @@ export const auth = (...requiredRoles: TUserRole[]) => {
 
     const user = await UserModel.isUserExistsByCustomEmail(userEmail);
 
-    // console.log('existingUser', decoded);
+    // console.log('existingUser', decoded, { user });
 
     // Check user exist or no!
     if (!user) {
