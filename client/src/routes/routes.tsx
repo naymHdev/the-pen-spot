@@ -4,6 +4,8 @@ import Home from "../pages/home/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import AllProducts from "@/pages/allProducts/AllProducts";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,16 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "admin-dashboard",
+        element: <AdminDashboard />,
       },
     ],
   },

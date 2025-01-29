@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useGetMeQuery } from "@/redux/features/auth/authApi";
+import { Link } from "react-router-dom";
 
 const UserAvatar = ({ handleLogout, user }) => {
   const { data: myInfo } = useGetMeQuery(undefined);
@@ -46,9 +47,11 @@ const UserAvatar = ({ handleLogout, user }) => {
 
           {user?.role === "admin" && (
             <>
-              <DropdownMenuItem className=" text-primary-text font-medium flex items-center gap-2 w-full">
-                <LayoutDashboard /> Dashboard
-              </DropdownMenuItem>
+              <Link to="/dashboard/admin-dashboard">
+                <DropdownMenuItem className=" text-primary-text font-medium flex items-center gap-2 w-full">
+                  <LayoutDashboard /> Dashboard
+                </DropdownMenuItem>
+              </Link>
             </>
           )}
           <div className=" border w-full opacity-10 my-2" />
