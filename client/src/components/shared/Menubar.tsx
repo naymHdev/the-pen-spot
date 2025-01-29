@@ -1,4 +1,5 @@
 import { List, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Menubar = () => {
   return (
@@ -17,11 +18,15 @@ const Menubar = () => {
             <div className=" col-span-3">
               <div>
                 <ul className=" flex items-center gap-8 text-primary-text font-medium">
-                  <li>Home</li>
+                  <Link to="/">
+                    <li>Home</li>
+                  </Link>
                   <li>Books</li>
                   <li>Trending</li>
                   <li>Best Sell</li>
-                  <li>All Products</li>
+                  <Link to="/all-products">
+                    <li>All Products</li>
+                  </Link>
                 </ul>
               </div>
             </div>

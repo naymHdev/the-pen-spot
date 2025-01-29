@@ -38,7 +38,7 @@ const Login = () => {
 
     try {
       const res = (await login(userInfo).unwrap()) as TResponse<any>;
-      console.log("result", res);
+      // console.log("result", res);
 
       const user = verifyToken(res?.data.token) as TUser;
       dispatch(setUser({ user: user, token: res?.data.token }));

@@ -4,8 +4,10 @@ import Commitment from "./Commitment";
 const Home = () => {
   return (
     <>
-      {/* <Banner /> */}
-      <Commitment />
+      <div className=" ">
+        <Banner />
+        <Commitment />
+      </div>
     </>
   );
 };
