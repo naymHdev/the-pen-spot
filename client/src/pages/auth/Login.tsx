@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import clsx from "clsx";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hooks";
 import { TResponse } from "@/types/globalTypes";
 import { setUser, TUser } from "@/redux/features/auth/authSlice";
@@ -129,6 +129,11 @@ const Login = () => {
           </form>
         </CardContent>
       </Card>
+      <div>
+        <Link to="/register">
+          <Button>Signup</Button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { TProducts } from "@/types/products.type";
 const AllProducts = () => {
   const { data: productsData } = useGetAllProductsQuery(undefined);
 
-  console.log("productsData", productsData?.data);
+//   console.log("productsData", productsData?.data);
 
   return (
     <>
