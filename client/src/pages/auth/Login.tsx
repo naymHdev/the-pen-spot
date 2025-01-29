@@ -1,9 +1,6 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import clsx from "clsx";
+import google from "../../assets/icons/google.png";
+import facebook from "../../assets/icons/facebook.png";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,11 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       email: "admin@gmail.com",
       password: "admin1234",
@@ -59,82 +52,75 @@ const Login = () => {
   };
 
   return (
-    <div
-      className={clsx("flex justify-center items-center h-screen bg-gray-50")}
-    >
-      <Card className="w-full max-w-md shadow-md p-6 rounded-2xl">
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="mb-4">
-              <Label htmlFor="email" className="block text-sm font-medium mb-1">
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Invalid email address",
-                  },
-                })}
-                className={clsx(
-                  errors.email && "border-red-500 focus:ring-red-500"
-                )}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors?.email?.message}
-                </p>
-              )}
+    <>
+      <div className=" relative">
+        <div className=" flex items-center justify-center h-[100vh]">
+          <div>
+            <div>
+              <h2 className=" text-4xl font-semibold text-primary-text">
+                Sign in
+              </h2>
+              <p className=" text-primary-text font-medium mt-8">
+                Sign in with Social account
+              </p>
+              <div className=" flex items-center justify-center gap-6 mt-4">
+                <button className=" flex items-center gap-3 rounded-lg px-12 py-2 font-semibold text-primary-text bg-primary-bg shadow-md hover:border hover:border-secondary">
+                  <img className=" w-6 h-full" src={google} alt="Google Icon" />
+                  Google
+                </button>
+                <button className=" flex items-center gap-3 rounded-lg px-12 py-2 font-semibold text-primary-text bg-primary-bg shadow-md hover:border hover:border-secondary">
+                  <img
+                    className=" w-6 h-full"
+                    src={facebook}
+                    alt="Google Icon"
+                  />
+                  Facebook
+                </button>
+              </div>
             </div>
-
-            <div className="mb-4">
-              <Label
-                htmlFor="password"
-                className="block text-sm font-medium mb-1"
-              >
-                Password
-              </Label>
-              <Input
-                id="password"
-                type="text"
-                placeholder="Enter your password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters long",
-                  },
-                })}
-                className={clsx(
-                  errors.password && "border-red-500 focus:ring-red-500"
-                )}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message}
-                </p>
-              )}
+            <div className="border opacity-10 my-10" />
+            <div className="">
+              <h3 className=" text-primary-text font-medium text-lg">
+                Or continue with email address
+              </h3>
+              <form className=" mt-6" onSubmit={handleSubmit(onSubmit)}>
+                <div className=" flex flex-col space-y-4">
+                  <input
+                    className=" w-full px-4 py-3 bg-primary-bg rounded-lg focus:outline-none border-none"
+                    placeholder="123example@gmail.com"
+                    {...register("email")}
+                  />
+                  <input
+                    className=" w-full px-4 py-3 bg-primary-bg rounded-lg focus:outline-none border-none"
+                    placeholder="password***"
+                    {...register("password")}
+                  />
+                </div>
+                <button
+                  className=" hover:cursor-pointer w-full mt-6 bg-secondary text-white py-2 rounded-full"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
             </div>
-
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-xl"
+          </div>
+        </div>
+        <div className=" absolute top-6 right-10">
+          <div className=" flex items-center gap-2">
+            <h3 className=" font-medium text-primary-text">
+              You don't have an account?
+            </h3>
+            <Link
+              className=" text-lg underline font-medium text-secondary"
+              to="/register"
             >
-              Login
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-      <div>
-        <Link to="/register">
-          <Button>Signup</Button>
-        </Link>
+              Sign up
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
