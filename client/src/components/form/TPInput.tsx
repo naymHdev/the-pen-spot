@@ -1,49 +1,33 @@
-import { Controller } from "react-hook-form";
 import clsx from "clsx";
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { FormControl } from "../ui/form";
+import { Label } from "../ui/label";
 
-interface InputProps {
+interface TPInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  label: string;
-  control: any;
-  rules?: any;
-  placeholder: string;
-  type?: string;
-  error?: string;
+  register: any;
+  className?: string;
+  label?: string;
 }
 
-const TPInput: React.FC<InputProps> = ({
+const TPInput: React.FC<TPInputProps> = ({
+  className,
+  register,
   name,
   label,
-  control,
-  rules,
-  placeholder,
-  type,
-  error,
+  ...rest
 }) => {
   return (
-    <div className="space-y-2">
-      <FormControl>
-        <Label htmlFor={name}>{label}</Label>
-        <Controller
-          name={name}
-          control={control}
-          rules={rules}
-          render={({ field }) => (
-            <Input
-              id={name}
-              type={type}
-              placeholder={placeholder}
-              {...field}
-              className={clsx("w-full", { "border-red-500": error })}
-            />
-          )}
+    <>
+      <div className="">
+        <Label className=" font-medium text-primary-text">{label}</Label>
+        <Input
+          className={clsx("px-4 py-3 bg-primary-bg rounded-lg mt-2 border-none", className)}
+          placeholder="Product name"
+          {...register(name)}
+          {...rest}
         />
-      </FormControl>
-      {error && <p className="text-red-500">{error}</p>}
-    </div>
+      </div>
+    </>
   );
 };
 

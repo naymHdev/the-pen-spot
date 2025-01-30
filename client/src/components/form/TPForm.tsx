@@ -17,7 +17,7 @@ type TFormProps = {
   children: ReactNode;
 } & TFormConfig;
 
-const ReusableForm = ({
+const TPForm = ({
   onSubmit,
   children,
   defaultValues,
@@ -42,11 +42,11 @@ const ReusableForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submit)} className="space-y-4">
+      <form onFinish={methods.handleSubmit(submit)}  className="space-y-4">
         {children}
       </form>
     </FormProvider>
   );
 };
 
-export default ReusableForm;
+export default TPForm;
