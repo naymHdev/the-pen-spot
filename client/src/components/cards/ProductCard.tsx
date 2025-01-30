@@ -32,7 +32,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <>
-      <Link to={`/product-details/${_id}`}>
+      <Link
+        to={`/product-details/${name
+          .replace(/\s+/g, "-")
+          .toLowerCase()}/${_id}`}
+      >
         <div className=" flex flex-col relative group w-full h-full mx-auto p-4 hover:cursor-pointer hover:shadow-lg transition-shadow">
           <div className=" flex items-center justify-center py-8">
             <img src={productImg} alt="" />
