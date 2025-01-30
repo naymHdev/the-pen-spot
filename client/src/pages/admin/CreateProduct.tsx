@@ -6,41 +6,32 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { useAddProductMutation } from "@/redux/features/products/productsApi";
 import { Check, Store } from "lucide-react";
-import { useState } from "react";
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const defaultValues = {
-  name: "Leo Dick",
-  author: "Herman Melville",
+  name: "Fellowes Stellar",
+  author: "Fellowes technology",
   description:
-    "The epic tale of Captain Ahab's obsessive quest to kill the white whale.",
-  category: "Books",
-  price: 14,
-  stockQuantity: 100,
-  brand: "Random House",
-  color: "White",
-  size: "Hardcover",
-  material: "Cloth",
-  sku: crypto.randomUUID(),
-  rating: 4,
-  isFeatured: true,
-  tags: ["classic", "adventure", "literature"],
+    "Ergonomic stapler with jam-free technology and a smooth stapling action.",
+  category: "Staplers",
+  price: "12",
+  stockQuantity: "120",
+  color: "Silver",
+  size: "Medium",
+  material: "Plastic",
+  sku: "c3d4e5f64nq",
+  rating: "4.6",
+  isFeatured: false,
+  tags: ["ergonomic", "jam-free", "office"],
   discount: {
-    percentage: 10,
-    validUntil: "2025-12-31T23:59:59Z",
+    percentage: "8",
+    validUntil: "2025-09-30T23:59:59Z",
   },
-  status: "discontinued",
+  status: "available",
 };
 
 const CreateProduct = () => {
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const [addProduct] = useAddProductMutation();
 
   const { handleSubmit, register, control, setValue } = useForm({
@@ -50,7 +41,6 @@ const CreateProduct = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Loading...");
     const productData = {
-      ...data,
       name: data.name,
       author: data.author,
       description: data.description,
@@ -63,22 +53,28 @@ const CreateProduct = () => {
       material: data.material,
       sku: data.sku,
       rating: data.rating,
+      isFeatured: false,
       tags: data.tags,
       status: data.status,
-      productImg: data.productImg?.name,
+      discount: data.discount?.percentage
+        ? {
+            percentage: data.discount.percentage.toString(),
+            validUntil: data.discount.validUntil
+              ? new Date(data.discount.validUntil).toISOString()
+              : new Date().toISOString(),
+          }
+        : undefined,
     };
-
-    console.log("productData", productData);
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(productData));
-    formData.append("file", data?.productImg?.name);
+    formData.append("file", data?.productImg[0]);
 
-    console.log(formData.append("file", data.productImg?.name));
+    console.log("formData", formData.append("file", data?.productImg?.name));
 
     try {
       const res = await addProduct(formData);
-      console.log("formData", res);
+      console.log("response", res);
 
       if (res.data) {
         toast.success(res.data.message, { id: toastId });
@@ -165,7 +161,7 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="rating"
-                  type="number"
+                  type="text"
                   label="Product rating"
                   register={register}
                 />
@@ -183,44 +179,7 @@ const CreateProduct = () => {
                 Upload Image
               </Separator>
               <div className=" space-y-6">
-                <Controller
-                  name="productImg"
-                  control={control}
-                  render={({ field: { onChange, value, ...field } }) => (
-                    <div>
-                      <input
-                        className="px-4 py-3 bg-primary-bg rounded-lg mt-2 border-none w-full"
-                        type="file"
-                        accept="image/*"
-                        {...field}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            onChange(file);
-                            const reader = new FileReader();
-                            reader.onloadend = () =>
-                              setImagePreview(reader.result as string);
-                            reader.readAsDataURL(file);
-                          }
-                        }}
-                      />
-                      {imagePreview && (
-                        <div>
-                          <img
-                            src={imagePreview}
-                            alt="Preview"
-                            style={{
-                              width: "150px",
-                              marginTop: "10px",
-                              borderRadius: "8px",
-                            }}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  )}
-                />
-
+                <TPInput name="productImg" type="file" register={register} />
                 <TPSelect
                   control={control}
                   name="category"
@@ -252,7 +211,7 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="discount.percentage"
-                  type="number"
+                  type="text"
                   label="Discount percentage"
                   register={register}
                 />
@@ -264,13 +223,13 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="price"
-                  type="number"
+                  type="text"
                   label="Product price"
                   register={register}
                 />
                 <TPInput
                   name="stockQuantity"
-                  type="number"
+                  type="text"
                   label="Product stockQuantity"
                   register={register}
                 />

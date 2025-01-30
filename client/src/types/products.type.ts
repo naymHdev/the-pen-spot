@@ -14,7 +14,7 @@ export type TProductsCategory =
   | "Other";
 
 export type TDiscount = {
-  percentage: number;
+  percentage: string;
   validUntil: string;
 };
 
@@ -24,15 +24,15 @@ export type TProducts = {
   author?: string;
   description?: string;
   category: TProductsCategory;
-  price: number;
-  stockQuantity: number;
+  price: string;
+  stockQuantity: string;
   brand?: string;
   color?: string;
   size?: string;
   material?: string;
   productImg?: string;
   sku: string;
-  rating?: number;
+  rating?: string;
   isFeatured?: boolean;
   tags?: string[];
   discount?: TDiscount;
