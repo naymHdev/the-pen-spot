@@ -4,7 +4,7 @@ import { TProducts } from "@/types/products.type";
 const AllProducts = () => {
   const { data: productsData } = useGetAllProductsQuery(undefined);
 
-//   console.log("productsData", productsData?.data);
+  //   console.log("productsData", productsData?.data);
 
   return (
     <>
@@ -12,8 +12,9 @@ const AllProducts = () => {
         <div className=" container mx-auto">
           <div>
             {productsData?.data?.map((product: TProducts) => (
-              <div key={product._id}>
+              <div key={product?._id}>
                 <h1>{product.brand}</h1>
+                <img src={product?.productImg} alt="" />
               </div>
             ))}
           </div>

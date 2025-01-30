@@ -24,7 +24,7 @@ export const productSchema = z.object({
   color: z.string().optional(),
   size: z.string().optional(),
   material: z.string().optional(),
-  images: z.array(z.string()).min(1, "At least one image is required"),
+  productImg: z.string().optional(),
   sku: z.string().min(3, "SKU is required"),
   rating: z.number().min(0).max(5).optional(),
   isFeatured: z.boolean().optional(),

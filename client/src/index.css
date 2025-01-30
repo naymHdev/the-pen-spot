@@ -22,3 +22,13 @@ body {
   --color-secondary: #e85069;
   --color-accent: #f59e0b;
 }
+
+/* dashboard scrollbar hide */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

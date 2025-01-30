@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import { useAddProductMutation } from "@/redux/features/products/productsApi";
 import { Check, Store } from "lucide-react";
 import { useState } from "react";
 import {
@@ -12,17 +13,42 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { toast } from "sonner";
+
+const defaultValues = {
+  name: "Leo Dick",
+  author: "Herman Melville",
+  description:
+    "The epic tale of Captain Ahab's obsessive quest to kill the white whale.",
+  category: "Books",
+  price: 14,
+  stockQuantity: 100,
+  brand: "Random House",
+  color: "White",
+  size: "Hardcover",
+  material: "Cloth",
+  sku: crypto.randomUUID(),
+  rating: 4,
+  isFeatured: true,
+  tags: ["classic", "adventure", "literature"],
+  discount: {
+    percentage: 10,
+    validUntil: "2025-12-31T23:59:59Z",
+  },
+  status: "discontinued",
+};
 
 const CreateProduct = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
+  const [addProduct] = useAddProductMutation();
+
   const { handleSubmit, register, control, setValue } = useForm({
-    defaultValues: {
-      isFeatured: false,
-    },
+    defaultValues,
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Loading...");
     const productData = {
       ...data,
       name: data.name,
@@ -35,14 +61,31 @@ const CreateProduct = () => {
       color: data.color,
       size: data.size,
       material: data.material,
-      images: data.images,
       sku: data.sku,
       rating: data.rating,
       tags: data.tags,
       status: data.status,
+      productImg: data.productImg?.name,
     };
 
     console.log("productData", productData);
+
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(productData));
+    formData.append("file", data?.productImg?.name);
+
+    console.log(formData.append("file", data.productImg?.name));
+
+    try {
+      const res = await addProduct(formData);
+      console.log("formData", res);
+
+      if (res.data) {
+        toast.success(res.data.message, { id: toastId });
+      }
+    } catch {
+      toast.error("Something went wrong", { id: toastId });
+    }
   };
 
   return (
@@ -57,7 +100,7 @@ const CreateProduct = () => {
             <div>
               <Button
                 type="submit"
-                className=" flex items-center gap-3 border-none rounded-full px-6 hover:cursor-pointer bg-secondary text-primary-bg font-medium"
+                className=" flex items-center border-none rounded-full px-6 hover:cursor-pointer bg-secondary text-primary-bg font-medium"
               >
                 <Check />
                 Submit
@@ -141,7 +184,7 @@ const CreateProduct = () => {
               </Separator>
               <div className=" space-y-6">
                 <Controller
-                  name="images"
+                  name="productImg"
                   control={control}
                   render={({ field: { onChange, value, ...field } }) => (
                     <div>

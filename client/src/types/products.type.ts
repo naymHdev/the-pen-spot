@@ -19,6 +19,7 @@ export type TDiscount = {
 };
 
 export type TProducts = {
+  _id: string;
   name: string;
   author?: string;
   description?: string;
@@ -29,7 +30,7 @@ export type TProducts = {
   color?: string;
   size?: string;
   material?: string;
-  images: string[];
+  productImg?: string;
   sku: string;
   rating?: number;
   isFeatured?: boolean;
