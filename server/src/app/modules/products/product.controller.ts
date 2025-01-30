@@ -4,7 +4,10 @@ import { sendResponse } from '../../utils/sendResponse';
 import { ProductServices } from './product.service';
 
 const createStationaryProduct = catchAsync(async (req, res) => {
-  const result = await ProductServices.createStationeryProductIntoDB(req.body);
+  const result = await ProductServices.createStationeryProductIntoDB(
+    req.file,
+    req.body,
+  );
   sendResponse(res, {
     success: true,
     message: 'Product created successfully',

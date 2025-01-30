@@ -24,8 +24,8 @@ export type TStationeryProduct = {
   color?: string;
   size?: string;
   material?: string;
-  images: string[];
-  sku: string; // Stock Keeping Unit
+  sku: string;
+  productImg?: string;
   rating?: number;
   isFeatured?: boolean;
   tags?: string[];

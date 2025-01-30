@@ -26,14 +26,11 @@ const stationeryValidationsProductSchema = z.object({
     color: z.string().optional(),
     size: z.string().optional(),
     material: z.string().optional(),
-    images: z
-      .array(z.string().url().min(1, 'Image URL cannot be empty'))
-      .min(1, 'At least one image is required')
-      .nonempty({ message: 'Images array cannot be empty' }),
     sku: z.string({ required_error: 'Product SKU is required' }),
     rating: z.number().min(0).max(5),
     isFeatured: z.boolean().default(false),
     tags: z.array(z.string()).optional(),
+    productImg: z.string().optional(),
     discount: z
       .object({
         percentage: z

@@ -21,11 +21,11 @@ const StationeryProductSchema = new Schema<TStationeryProduct>(
     color: { type: String, trim: true },
     size: { type: String, trim: true },
     material: { type: String, trim: true },
-    images: { type: [String], required: true },
     sku: { type: String, required: true, unique: true, trim: true },
     rating: { type: Number, min: 0, max: 5, default: 0 },
     isFeatured: { type: Boolean, default: false },
     tags: { type: [String], default: [] },
+    productImg: { type: String, default: '' },
     discount: {
       percentage: { type: Number, min: 0, max: 100 },
       validUntil: { type: Date },
