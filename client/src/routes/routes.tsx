@@ -7,6 +7,7 @@ import AllProducts from "@/pages/allProducts/AllProducts";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import CreateProduct from "@/pages/admin/CreateProduct";
+import ProductDetails from "@/pages/allProducts/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts />,
+      },
+      {
+        path: "/product-details/:id",
+        element: <ProductDetails />,
       },
     ],
   },
