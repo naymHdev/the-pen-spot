@@ -1,5 +1,7 @@
 import TPInput from "@/components/form/TPInput";
+import { TPSelect } from "@/components/form/TPSelect";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Check, Store } from "lucide-react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -39,15 +41,89 @@ const CreateProduct = () => {
                 <TPInput
                   name="author"
                   type="text"
-                  placeholder="Author name"
                   label="Author name"
                   register={register}
                 />
                 <TPInput
                   name="name"
                   type="text"
-                  placeholder="Product name"
                   label="Product name"
+                  register={register}
+                />
+                <TPInput
+                  name="description"
+                  type="text"
+                  label="Product description"
+                  register={register}
+                />
+                <TPInput
+                  name="category"
+                  type="text"
+                  label="Product category"
+                  register={register}
+                />
+                <TPInput
+                  name="price"
+                  type="number"
+                  label="Product price"
+                  register={register}
+                />
+                <TPInput
+                  name="stockQuantity"
+                  type="number"
+                  label="Product stockQuantity"
+                  register={register}
+                />
+                <TPInput
+                  name="brand"
+                  type="text"
+                  label="Product brand"
+                  register={register}
+                />
+                <TPInput
+                  name="color"
+                  type="text"
+                  label="Product color"
+                  register={register}
+                />
+                <TPInput
+                  name="size"
+                  type="text"
+                  label="Product size"
+                  register={register}
+                />
+                <TPInput
+                  name="material"
+                  type="text"
+                  label="Product material"
+                  register={register}
+                />
+                <TPInput
+                  name="sku"
+                  type="text"
+                  label="Product sku"
+                  register={register}
+                />
+                <TPInput
+                  name="rating"
+                  type="number"
+                  label="Product rating"
+                  register={register}
+                />
+
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="isFeatured" {...register("isFeatured")} />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-primary-text"
+                  >
+                    Product is featured?
+                  </label>
+                </div>
+                <TPInput
+                  name="tags"
+                  type="text"
+                  label="Product tags"
                   register={register}
                 />
               </div>
@@ -56,12 +132,22 @@ const CreateProduct = () => {
               <Separator className=" font-semibold text-primary-text mb-8">
                 Upload Image
               </Separator>
-              <div>
+              <div className=" space-y-6">
                 <TPInput
                   name="images"
                   type="file"
                   label="Product Images"
                   register={register}
+                />
+                <TPSelect
+                  register={register}
+                  name="status"
+                  placeholder="Product Status"
+                  options={[
+                    { label: "Available", value: "available" },
+                    { label: "Out of stock", value: "out_of_stock" },
+                    { label: "Discontinued", value: "discontinued" },
+                  ]}
                 />
               </div>
             </div>
