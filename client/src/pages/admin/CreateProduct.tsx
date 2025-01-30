@@ -1,22 +1,54 @@
 import TPInput from "@/components/form/TPInput";
-import { TPSelect } from "@/components/form/TPSelect";
+import TPSelect from "@/components/form/TPSelect";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import { Check, Store } from "lucide-react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
 const CreateProduct = () => {
-  const { handleSubmit, register } = useForm();
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const { handleSubmit, register, control, setValue } = useForm({
+    defaultValues: {
+      isFeatured: false,
+    },
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    const productData = {
+      ...data,
+      name: data.name,
+      author: data.author,
+      description: data.description,
+      category: data.category,
+      price: data.price,
+      stockQuantity: data.stockQuantity,
+      brand: data.brand,
+      color: data.color,
+      size: data.size,
+      material: data.material,
+      images: data.images,
+      sku: data.sku,
+      rating: data.rating,
+      tags: data.tags,
+      status: data.status,
+    };
+
+    console.log("productData", productData);
   };
 
   return (
     <>
       <div className="">
-        <form onSubmit={handleSubmit(onSubmit)} className="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" flex items-center justify-between">
             <div className=" flex items-center gap-2 text-xl font-semibold text-primary-text">
               <Store />
@@ -50,30 +82,14 @@ const CreateProduct = () => {
                   label="Product name"
                   register={register}
                 />
-                <TPInput
-                  name="description"
-                  type="text"
-                  label="Product description"
-                  register={register}
-                />
-                <TPInput
-                  name="category"
-                  type="text"
-                  label="Product category"
-                  register={register}
-                />
-                <TPInput
-                  name="price"
-                  type="number"
-                  label="Product price"
-                  register={register}
-                />
-                <TPInput
-                  name="stockQuantity"
-                  type="number"
-                  label="Product stockQuantity"
-                  register={register}
-                />
+                <div>
+                  <Textarea
+                    className="px-4 py-3 bg-primary-bg rounded-lg mt-2 border-none"
+                    placeholder="Type your product details here."
+                    {...register("description")}
+                  />
+                </div>
+
                 <TPInput
                   name="brand"
                   type="text"
@@ -111,15 +127,6 @@ const CreateProduct = () => {
                   register={register}
                 />
 
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="isFeatured" {...register("isFeatured")} />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-primary-text"
-                  >
-                    Product is featured?
-                  </label>
-                </div>
                 <TPInput
                   name="tags"
                   type="text"
@@ -133,15 +140,66 @@ const CreateProduct = () => {
                 Upload Image
               </Separator>
               <div className=" space-y-6">
-                <TPInput
+                <Controller
                   name="images"
-                  type="file"
-                  label="Product Images"
-                  register={register}
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <div>
+                      <input
+                        className="px-4 py-3 bg-primary-bg rounded-lg mt-2 border-none w-full"
+                        type="file"
+                        accept="image/*"
+                        {...field}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            onChange(file);
+                            const reader = new FileReader();
+                            reader.onloadend = () =>
+                              setImagePreview(reader.result as string);
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                      />
+                      {imagePreview && (
+                        <div>
+                          <img
+                            src={imagePreview}
+                            alt="Preview"
+                            style={{
+                              width: "150px",
+                              marginTop: "10px",
+                              borderRadius: "8px",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                />
+
+                <TPSelect
+                  control={control}
+                  name="category"
+                  placeholder="Product category"
+                  options={[
+                    { label: "Notebooks", value: "Notebooks" },
+                    { label: "Pens", value: "Pens" },
+                    { label: "Pencils", value: "Pencils" },
+                    { label: "Markers", value: "Markers" },
+                    { label: "Erasers", value: "Erasers" },
+                    { label: "Staplers", value: "Staplers" },
+                    { label: "Folders", value: "Folders" },
+                    { label: "Calculators", value: "Calculators" },
+                    { label: "Paper", value: "Paper" },
+                    { label: "Books", value: "Books" },
+                    { label: "Other", value: "Other" },
+                  ]}
                 />
                 <TPSelect
-                  register={register}
+                  control={control}
                   name="status"
+                  // {...register("status")}
                   placeholder="Product Status"
                   options={[
                     { label: "Available", value: "available" },
@@ -149,6 +207,45 @@ const CreateProduct = () => {
                     { label: "Discontinued", value: "discontinued" },
                   ]}
                 />
+                <TPInput
+                  name="discount.percentage"
+                  type="number"
+                  label="Discount percentage"
+                  register={register}
+                />
+                <TPInput
+                  name="discount.validUntil"
+                  type="date"
+                  label="Valid Until"
+                  register={register}
+                />
+                <TPInput
+                  name="price"
+                  type="number"
+                  label="Product price"
+                  register={register}
+                />
+                <TPInput
+                  name="stockQuantity"
+                  type="number"
+                  label="Product stockQuantity"
+                  register={register}
+                />
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      setValue("isFeatured", checked)
+                    }
+                    id="isFeatured"
+                    {...register("isFeatured")}
+                  />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-primary-text"
+                  >
+                    Product is featured?
+                  </label>
+                </div>
               </div>
             </div>
           </div>

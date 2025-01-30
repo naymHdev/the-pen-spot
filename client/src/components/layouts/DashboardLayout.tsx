@@ -36,7 +36,7 @@ const DashboardLayout = () => {
           </div>
         </Menu>
       </Sidebar>
-      <div className=" p-10 w-full mx-auto relative">
+      <div className=" p-10 w-full mx-auto h-screen overflow-auto">
         <Outlet />
       </div>
     </div>

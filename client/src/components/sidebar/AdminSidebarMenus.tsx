@@ -5,14 +5,20 @@ import { MenuItem } from "react-pro-sidebar";
 const AdminSidebarMenus = () => {
   return (
     <>
-      <MenuItem icon={<House size={20} />}>
-        <Link to="/">Home</Link>
+      <MenuItem component={<Link to="/" />} icon={<House size={20} />}>
+        Home
       </MenuItem>
-      <MenuItem icon={<LayoutDashboard size={20} />}>
-        <Link to="/dashboard/admin-dashboard">Dashboard</Link>
+      <MenuItem
+        component={<Link to="/dashboard/admin-dashboard" />}
+        icon={<LayoutDashboard size={20} />}
+      >
+        Dashboard
       </MenuItem>
-      <MenuItem icon={<FilePlus size={20} />}>
-        <Link to="/dashboard/create-product">Add Product</Link>
+      <MenuItem
+        component={<Link to="/dashboard/create-product" />}
+        icon={<FilePlus size={20} />}
+      >
+        Add Product
       </MenuItem>
     </>
   );
