@@ -13,23 +13,16 @@ export type TCardData = Pick<
   | "author"
   | "name"
 >;
-
-interface ProductCardProps {
-  product: TCardData;
-}
-
-const ProductCard = ({ product }: ProductCardProps) => {
-  const {
-    name,
-    price,
-    productImg,
-    stockQuantity,
-    brand,
-    category,
-    author,
-    _id,
-  } = product || {};
-
+const TPPCard = ({
+  name,
+  price,
+  productImg,
+  stockQuantity,
+  brand,
+  category,
+  author,
+  _id,
+}: TCardData) => {
   return (
     <>
       <Link
@@ -79,4 +72,4 @@ const ProductCard = ({ product }: ProductCardProps) => {
   );
 };
 
-export default ProductCard;
+export default TPPCard;
