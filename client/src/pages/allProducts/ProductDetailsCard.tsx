@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ShoppingCart, Zap } from "lucide-react";
 import ratings from "../../assets/icons/star.png";
 import priceTag from "../../assets/icons/price-tag.png";
@@ -38,11 +37,11 @@ const ProductDetailsCard = ({ details }) => {
             <img className=" w-full h-full py-6 px-2" src={productImg} alt="" />
           </div>
           <div className="mt-6 flex items-center justify-center gap-2">
-            <button className=" w-full border flex gap-1 rounded-md items-center justify-center py-4 bg-secondary text-white">
+            <button className=" w-full border-none flex gap-3 rounded-md items-center justify-center py-4 bg-secondary text-white">
               <ShoppingCart />
               ADD TO CART
             </button>
-            <button className=" w-full border flex gap-1 rounded-md items-center justify-center py-4 bg-[#FA641C] text-white">
+            <button className=" w-full border-none flex gap-3 rounded-md items-center justify-center py-4 bg-[#FA641C] text-white">
               <Zap />
               BUY NOW
             </button>
@@ -97,7 +96,7 @@ const ProductDetailsCard = ({ details }) => {
               </div>
               <div className="mt- border-t border-neutral-200">
                 <div className="flex gap-20 px-4 py-6">
-                  <div className=" space-y-3 font-semibold">
+                  <div className=" space-y-3 font-semibold text-primary-text">
                     <p>Author</p>
                     <p>Brand</p>
                     <p>category</p>
@@ -108,12 +107,12 @@ const ProductDetailsCard = ({ details }) => {
                     <p>status</p>
                   </div>
                   <div className=" space-y-3 font-medium text-primary-text">
-                    <p>{author}</p>
-                    <p>{brand}</p>
-                    <p>{category}</p>
-                    <p>{color}</p>
-                    <p>{size}</p>
-                    <p>{material}</p>
+                    <p>{author ? author : "No author"}</p>
+                    <p>{brand ? brand : "No brand"}</p>
+                    <p>{category ? category : "Other"}</p>
+                    <p>{color ? color : "No color"}</p>
+                    <p>{size ? size : "No size"}</p>
+                    <p>{material ? material : "No material"}</p>
                     <p>{dividedTags && dividedTags}</p>
                     <p>{status}</p>
                   </div>
