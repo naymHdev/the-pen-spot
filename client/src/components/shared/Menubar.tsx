@@ -23,7 +23,9 @@ const Menubar = () => {
                   </Link>
                   <li>Books</li>
                   <li>Trending</li>
-                  <li>Best Sell</li>
+                  <Link to="/best-sell">
+                    <li>Best Sell</li>
+                  </Link>
                   <Link to="/all-products">
                     <li>All Products</li>
                   </Link>

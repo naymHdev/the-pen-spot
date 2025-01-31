@@ -15,7 +15,7 @@ const defaultValues = {
   description:
     "Ergonomic stapler with jam-free technology and a smooth stapling action.",
   category: "Staplers",
-  price: "12",
+  price: 20,
   stockQuantity: "120",
   color: "Silver",
   size: "Medium",
@@ -223,7 +223,7 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="price"
-                  type="text"
+                  type="number"
                   label="Product price"
                   register={register}
                 />

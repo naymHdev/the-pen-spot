@@ -24,7 +24,7 @@ export type TProducts = {
   author?: string;
   description?: string;
   category: TProductsCategory;
-  price: string;
+  price: number;
   stockQuantity: string;
   brand?: string;
   color?: string;

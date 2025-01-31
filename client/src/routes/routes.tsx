@@ -8,6 +8,7 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import CreateProduct from "@/pages/admin/CreateProduct";
 import ProductDetails from "@/pages/allProducts/ProductDetails";
+import BestSell from "@/pages/bestSell/BestSell";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/product-details/:name/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "/best-sell",
+        element: <BestSell />,
       },
     ],
   },

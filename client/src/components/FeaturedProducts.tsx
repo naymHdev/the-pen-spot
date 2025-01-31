@@ -11,6 +11,7 @@ import { useGetAllProductsQuery } from "@/redux/features/products/productsApi";
 import TPPCard from "./cards/TPPCard";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import TPButton from "./buttons/TPButton";
 
 const FeaturedProducts = () => {
   const { data: productsData } = useGetAllProductsQuery(undefined);
@@ -30,9 +31,10 @@ const FeaturedProducts = () => {
             <p className=" font-medium text-secondary mt-1">Up to 65% off</p>
           </div>
           <Link to="/all-products">
-            <button className=" font-medium text-primary-text underline hover:cursor-pointer hover:text-secondary">
-              View all
-            </button>
+            <TPButton
+              className="border hover:bg-secondary hover:border-neutral-100 hover:text-white"
+              text="View all"
+            />
           </Link>
         </div>
         <div className="mt-6">
