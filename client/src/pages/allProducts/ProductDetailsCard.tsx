@@ -4,6 +4,7 @@ import priceTag from "../../assets/icons/price-tag.png";
 import moment from "moment";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { toast } from "sonner";
 
 const ProductDetailsCard = ({ details }) => {
   const {
@@ -34,7 +35,7 @@ const ProductDetailsCard = ({ details }) => {
 
   const handleAddToCart = () => {
     try {
-      const res = dispatch(
+      dispatch(
         addToCart({
           product: _id,
           name: name,
@@ -44,9 +45,10 @@ const ProductDetailsCard = ({ details }) => {
           image: productImg,
         })
       );
-      console.log("res", res);
-    } catch (error) {
-      console.log(error);
+
+      toast.success("Product added to your cart!");
+    } catch {
+      toast.error("Product added failed");
     }
   };
 

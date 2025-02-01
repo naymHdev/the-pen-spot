@@ -10,6 +10,7 @@ import CreateProduct from "@/pages/admin/CreateProduct";
 import ProductDetails from "@/pages/allProducts/ProductDetails";
 import BestSell from "@/pages/bestSell/BestSell";
 import Cart from "@/pages/cart/Cart";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <ProtectedRoute role="user">
+            <Cart />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

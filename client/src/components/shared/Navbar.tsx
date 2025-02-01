@@ -11,6 +11,7 @@ import UserAvatar from "./UserAvatar";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(useCurrentToken);
+  const cartData = useAppSelector((state) => state.cart);
 
   // check user exists
   let user;
@@ -59,10 +60,19 @@ const Navbar = () => {
                   )}
                 </div>
                 <div className=" flex items-center justify-center space-x-5">
-                  <Heart />
-                  <Link to="/cart">
-                    <ShoppingCart />
-                  </Link>
+                  <div>
+                    <Heart size={30} />
+                  </div>
+                  <div className="relative">
+                    <Link to="/cart">
+                      <ShoppingCart size={30} />
+                    </Link>
+                    {cartData.items.length > 0 && (
+                      <div className="absolute -top-2 -right-2 flex items-center justify-center text-sm font-medium bg-primary-bg border rounded-full w-5 h-5">
+                        {cartData.items.length}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

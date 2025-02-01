@@ -13,10 +13,15 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  /* 
+  email: "admin@gmail.com",
+  password: "admin1234",
+  */
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      email: "admin@gmail.com",
-      password: "admin1234",
+      email: "mocaji6888@gufutu.com",
+      password: "mocaji6888",
     },
   });
 
