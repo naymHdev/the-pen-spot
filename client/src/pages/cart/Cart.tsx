@@ -1,14 +1,19 @@
-import { updateQuantity } from "@/redux/features/cart/cartSlice";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "@/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, ShieldCheck } from "lucide-react";
+import moment from "moment";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
   const cartData = useAppSelector((state) => state.cart);
-
   const cartProducts = cartData.items || [];
 
-  console.log("cartData", cartProducts);
+  //   console.log("cartData", cartData.);
+
+  const deliveryDate = moment().add(7, "days").format("ddd MMM D");
 
   return (
     <>
@@ -16,7 +21,7 @@ const Cart = () => {
         <div className=" container mx-auto">
           <div className=" grid grid-cols-1 lg:grid-cols-8 gap-4">
             <div className=" col-span-1 lg:col-span-5 border rounded-md shadow border-primary-bg ">
-              <div>
+              <div className=" h-screen overflow-auto hide-scrollbar">
                 {cartProducts?.map((product) => (
                   <div
                     key={product.product}
@@ -66,14 +71,86 @@ const Cart = () => {
                           </div>
                         </div>
                       </div>
-                      <div className=" col-span-1 lg:col-span-4"></div>
-                      <div className=" col-span-1 lg:col-span-1"></div>
+                      <div className=" col-span-1 lg:col-span-3 relative">
+                        <div>
+                          <h2 className=" font-medium text-primary-text text-lg">
+                            {product.name}
+                          </h2>
+                          <p className="mt-6 font-semibold text-primary-text text-lg">
+                            TK {product.price}
+                          </p>
+                        </div>
+                        <div className=" absolute bottom-0">
+                          <button
+                            onClick={() =>
+                              dispatch(removeFromCart(product.product))
+                            }
+                            className=" uppercase font-semibold text-primary-text hover:text-secondary hover:cursor-pointer"
+                          >
+                            REMOVE
+                          </button>
+                        </div>
+                      </div>
+                      <div className="text-sm col-span-1 lg:col-span-2">
+                        <div>
+                          <h4 className=" font-medium text-primary-text">
+                            Delivery by <span>{deliveryDate}</span>
+                          </h4>
+                          <p className="mt-1 font-medium text-primary-text">
+                            Up to{" "}
+                            <span className=" text-gray-500 line-through">
+                              Tk40
+                            </span>
+                            <span className=" text-secondary px-1">Free</span>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className=" col-span-1 lg:col-span-3 border rounded-md shadow border-primary-bg p-4"></div>
+            <div className=" col-span-1 lg:col-span-3">
+              <div className="border rounded-md shadow border-primary-bg">
+                <div className=" border-b border-neutral-200 p-4">
+                  <h2 className=" text-xl font-semibold text-primary-text">
+                    Price Details
+                  </h2>
+                </div>
+                <div className=" p-4 space-y-4">
+                  <div className=" flex items-center justify-between font-medium text-primary-text text-lg">
+                    <p>Price ({cartProducts.length} items)</p>
+                    <p>Tk {cartData.totalPrice}</p>
+                  </div>
+                  <div className=" flex items-center justify-between font-medium text-primary-text text-lg">
+                    <p>Delivery Charges</p>
+                    <p className="mt-1 font-medium text-primary-text">
+                      <span className=" text-gray-500 line-through">
+                        Tk {cartProducts.length * 60}
+                      </span>
+                      <span className=" text-secondary px-1">Free</span>
+                    </p>
+                  </div>
+                </div>
+                <div className=" p-4">
+                  <div className=" border-b border-t border-dashed border-neutral-200 py-4 flex items-center justify-between font-semibold text-primary-text text-lg">
+                    <p>Total Amount ({cartProducts.length} items)</p>
+                    <p>Tk {cartData.totalPrice}</p>
+                  </div>
+                  <div className=" mt-6 flex text-slate-500 gap-2 items-center">
+                    <ShieldCheck size={35} />
+                    <h3 className=" font-bold text-sm">
+                      Safe and Secure Payments.Easy returns.100% Authentic
+                      products.
+                    </h3>
+                  </div>
+
+                  <button className="mt-6 hover:cursor-pointer w-full rounded uppercase text-lg font-medium bg-secondary text-primary-bg px-14 py-3">
+                    Place Order
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
