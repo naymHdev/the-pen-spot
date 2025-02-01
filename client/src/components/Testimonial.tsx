@@ -34,9 +34,9 @@ const Testimonial = () => {
           }}
           pagination={{ clickable: true }}
           breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            320: { slidesPerView: 2 },
+            640: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
             1280: { slidesPerView: 4 },
           }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
@@ -44,7 +44,7 @@ const Testimonial = () => {
         >
           {clientTestimonial?.map((itm) => (
             <SwiperSlide key={itm.id}>
-              <div className="border rounded-lg p-4 shadow-md border-neutral-300 bg-primary-bg text-center">
+              <div className="mt-4 border rounded-lg p-4 shadow-md border-neutral-300 bg-primary-bg text-center">
                 <img
                   className="w-24 h-24 rounded-full mx-auto mb-4"
                   src={itm.image}

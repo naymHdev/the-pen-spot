@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className=" bg-primary-bg">
+      <div className=" bg-primary-bg relative">
         <div className=" container mx-auto ">
           <div className=" py-6 hidden lg:grid grid-cols-5 items-center justify-between">
             <div className=" col-span-1">

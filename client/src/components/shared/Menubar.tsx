@@ -21,10 +21,8 @@ const Menubar = () => {
                   <Link to="/">
                     <li>Home</li>
                   </Link>
-                  <li>Books</li>
-                  <li>Trending</li>
-                  <Link to="/best-sell">
-                    <li>Best Sell</li>
+                  <Link to="/about">
+                    <li>About</li>
                   </Link>
                   <Link to="/all-products">
                     <li>All Products</li>

@@ -8,9 +8,9 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import CreateProduct from "@/pages/admin/CreateProduct";
 import ProductDetails from "@/pages/allProducts/ProductDetails";
-import BestSell from "@/pages/bestSell/BestSell";
 import Cart from "@/pages/cart/Cart";
 import ProtectedRoute from "./ProtectedRoute";
+import About from "@/pages/about/About";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path: "/best-sell",
-        element: <BestSell />,
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/cart",
