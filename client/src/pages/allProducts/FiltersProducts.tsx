@@ -81,7 +81,7 @@ const FiltersProducts = ({ setFilterQuery }) => {
             {/* Reset Filters */}
             <button
               onClick={resetFilters}
-              className="mt-4 mb-1 w-full p-2 bg-secondary text-primary-bg duration-300 transition-transform hover:scale-105 hover:cursor-pointer rounded-full"
+              className="mt-6 mb-1 w-full p-2 bg-secondary text-primary-bg duration-300 transition-transform hover:scale-105 hover:cursor-pointer rounded-full"
             >
               Reset Filters
             </button>

@@ -2,35 +2,34 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
 
 interface ProductState {
-  searchQuery: string;
-  filters: Record<string, string>;
-  sortBy: string;
-  // Add other fields for product data as necessary
+  search: string;
+  filter: Record<string, string>;
+  sort: string;
 }
 
 const initialState: ProductState = {
-  searchQuery: "",
-  filters: {},
-  sortBy: "createdAt", // Default sorting order
+  search: "",
+  filter: {},
+  sort: "createdAt",
 };
 
 const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    setSearchQuery: (state, action: PayloadAction<string>) => {
-      state.searchQuery = action.payload;
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
     },
-    setFilters: (state, action: PayloadAction<Record<string, string>>) => {
-      state.filters = action.payload;
+    setFilter: (state, action: PayloadAction<Record<string, string>>) => {
+      state.filter = action.payload;
     },
-    setSortBy: (state, action: PayloadAction<string>) => {
-      state.sortBy = action.payload;
+    setSort: (state, action: PayloadAction<string>) => {
+      state.sort = action.payload;
     },
   },
 });
 
-export const { setSearchQuery, setFilters, setSortBy } = productSlice.actions;
+export const { setSearch, setFilter, setSort } = productSlice.actions;
 
 export const selectProductState = (state: RootState) => state.product;
 

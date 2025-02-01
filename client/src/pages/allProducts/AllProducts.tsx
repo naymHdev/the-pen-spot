@@ -10,6 +10,7 @@ import FiltersProducts from "./FiltersProducts";
 const AllProducts = () => {
   const [isSideBarOpen, setSidebarOpen] = useState(false);
   const [filterQuery, setFilterQuery] = useState<Record<string, any>>({});
+
   const {
     data: productsData,
     isFetching,
@@ -17,7 +18,7 @@ const AllProducts = () => {
   } = useGetAllProductsQuery(
     Object.entries(filterQuery).length ? filterQuery : undefined
   );
-  const products: TProducts[] = productsData?.data || [];
+  const isProducts: TProducts[] = productsData?.data || [];
 
   // console.log("productsData", productsData);
 
@@ -57,10 +58,10 @@ const AllProducts = () => {
                   <p className="text-lg font-medium text-secondary absolute top-[50%] left-[50%]">
                     Loading...
                   </p>
-                ) : products.length ? (
-                  products.map((itm) => <TPPCard key={itm._id} {...itm} />)
+                ) : isProducts.length ? (
+                  isProducts.map((itm) => <TPPCard key={itm._id} {...itm} />)
                 ) : (
-                  <p className="text-base md:text-lg mt-4 text-center">
+                  <p className="text-base md:text-lg mt-4 text-center  text-secondary absolute top-[50%] left-[50%]">
                     No Products Found
                   </p>
                 )}

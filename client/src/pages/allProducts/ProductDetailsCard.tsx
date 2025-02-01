@@ -2,6 +2,8 @@ import { ShoppingCart, Zap } from "lucide-react";
 import ratings from "../../assets/icons/star.png";
 import priceTag from "../../assets/icons/price-tag.png";
 import moment from "moment";
+import { useAppDispatch } from "@/redux/hooks";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 const ProductDetailsCard = ({ details }) => {
   const {
@@ -19,6 +21,7 @@ const ProductDetailsCard = ({ details }) => {
     tags,
     discount,
     status,
+    _id,
   } = details || {};
 
   const dividedTags = tags.map((tag: string, index: string) => (
@@ -27,7 +30,25 @@ const ProductDetailsCard = ({ details }) => {
     </span>
   ));
 
-  console.log("dividedTags", dividedTags);
+  const dispatch = useAppDispatch();
+
+  const handleAddToCart = () => {
+    try {
+      const res = dispatch(
+        addToCart({
+          product: _id,
+          name: name,
+          price: price,
+          quantity: 1,
+          stock: stockQuantity,
+          image: productImg,
+        })
+      );
+      console.log("res", res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -37,7 +58,10 @@ const ProductDetailsCard = ({ details }) => {
             <img className=" w-full h-full py-6 px-2" src={productImg} alt="" />
           </div>
           <div className="mt-6 flex items-center justify-center gap-2">
-            <button className=" w-full border-none flex gap-3 rounded-md items-center justify-center py-4 bg-secondary text-white">
+            <button
+              onClick={() => handleAddToCart()}
+              className=" w-full border-none hover:cursor-pointer hover:scale-105 transition-transform flex gap-3 rounded-md items-center justify-center py-4 bg-secondary text-white"
+            >
               <ShoppingCart />
               ADD TO CART
             </button>

@@ -60,7 +60,9 @@ const Navbar = () => {
                 </div>
                 <div className=" flex items-center justify-center space-x-5">
                   <Heart />
-                  <ShoppingCart />
+                  <Link to="/cart">
+                    <ShoppingCart />
+                  </Link>
                 </div>
               </div>
             </div>
