@@ -1,10 +1,50 @@
 import { CalendarRange, FolderKanban, UserRoundCheck } from "lucide-react";
+import { MessageCircle, Shield, MapPin, Phone } from "lucide-react";
 import logo from "../../assets/images/logo.svg";
 import about1 from "../../assets/images/a1.webp";
 import about2 from "../../assets/images/a4.jpeg";
 import about3 from "../../assets/images/a2.jpeg";
 import about4 from "../../assets/images/a3.jpeg";
 import MultiMarque from "@/components/MultiMarque";
+import innovation from "../../assets/images/technology-image.png";
+import TPButton from "@/components/buttons/TPButton";
+import { toast } from "sonner";
+import globalMap from "../../assets/images/global-map.png";
+
+const contacts = [
+  {
+    icon: <MessageCircle size={24} className=" text-primary-text" />,
+    title: "Chat to sales",
+    description: "Speak to our friendly team.",
+    buttonText: "sales@untitledui.com",
+    buttonStyle:
+      "border border-neutral-300 text-primary-text hover:bg-secondary hover:text-white hover:cursor-pointer",
+  },
+  {
+    icon: <Shield size={24} className=" text-primary-text" />,
+    title: "Chat to support",
+    description: "We’re here to help.",
+    buttonText: "support@untitledui.com",
+    buttonStyle:
+      " border border-neutral-300 text-primary-text hover:bg-secondary hover:text-white hover:cursor-pointer",
+  },
+  {
+    icon: <MapPin size={24} className=" text-primary-text" />,
+    title: "Visit us",
+    description: "Visit our office HQ.",
+    buttonText: "View on Google Maps",
+    buttonStyle:
+      " border border-neutral-300 text-primary-text hover:bg-secondary hover:text-white hover:cursor-pointer",
+  },
+  {
+    icon: <Phone size={24} className=" text-primary-text" />,
+    title: "Call us",
+    description: "Mon-Fri from 8am to 5pm.",
+    buttonText: "+1 (555) 000-0000",
+    buttonStyle:
+      " border border-neutral-300 text-primary-text hover:bg-secondary hover:text-white hover:cursor-pointer",
+  },
+];
 
 const About = () => {
   return (
@@ -91,8 +131,69 @@ const About = () => {
             </div>
           </div>
           {/* Slider */}
-          <div>
-            <MultiMarque />
+        </div>
+        <div className=" mt-20">
+          <MultiMarque />
+        </div>
+        <div className="mt-20 container mx-auto relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between">
+            <div>
+              <img className="" src={innovation} alt="Technical Innovation" />
+            </div>
+            <div className=" space-y-4">
+              <h2 className=" text-primary-text uppercase text-2xl font-bold">
+                Technology at Flipkart
+              </h2>
+              <h1 className=" font-black text-primary-text text-6xl uppercase">
+                Innovation
+              </h1>
+              <p>
+                Flipkart technology drives path-breaking, customer-focused
+                innovation that makes high quality products accessible to Indian
+                shoppers, besides making the online shopping experience
+                convenient, intuitive and seamless.
+              </p>
+              <TPButton
+                onClick={() =>
+                  toast.warning("This page is under construction!")
+                }
+                className=" bg-secondary text-primary-bg px-8 py-3 rounded-sm text-lg font-medium"
+                text="Read More"
+              />
+            </div>
+          </div>
+          <div className="mt-20">
+            <div className=" text-center space-y-3">
+              <p className=" font-black text-secondary">Contact us</p>
+              <h2 className=" font-semibold text-4xl">
+                Get in touch with our team
+              </h2>
+              <p className=" text-sm font-medium text-primary-text">
+                We have the team and know how to help you scale 10X faster.
+              </p>
+            </div>
+            <img className="" src={globalMap} alt="" />
+            <div className="md:absolute w-full bottom-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
+                {contacts?.map((contact, index) => (
+                  <div
+                    key={index}
+                    className="p-6 border border-neutral-300 rounded-xl shadow-sm hover:shadow-md transition flex flex-col items-start"
+                  >
+                    <div className="mb-4">{contact.icon}</div>
+                    <h3 className="text-lg font-semibold">{contact.title}</h3>
+                    <p className="text-sm text-gray-500 mb-4">
+                      {contact.description}
+                    </p>
+                    <button
+                      className={`w-full py-2 rounded-lg ${contact.buttonStyle}`}
+                    >
+                      {contact.buttonText}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

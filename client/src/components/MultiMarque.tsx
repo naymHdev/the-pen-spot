@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 const MultiMarque = () => {
   return (
     <>
-      <div className=" mt-10 ">
+      <div>
         <Marquee pauseOnHover={true}>
           <div className="flex items-center justify-center gap-4">
             {clientTestimonial?.map((itm) => (
