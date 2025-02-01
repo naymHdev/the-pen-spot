@@ -3,26 +3,44 @@ import { Input } from "../ui/input";
 import logo from "../../assets/images/logo.svg";
 import { Heart, Search, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
-import UserAvatar from "./UserAvatar";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { useGetMeQuery } from "@/redux/features/auth/authApi";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
   const token = useAppSelector(useCurrentToken);
   const cartData = useAppSelector((state) => state.cart);
+
+  const { data: myInfo } = useGetMeQuery(undefined);
+  const name = myInfo?.data?.name;
+
+  let initials: string;
+  if (name) {
+    const nameParts = name.split(" ");
+    const firstInitial = nameParts[0].charAt(0);
+    const lastInitial = nameParts[nameParts.length - 1].charAt(0);
+    initials = `${firstInitial}${lastInitial}`;
+  }
 
   // check user exists
   let user;
   if (token) {
     user = verifyToken(token);
   }
-  // console.log("user", user);
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  // Dynamic dashboard link handle
+  const dashboardLink =
+    (user?.role === "admin" && "/dashboard/admin-dashboard") ||
+    (user?.role === "user" && "/dashboard/profile");
+  // console.log("user", user);
 
   return (
     <>
@@ -47,7 +65,24 @@ const Navbar = () => {
                 <div className="flex items-center gap-2">
                   {user ? (
                     <>
-                      <UserAvatar handleLogout={handleLogout} user={user} />
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Link to={dashboardLink}>
+                              <Avatar className="border border-primary-text">
+                                <AvatarFallback>{initials}</AvatarFallback>
+                              </Avatar>
+                            </Link>
+                          </TooltipTrigger>
+                          <TooltipContent className=" border-neutral-300">
+                            <p>
+                              {user?.role === "admin"
+                                ? "Admin Dashboard"
+                                : "My Profile"}
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </>
                   ) : (
                     <>
