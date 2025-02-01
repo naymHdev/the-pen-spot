@@ -25,14 +25,14 @@ export type TProducts = {
   description?: string;
   category: TProductsCategory;
   price: number;
-  stockQuantity: string;
+  stockQuantity: number;
   brand?: string;
   color?: string;
   size?: string;
   material?: string;
   productImg?: string;
   sku: string;
-  rating?: string;
+  rating?: number;
   isFeatured?: boolean;
   tags?: string[];
   discount?: TDiscount;

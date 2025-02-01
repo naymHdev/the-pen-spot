@@ -10,22 +10,22 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const defaultValues = {
-  name: "Fellowes Stellar",
-  author: "Fellowes technology",
+  name: "AUSK Checkered Men Polo Neck Dark Blue, White T-Shirt",
+  author: "TPS Industry",
   description:
     "Ergonomic stapler with jam-free technology and a smooth stapling action.",
   category: "Staplers",
-  price: 20,
-  stockQuantity: "120",
+  price: 200,
+  stockQuantity: 10,
   color: "Silver",
   size: "Medium",
   material: "Plastic",
-  sku: "c3d4e5f64nq",
-  rating: "4.6",
+  sku: "c3d4e5f",
+  rating: 4,
   isFeatured: false,
   tags: ["ergonomic", "jam-free", "office"],
   discount: {
-    percentage: "8",
+    percentage: 8,
     validUntil: "2025-09-30T23:59:59Z",
   },
   status: "available",
@@ -161,7 +161,7 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="rating"
-                  type="text"
+                  type="number"
                   label="Product rating"
                   register={register}
                 />
@@ -229,7 +229,7 @@ const CreateProduct = () => {
                 />
                 <TPInput
                   name="stockQuantity"
-                  type="text"
+                  type="number"
                   label="Product stockQuantity"
                   register={register}
                 />

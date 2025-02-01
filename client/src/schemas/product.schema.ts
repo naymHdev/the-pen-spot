@@ -19,7 +19,7 @@ export const productSchema = z.object({
     "Other",
   ] as [TProductsCategory, ...TProductsCategory[]]),
   price: z.number().min(0, "Price must be greater than 0"),
-  stockQuantity: z.string().min(0, "Stock must be at least 0"),
+  stockQuantity: z.number().min(0, "Stock must be at least 0"),
   brand: z.string().optional(),
   color: z.string().optional(),
   size: z.string().optional(),
