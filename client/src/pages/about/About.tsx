@@ -1,10 +1,10 @@
 import { CalendarRange, FolderKanban, UserRoundCheck } from "lucide-react";
 import logo from "../../assets/images/logo.svg";
-
 import about1 from "../../assets/images/a1.webp";
 import about2 from "../../assets/images/a4.jpeg";
 import about3 from "../../assets/images/a2.jpeg";
 import about4 from "../../assets/images/a3.jpeg";
+import MultiMarque from "@/components/MultiMarque";
 
 const About = () => {
   return (
@@ -89,6 +89,10 @@ const About = () => {
                 />
               </div>
             </div>
+          </div>
+          {/* Slider */}
+          <div>
+            <MultiMarque />
           </div>
         </div>
       </div>
