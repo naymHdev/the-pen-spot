@@ -1,11 +1,17 @@
 import { CalendarRange, FolderKanban, UserRoundCheck } from "lucide-react";
 import logo from "../../assets/images/logo.svg";
+
+import about1 from "../../assets/images/a1.webp";
+import about2 from "../../assets/images/a4.jpeg";
+import about3 from "../../assets/images/a2.jpeg";
+import about4 from "../../assets/images/a3.jpeg";
+
 const About = () => {
   return (
     <>
       <div>
         <div className="mt-10 container mx-auto">
-          <div className=" flex justify-between p-6">
+          <div className="grid md:flex justify-between p-6">
             <div>
               <img src={logo} alt="The Pen Spot Logo" />
               <h1 className="mt-4 text-4xl font-bold text-primary-text">
@@ -52,7 +58,37 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div></div>
+            <div>
+              <div className="grid grid-cols-3 gap-2 p-6 relative">
+                {/* Top Left - Small Square */}
+                <img
+                  src={about1}
+                  alt="Abstract Art"
+                  className="w-full h-32 object-cover rounded-tr-4xl rounded-b-4xl"
+                />
+
+                {/* Top Middle - Portrait */}
+                <img
+                  src={about2}
+                  alt="Man Working"
+                  className="w-full h-32 object-cover rounded-b-4xl rounded-tl-4xl col-span-2"
+                />
+
+                {/* Bottom Left - Large Image */}
+                <img
+                  src={about4}
+                  alt="Dancer with Colors"
+                  className="w-full h-64 object-cover rounded-4xl col-span-2"
+                />
+
+                {/* Bottom Right - Portrait */}
+                <img
+                  src={about3}
+                  alt="Woman Taking Photo"
+                  className="w-full h-64 object-cover rounded-tl-4xl rounded-br-4xl"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
