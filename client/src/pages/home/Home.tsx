@@ -1,6 +1,7 @@
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Banner from "./Banner";
 import Commitment from "./Commitment";
+import Testimonial from "@/components/Testimonial";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <Banner />
         <Commitment />
         <FeaturedProducts />
+        <Testimonial />
       </div>
     </>
   );
