@@ -3,9 +3,20 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Outlet } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AdminSidebarMenus from "../sidebar/AdminSidebarMenus";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { verifyToken } from "@/utils/verifyToken";
+import UserSidebarMenus from "../sidebar/UserSidebarMenus";
 
 const DashboardLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const token = useAppSelector(useCurrentToken);
+
+  // check user exists
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
 
   return (
     <div className="h-screen flex">
@@ -32,7 +43,8 @@ const DashboardLayout = () => {
           </MenuItem>
 
           <div className="mt-6">
-            <AdminSidebarMenus />
+            {user && user.role === "admin" && <AdminSidebarMenus />}
+            {user && user.role === "user" && <UserSidebarMenus />}
           </div>
         </Menu>
       </Sidebar>

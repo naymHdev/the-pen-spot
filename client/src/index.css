@@ -36,8 +36,3 @@ body {
 .swiper-pagination {
   display: none !important;
 }
-
-.swiper-button-prev,
-.swiper-button-next {
-  color: #02213a !important;
-}

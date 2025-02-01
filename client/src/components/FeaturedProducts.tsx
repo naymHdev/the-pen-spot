@@ -10,7 +10,6 @@ import "swiper/css/autoplay";
 import { useGetAllProductsQuery } from "@/redux/features/products/productsApi";
 import TPPCard from "./cards/TPPCard";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import TPButton from "./buttons/TPButton";
 
 const FeaturedProducts = () => {
@@ -77,15 +76,6 @@ const FeaturedProducts = () => {
               </div>
             ))}
           </Swiper>
-          {/* Custom Navigation Buttons (Bottom Left) */}
-          <div className="absolute bottom-4 top-[610px] right-4 flex gap-2 z-10">
-            <button className="swiper-button-prev">
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button className="swiper-button-next">
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
         </div>
       </div>
     </>

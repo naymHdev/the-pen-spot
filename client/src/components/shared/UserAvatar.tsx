@@ -34,9 +34,11 @@ const UserAvatar = ({ handleLogout, user }) => {
         <DropdownMenuContent className=" bg-primary-bg border-primary-text px-2">
           {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
           <DropdownMenuSeparator />
-          <DropdownMenuItem className=" text-primary-text font-medium flex items-center gap-2 w-full">
-            <UserRound /> My Profile
-          </DropdownMenuItem>
+          <Link to="/dashboard/profile">
+            <DropdownMenuItem className=" text-primary-text font-medium flex items-center gap-2 w-full">
+              <UserRound /> My Profile
+            </DropdownMenuItem>
+          </Link>
           {user?.role === "user" && (
             <>
               <DropdownMenuItem className=" text-primary-text font-medium flex items-center gap-2 w-full">
