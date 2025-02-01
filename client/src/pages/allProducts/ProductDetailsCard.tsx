@@ -2,9 +2,12 @@ import { ShoppingCart, Zap } from "lucide-react";
 import ratings from "../../assets/icons/star.png";
 import priceTag from "../../assets/icons/price-tag.png";
 import moment from "moment";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { toast } from "sonner";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { verifyToken } from "@/utils/verifyToken";
 
 const ProductDetailsCard = ({ details }) => {
   const {
@@ -30,8 +33,15 @@ const ProductDetailsCard = ({ details }) => {
       #{tag},
     </span>
   ));
-
+  const navigate = useNavigate();
+  const token = useAppSelector(useCurrentToken);
   const dispatch = useAppDispatch();
+
+  // check user exists
+  let user: string;
+  if (token) {
+    user = verifyToken(token);
+  }
 
   const handleAddToCart = () => {
     try {
@@ -52,6 +62,31 @@ const ProductDetailsCard = ({ details }) => {
     }
   };
 
+  const handleBuy = () => {
+    try {
+      if (user && (user.role === "user" || user.role === "admin")) {
+        dispatch(
+          addToCart({
+            product: _id,
+            name: name,
+            price: price,
+            quantity: 1,
+            stock: stockQuantity,
+            image: productImg,
+          })
+        );
+
+        toast.success("Product added to your cart!");
+        navigate("/cart");
+      } else {
+        toast.error("Sign in before purchasing!");
+        navigate("/login");
+      }
+    } catch {
+      toast.error("Product addition failed!");
+    }
+  };
+
   return (
     <>
       <div className=" grid grid-cols-1 md:grid-cols-10 gap-4">
@@ -67,7 +102,10 @@ const ProductDetailsCard = ({ details }) => {
               <ShoppingCart />
               ADD TO CART
             </button>
-            <button className=" w-full border-none flex gap-3 rounded-md items-center justify-center py-4 bg-[#FA641C] text-white">
+            <button
+              onClick={() => handleBuy()}
+              className=" w-full border-none flex gap-3 rounded-md items-center justify-center py-4 bg-[#FA641C] text-white"
+            >
               <Zap />
               BUY NOW
             </button>
