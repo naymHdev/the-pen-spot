@@ -17,28 +17,11 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
-// import { TUser } from "@/types/user.types";
-// import { verifyToken } from "@/utils/verifyToken";
-// import { useAppSelector } from "@/redux/hooks";
-// import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const UpdateProfile = () => {
   const { data: myDataInfo } = useGetMeQuery(undefined);
   const getUserInfo = myDataInfo?.data;
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
-
-  // check user exists
-  // const token = useAppSelector(useCurrentToken);
-  // let user;
-  // if (token) {
-  //   user = verifyToken(token);
-  // }
-
-  // const getUserInfo = myDataInfo?.data?.find(
-  //   (itm: TUser) => itm.email === user?.userEmail
-  // );
-
-  console.log("getUserInfo", getUserInfo);
 
   const {
     register,

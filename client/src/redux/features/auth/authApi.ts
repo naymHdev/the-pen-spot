@@ -37,7 +37,7 @@ const authApi = baseApi.injectEndpoints({
       },
       providesTags: ["user"],
       transformResponse: (response: TResponseRedux<{ result: TUser[] }>) => {
-        console.log("response users---->", response);
+        // console.log("response users---->", response);
         return {
           data: response?.data?.result,
         };

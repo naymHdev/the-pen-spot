@@ -10,27 +10,24 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const defaultValues = {
-  name: "AUSK Checkered Men Polo Neck Dark Blue, White T-Shirt",
-  author: "TPS Industry",
+  name: "Graphing Calculator",
+  author: "GraphIt",
+  brand: "GraphPro",
   description:
-    "Ergonomic stapler with jam-free technology and a smooth stapling action.",
-  category: "Staplers",
-  price: 200,
-  stockQuantity: 10,
-  color: "Silver",
-  size: "Medium",
+    "Graphing calculator with a large display for complex calculations.",
+  category: "Calculators",
+  price: 1200,
+  stockQuantity: 20,
+  color: "Gray",
+  size: "Standard",
   material: "Plastic",
-  sku: "c3d4e5f",
+  sku: "c00145",
   rating: 4,
-  isFeatured: false,
-  tags: ["ergonomic", "jam-free", "office"],
-  discount: {
-    percentage: 8,
-    validUntil: "2025-09-30T23:59:59Z",
-  },
+  isFeatured: true,
+  tags: ["graphing", "calculator", "complex"],
+  discount: { percentage: "10", validUntil: "2026-11-15T23:59:59Z" },
   status: "available",
 };
-
 const CreateProduct = () => {
   const [addProduct] = useAddProductMutation();
 
