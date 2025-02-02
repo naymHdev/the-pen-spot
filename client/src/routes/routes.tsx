@@ -12,6 +12,7 @@ import Cart from "@/pages/cart/Cart";
 import ProtectedRoute from "./ProtectedRoute";
 import About from "@/pages/about/About";
 import MyProfile from "@/pages/profile/MyProfile";
+import UpdateProfile from "@/pages/profile/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute role="user">
             <MyProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "update-profile",
+        element: (
+          <ProtectedRoute role="user">
+            <UpdateProfile />
           </ProtectedRoute>
         ),
       },

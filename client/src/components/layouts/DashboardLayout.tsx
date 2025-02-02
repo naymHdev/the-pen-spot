@@ -30,7 +30,7 @@ const DashboardLayout = () => {
         <div className="h-screen flex">
           <Sidebar
             collapsed={collapsed}
-            className="h-full bg-primary-bg text-primary-text"
+            className="h-full text-primary-text rounded-2xl"
             transitionDuration={300}
           >
             <Menu>
@@ -43,7 +43,7 @@ const DashboardLayout = () => {
                   )
                 }
                 onClick={() => setCollapsed(!collapsed)}
-                className="text-center cursor-pointer shadow custom-menu-item text-primary-text"
+                className="text-center cursor-pointer shadow py-2 custom-menu-item text-primary-text"
               >
                 {collapsed ? (
                   ""
