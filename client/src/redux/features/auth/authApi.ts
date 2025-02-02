@@ -20,22 +20,35 @@ const authApi = baseApi.injectEndpoints({
     }),
 
     getMe: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
+      query: () => ({
+        url: "/users/me",
+        method: "GET",
+      }),
+    }),
 
-        if (args) {
-          args.forEach((item: TQueryParam) => {
-            params.append(item.name, item.value as string);
-          });
-        }
-        return {
-          url: "/users/me",
-          method: "GET",
-          params: params,
-        };
-      },
+    getUsers: builder.query({
+      query: () => ({
+        url: "/auth/all-users",
+        method: "GET",
+      }),
+    }),
+
+    // ✅ Update Profile API
+    updateProfile: builder.mutation({
+      query: (userData) => ({
+        url: "/users/update-profile",
+        method: "PATCH",
+        body: userData,
+      }),
+      invalidatesTags: ["user"],
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useGetMeQuery } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useGetMeQuery,
+  useUpdateProfileMutation,
+  useGetUsersQuery,
+} = authApi;

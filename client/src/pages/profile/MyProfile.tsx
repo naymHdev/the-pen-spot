@@ -1,13 +1,19 @@
-import { useGetMeQuery } from "@/redux/features/auth/authApi";
+import { useGetMeQuery, useGetUsersQuery } from "@/redux/features/auth/authApi";
 import { UserRoundPen } from "lucide-react";
 import image from "../../assets/testimonial/1.jpg";
+import { TUser } from "@/types/user.types";
 
 const MyProfile = () => {
   const { data: myData } = useGetMeQuery(undefined);
-  const { name, email, role, phone, address, city, country } =
-    myData?.data || {};
+  const { data: userData } = useGetUsersQuery(undefined);
 
-  // console.log("myData", myData);
+  const getUserInfo = userData?.data?.find(
+    (user: TUser) => user.email === myData?.data?.email
+  );
+  const { name, email, role, phone, address, city, country, postalCode } =
+    getUserInfo || {};
+
+  // console.log("getUserInfo", getUserInfo);
 
   return (
     <>
@@ -21,15 +27,15 @@ const MyProfile = () => {
             <div>
               <img className=" w-24 h-24 rounded-full" src={image} alt="" />
             </div>
-            <div className=" space-y-1  font-medium">
+            <div className=" space-y-  font-medium text-sm">
               <h2 className="text-3xl  text-primary-text">
                 {name?.charAt(0)?.toUpperCase() + name?.slice(1)}
               </h2>
               <p className=" text-foreground">
-                {role?.charAt(0).toUpperCase() + role?.slice(1)}
+                Role: {role?.charAt(0).toUpperCase() + role?.slice(1)}
               </p>
               <p className=" text-foreground">
-                {city?.charAt(0).toUpperCase() + city?.slice(1)}
+                {city?.charAt(0).toUpperCase() + city?.slice(1)},
                 {country != "N/A"
                   ? country?.charAt(0).toUpperCase() + country?.slice(1)
                   : ""}
@@ -110,7 +116,7 @@ const MyProfile = () => {
                   Postal Code
                 </label>
                 <h4 className=" text-md font-medium text-primary-text mt-1">
-                  NA
+                  {postalCode}
                 </h4>
               </div>
             </div>
