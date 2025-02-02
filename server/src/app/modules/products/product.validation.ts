@@ -27,16 +27,13 @@ const stationeryValidationsProductSchema = z.object({
     size: z.string().optional(),
     material: z.string().optional(),
     sku: z.string({ required_error: 'Product SKU is required' }),
-    rating: z.number().min(0).max(5),
+    rating: z.number({ required_error: 'Rating is required' }),
     isFeatured: z.boolean().default(false),
     tags: z.array(z.string()).optional(),
     productImg: z.string().optional(),
     discount: z
       .object({
-        percentage: z
-          .number()
-          .min(0, { message: 'Discount percentage must be at least 0' })
-          .max(100, { message: 'Discount percentage cannot exceed 100' }),
+        percentage: z.string(),
         validUntil: z
           .string()
           .refine((date) => new Date(date) > new Date(), {

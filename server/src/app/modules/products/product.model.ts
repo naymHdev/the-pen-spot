@@ -27,7 +27,7 @@ const StationeryProductSchema = new Schema<TStationeryProduct>(
     tags: { type: [String], default: [] },
     productImg: { type: String, default: '' },
     discount: {
-      percentage: { type: Number, min: 0, max: 100 },
+      percentage: { type: String },
       validUntil: { type: Date },
     },
     status: {

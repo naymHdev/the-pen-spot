@@ -14,7 +14,6 @@ const userRegistration = catchAsync(async (req, res) => {
 });
 
 const getMe = catchAsync(async (req, res) => {
-
   const { userEmail, role } = req.user;
   const result = await UserService.getMe(userEmail, role);
 
@@ -26,4 +25,16 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
-export const UserController = { userRegistration, getMe };
+const updateProfile = catchAsync(async (req, res) => {
+  const { userEmail } = req.user;
+  const updateUser = await UserService.updateMeFromDB(userEmail, req.body);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Profile updated successfully',
+    data: updateUser,
+  });
+});
+
+export const UserController = { userRegistration, getMe, updateProfile };

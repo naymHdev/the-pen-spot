@@ -20,7 +20,6 @@ router.post(
 
 router.get(
   '/get-all-stationary-products',
-  auth('admin'),
   ProductController.getALlStationaryProduct,
 );
 export const ProductRoutes = router;

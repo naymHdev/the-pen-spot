@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import QueryBuilder from '../../builder/QueryBuilder';
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary';
 import { StationeryProductSearchableFields } from './product.constant';
@@ -8,10 +9,8 @@ const createStationeryProductIntoDB = async (
   file: any,
   product: TStationeryProduct,
 ) => {
-  const id = crypto.randomUUID();
-
   if (file) {
-    const imageName = `${id}${product?.name}`;
+    const imageName = `$${product?.name}`;
     const path = file?.path;
 
     //send image to cloudinary

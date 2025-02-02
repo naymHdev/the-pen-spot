@@ -9,6 +9,11 @@ export type TUser = {
   email: string;
   password: string;
   role: TRole;
+  phone?: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  postalCode?: string;
   status: TUserStatus;
   isDeleted: boolean;
 };

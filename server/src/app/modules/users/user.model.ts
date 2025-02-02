@@ -29,6 +29,11 @@ const userSchema = new Schema<TUser, UserPassHas>({
     },
     default: 'user',
   },
+  phone: { type: String, default: 'N/A' },
+  address: { type: String, default: 'N/A' },
+  city: { type: String, default: 'N/A' },
+  country: { type: String, default: 'N/A' },
+  postalCode: { type: String, default: 'N/A' },
   status: {
     type: String,
     enum: {

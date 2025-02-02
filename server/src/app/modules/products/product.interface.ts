@@ -30,7 +30,7 @@ export type TStationeryProduct = {
   isFeatured?: boolean;
   tags?: string[];
   discount?: {
-    percentage: number;
+    percentage: string;
     validUntil: Date;
   };
   status: TProductStatus;

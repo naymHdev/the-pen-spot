@@ -4,6 +4,8 @@ import { sendResponse } from '../../utils/sendResponse';
 import { ProductServices } from './product.service';
 
 const createStationaryProduct = catchAsync(async (req, res) => {
+  // console.log("image", req.file);
+
   const result = await ProductServices.createStationeryProductIntoDB(
     req.file,
     req.body,

@@ -18,7 +18,21 @@ const getMe = async (userEmail: string, role: string) => {
   return result;
 };
 
+// ✅ Update user profile
+const updateMeFromDB = async (
+  userEmail: string,
+  updateData: Partial<TUser>,
+) => {
+  const updateUser = await UserModel.findByIdAndUpdate(userEmail, updateData, {
+    new: true,
+    runValidators: true,
+  });
+
+  return updateUser;
+};
+
 export const UserService = {
   registeredUserIntoDB,
   getMe,
+  updateMeFromDB,
 };
