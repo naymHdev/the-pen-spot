@@ -63,7 +63,8 @@ const DashboardLayout = () => {
                 </MenuItem>
                 {user && user.role === "admin" && <AdminSidebarMenus />}
                 {user && user.role === "user" && <UserSidebarMenus />}
-                <MenuItem className=" text-secondary"
+                <MenuItem
+                  className=" text-secondary"
                   onClick={handleLogout}
                   component={<Link to="/" />}
                   icon={<LogOut size={20} />}

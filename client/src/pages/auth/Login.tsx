@@ -20,8 +20,8 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      email: "mocaji6888@gufutu.com",
-      password: "mocaji6888",
+      email: "laheti4655@rykone.com",
+      password: "laheti4655",
     },
   });
 

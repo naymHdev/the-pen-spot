@@ -1,19 +1,13 @@
-import { useGetMeQuery, useGetUsersQuery } from "@/redux/features/auth/authApi";
+import { useGetMeQuery } from "@/redux/features/auth/authApi";
 import { UserRoundPen } from "lucide-react";
 import image from "../../assets/testimonial/1.jpg";
-import { TUser } from "@/types/user.types";
+import { toast } from "sonner";
 
 const MyProfile = () => {
-  const { data: myData } = useGetMeQuery(undefined);
-  const { data: userData } = useGetUsersQuery(undefined);
+  const { data: myDataInfo } = useGetMeQuery(undefined);
 
-  const getUserInfo = userData?.data?.find(
-    (user: TUser) => user.email === myData?.data?.email
-  );
   const { name, email, role, phone, address, city, country, postalCode } =
-    getUserInfo || {};
-
-  // console.log("getUserInfo", getUserInfo);
+    myDataInfo?.data || {};
 
   return (
     <>
@@ -43,7 +37,12 @@ const MyProfile = () => {
             </div>
           </div>
           <div>
-            <button className=" hover:cursor-pointer hover:bg-secondary hover:text-white hover:border-none border border-neutral-300 px-4 py-2 flex gap-3 items-center justify-center font-medium text-primary-text rounded-full">
+            <button
+              onClick={() =>
+                toast.warning("Currently you not updating your profile image!")
+              }
+              className=" hover:cursor-pointer hover:bg-secondary hover:text-white hover:border-none border border-neutral-300 px-4 py-2 flex gap-3 items-center justify-center font-medium text-primary-text rounded-full"
+            >
               Edit <UserRoundPen size={19} />
             </button>
           </div>
@@ -88,7 +87,7 @@ const MyProfile = () => {
                   Phone number
                 </label>
                 <h4 className=" text-md font-medium text-primary-text mt-1">
-                  {phone}
+                  {phone ? phone : "NA"}
                 </h4>
               </div>
             </div>

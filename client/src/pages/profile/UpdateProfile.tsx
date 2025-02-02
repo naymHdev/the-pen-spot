@@ -17,11 +17,28 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
+// import { TUser } from "@/types/user.types";
+// import { verifyToken } from "@/utils/verifyToken";
+// import { useAppSelector } from "@/redux/hooks";
+// import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const UpdateProfile = () => {
-  const { data: myData } = useGetMeQuery(undefined);
-
+  const { data: myDataInfo } = useGetMeQuery(undefined);
+  const getUserInfo = myDataInfo?.data;
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
+
+  // check user exists
+  // const token = useAppSelector(useCurrentToken);
+  // let user;
+  // if (token) {
+  //   user = verifyToken(token);
+  // }
+
+  // const getUserInfo = myDataInfo?.data?.find(
+  //   (itm: TUser) => itm.email === user?.userEmail
+  // );
+
+  console.log("getUserInfo", getUserInfo);
 
   const {
     register,
@@ -29,12 +46,12 @@ const UpdateProfile = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: myData?.data?.name || "",
-      phone: myData?.data?.phone || "",
-      address: myData?.data?.address || "",
-      city: myData?.data?.city || "",
-      country: myData?.data?.country || "",
-      postalCode: myData?.data?.postalCode || "",
+      name: getUserInfo?.name || "",
+      phone: getUserInfo?.phone || "",
+      address: getUserInfo?.address || "",
+      city: getUserInfo?.city || "",
+      country: getUserInfo?.country || "",
+      postalCode: getUserInfo?.postalCode || "",
     },
   });
 
@@ -43,8 +60,9 @@ const UpdateProfile = () => {
 
     try {
       const res = await updateProfile(formData);
-
       toast.success(res?.data.message, { id: toastId });
+
+      console.log("update", res?.data);
     } catch {
       toast.error("Something went wrong!", { id: toastId });
     }
@@ -55,7 +73,7 @@ const UpdateProfile = () => {
       <h2 className="text-2xl font-bold text-primary-text mb-4">
         Update Profile
       </h2>
-      <Card className="mt-6 w-6/12 mx-auto p-6 rounded-2xl border-neutral-200">
+      <Card className="mt-6 lg:w-6/12 mx-auto p-6 rounded-2xl border-neutral-200">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Name Field */}
           <div className="relative">

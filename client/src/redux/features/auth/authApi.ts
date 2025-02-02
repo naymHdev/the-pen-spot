@@ -1,5 +1,6 @@
 import { baseApi } from "@/redux/api/baseApi";
-import { TQueryParam } from "@/types/globalTypes";
+import { TResponseRedux } from "@/types/globalTypes";
+import { TUser } from "@/types/user.types";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,6 +18,7 @@ const authApi = baseApi.injectEndpoints({
         method: "POST",
         body: userInfo,
       }),
+      invalidatesTags: ["user"],
     }),
 
     getMe: builder.query({
@@ -26,11 +28,20 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
 
-    getUsers: builder.query({
-      query: () => ({
-        url: "/auth/all-users",
-        method: "GET",
-      }),
+    getAllUsers: builder.query({
+      query: () => {
+        return {
+          url: "/users/all-users",
+          method: "GET",
+        };
+      },
+      providesTags: ["user"],
+      transformResponse: (response: TResponseRedux<{ result: TUser[] }>) => {
+        console.log("response users---->", response);
+        return {
+          data: response?.data?.result,
+        };
+      },
     }),
 
     // ✅ Update Profile API
@@ -50,5 +61,5 @@ export const {
   useRegisterMutation,
   useGetMeQuery,
   useUpdateProfileMutation,
-  useGetUsersQuery,
+  useGetAllUsersQuery,
 } = authApi;

@@ -38,6 +38,7 @@ const productsApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["product"],
     }),
   }),
 });
