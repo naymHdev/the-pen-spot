@@ -35,4 +35,5 @@ export default {
   sp_password: process.env.SP_PASSWORD,
   sp_prefix: process.env.SP_PREFIX,
   sp_return_url: process.env.SP_RETURN_URL,
+  db_file: process.env.DB_FILE,
 };

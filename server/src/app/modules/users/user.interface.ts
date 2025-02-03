@@ -1,10 +1,10 @@
-import { Model } from 'mongoose';
+import { Model, Document } from 'mongoose';
 import { USER_ROLE } from './user.constant';
 
 export type TRole = 'admin' | 'user';
 export type TUserStatus = 'active' | 'blocked';
 
-export type TUser = {
+export interface TUser extends Document {
   name: string;
   email: string;
   password: string;
@@ -16,7 +16,7 @@ export type TUser = {
   postalCode?: string;
   status: TUserStatus;
   isDeleted: boolean;
-};
+}
 
 export interface UserPassHas extends Model<TUser> {
   isUserExistsByCustomEmail(email: string): Promise<TUser>;

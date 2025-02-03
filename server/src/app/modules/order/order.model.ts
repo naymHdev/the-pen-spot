@@ -5,14 +5,14 @@ const OrderSchema = new Schema<IOrder>(
   {
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'Product',
+      ref: 'UserModel',
       required: true,
     },
     products: [
       {
         product: {
           type: Schema.Types.ObjectId,
-          ref: 'Product',
+          ref: 'StationeryProductModel',
           required: true,
         },
         quantity: {

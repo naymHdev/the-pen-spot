@@ -64,7 +64,12 @@ export const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(StatusCodes.UNAUTHORIZED, `You are a UNAUTHORIZED`);
     }
     // decoded undefined
-    req.user = decoded as JwtPayload & { role: string };
+    // req.user = decoded as JwtPayload & { role: string };
+    req.user = {
+      _id: user._id,
+      userEmail: user.email,
+      role: user.role,
+    };
     next();
   });
 };
