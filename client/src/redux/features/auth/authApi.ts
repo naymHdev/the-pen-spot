@@ -26,6 +26,7 @@ const authApi = baseApi.injectEndpoints({
         url: "/users/me",
         method: "GET",
       }),
+      providesTags: ["user"],
     }),
 
     getAllUsers: builder.query({
@@ -37,7 +38,6 @@ const authApi = baseApi.injectEndpoints({
       },
       providesTags: ["user"],
       transformResponse: (response: TResponseRedux<{ result: TUser[] }>) => {
-        // console.log("response users---->", response);
         return {
           data: response?.data?.result,
         };
@@ -52,6 +52,19 @@ const authApi = baseApi.injectEndpoints({
         body: userData,
       }),
       invalidatesTags: ["user"],
+      async onQueryStarted(userData, { dispatch, queryFulfilled }) {
+        try {
+          // Optimistically update cache before API call
+          dispatch(
+            baseApi.util.updateQueryData("getMe", undefined, (draft: TUser) => {
+              return { ...draft, ...userData };
+            })
+          );
+          await queryFulfilled;
+        } catch (error) {
+          console.error("Profile update failed", error);
+        }
+      },
     }),
   }),
 });
