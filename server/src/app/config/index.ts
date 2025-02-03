@@ -1,7 +1,7 @@
-import path from "path";
-import dotenv from "dotenv";
+import path from 'path';
+import dotenv from 'dotenv';
 
-dotenv.config({ path: path.join((process.cwd(), ".env")) });
+dotenv.config({ path: path.join((process.cwd(), '.env')) });
 
 export default {
   NODE_ENV: process.env.NODE_ENV,
@@ -19,7 +19,6 @@ export default {
 
   jwt_refresh_secret_token: process.env.JWT_REFRESH_TOKEN,
   jwt_refresh_expire_in: process.env.JWT_REFRESH_EXPIRE_IN,
-  
 
   reset_pass_ui_link: process.env.RESET_PASS_UI_LINK,
 
@@ -29,4 +28,11 @@ export default {
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
+
+  // shurjopay payment integrations
+  sp_endpoint: process.env.SP_ENDPOINT,
+  sp_username: process.env.SP_USERNAME,
+  sp_password: process.env.SP_PASSWORD,
+  sp_prefix: process.env.SP_PREFIX,
+  sp_return_url: process.env.SP_RETURN_URL,
 };

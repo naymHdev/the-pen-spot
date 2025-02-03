@@ -40,19 +40,7 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 
-const findAllUser = catchAsync(async (req, res) => {
-  const result = await AuthServices.findAllUserFromDB();
-
-  sendResponse(res, {
-    success: true,
-    message: 'User found successfully',
-    statusCode: StatusCodes.OK,
-    data: result,
-  });
-});
-
 export const AuthControllers = {
   loginUser,
-  findAllUser,
   refreshToken,
 };

@@ -32,6 +32,13 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     }
     const { userEmail, role } = decoded;
 
+    // checking if the user is exist
+    // const isUser = await UserModel.findOne({ email: userEmail });
+
+    // if (!isUser) {
+    //   throw new AppError(StatusCodes.NOT_FOUND, 'This user is not found !');
+    // }
+
     // --------------------
 
     const user = await UserModel.isUserExistsByCustomEmail(userEmail);

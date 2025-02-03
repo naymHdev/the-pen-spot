@@ -94,13 +94,7 @@ const refreshToken = async (token: string) => {
   };
 };
 
-const findAllUserFromDB = async () => {
-  const result = await UserModel.find();
-  return result;
-};
-
 export const AuthServices = {
   loginUserFromDB,
-  findAllUserFromDB,
   refreshToken,
 };

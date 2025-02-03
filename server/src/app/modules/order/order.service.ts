@@ -44,6 +44,7 @@ const createOrder = async (
     customer_phone: user.phone,
     customer_city: user.city,
     client_ip,
+    customer_post_code: user.postalCode,
   };
 
   const payment = await orderUtils.makePaymentAsync(shurjopayPayload);

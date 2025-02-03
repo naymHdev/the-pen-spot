@@ -6,10 +6,12 @@ const router = express.Router();
 
 router.post('/create-user', UserController.userRegistration);
 router.get('/me', auth('user', 'admin'), UserController.getMe);
-router.get(
+router.patch(
   '/update-profile',
   auth('user', 'admin'),
   UserController.updateProfile,
 );
+
+router.get('/all-users', auth('user', 'admin'), UserController.findAllUser);
 
 export const UserRoutes = router;

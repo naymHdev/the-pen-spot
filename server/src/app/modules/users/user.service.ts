@@ -19,20 +19,27 @@ const getMe = async (userEmail: string, role: string) => {
 };
 
 // ✅ Update user profile
-const updateMeFromDB = async (
-  userEmail: string,
-  updateData: Partial<TUser>,
-) => {
-  const updateUser = await UserModel.findByIdAndUpdate(userEmail, updateData, {
-    new: true,
-    runValidators: true,
-  });
+const updateMeFromDB = async (userEmail: string, payload: Partial<TUser>) => {
+  const updateUser = await UserModel.findOneAndUpdate(
+    { email: userEmail },
+    { $set: payload },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
 
   return updateUser;
+};
+
+const findAllUserFromDB = async () => {
+  const result = await UserModel.find();
+  return result;
 };
 
 export const UserService = {
   registeredUserIntoDB,
   getMe,
   updateMeFromDB,
+  findAllUserFromDB,
 };

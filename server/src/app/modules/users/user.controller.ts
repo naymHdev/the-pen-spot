@@ -14,6 +14,9 @@ const userRegistration = catchAsync(async (req, res) => {
 });
 
 const getMe = catchAsync(async (req, res) => {
+
+  // console.log(req.user);
+
   const { userEmail, role } = req.user;
   const result = await UserService.getMe(userEmail, role);
 
@@ -37,4 +40,20 @@ const updateProfile = catchAsync(async (req, res) => {
   });
 });
 
-export const UserController = { userRegistration, getMe, updateProfile };
+const findAllUser = catchAsync(async (req, res) => {
+  const result = await UserService.findAllUserFromDB();
+
+  sendResponse(res, {
+    success: true,
+    message: 'User found successfully',
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
+
+export const UserController = {
+  userRegistration,
+  getMe,
+  updateProfile,
+  findAllUser,
+};
