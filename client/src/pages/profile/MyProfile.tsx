@@ -6,6 +6,8 @@ import { toast } from "sonner";
 const MyProfile = () => {
   const { data: myDataInfo } = useGetMeQuery(undefined);
 
+  // console.log('myDataInfo', myDataInfo);
+
   const { name, email, role, phone, address, city, country, postalCode } =
     myDataInfo?.data || {};
 

@@ -7,15 +7,28 @@ import Container from "@/components/layouts/Container";
 import { TProducts } from "@/types/products.type";
 import FiltersProducts from "./FiltersProducts";
 import clsx from "clsx";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const AllProducts = () => {
   const [isSideBarOpen, setSidebarOpen] = useState(false);
   const [filterQuery, setFilterQuery] = useState<Record<string, any>>({});
 
-  const { data: productsData } = useGetAllProductsQuery(
+  const {
+    data: productsData,
+    isFetching,
+    isLoading,
+  } = useGetAllProductsQuery(
     Object.entries(filterQuery).length ? filterQuery : undefined
   );
   const isProducts: TProducts[] = productsData?.data || [];
+
+  if (isFetching && isLoading) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="md:mt-0 mt-[100px] relative">
@@ -52,15 +65,32 @@ const AllProducts = () => {
 
             <FiltersProducts setFilterQuery={setFilterQuery} />
           </aside>
-
-          {/* Products Section */}
-          <main className="lg:col-span-5">
+          <div className="lg:col-span-5">
             <div className="h-screen overflow-auto hide-scrollbar grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {isProducts.map((itm) => (
-                <TPPCard key={itm._id} {...itm} />
-              ))}
+              {/* Check if loading or fetching */}
+              {isLoading || isFetching ? (
+                // Skeleton loading state
+                Array.from({ length: 12 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="p-4 bg-white rounded-lg shadow-md"
+                  >
+                    <Skeleton />
+                    <Skeleton className="mt-4" />
+                    <Skeleton className="mt-2" />
+                  </div>
+                ))
+              ) : // Check if no products are available
+              isProducts.length === 0 ? (
+                <div className="col-span-full text-center text-lg text-primary-text">
+                  No products available
+                </div>
+              ) : (
+                // Render products if available
+                isProducts.map((itm) => <TPPCard key={itm._id} {...itm} />)
+              )}
             </div>
-          </main>
+          </div>
         </div>
       </Container>
     </div>
