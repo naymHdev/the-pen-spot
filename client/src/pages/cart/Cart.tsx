@@ -2,18 +2,44 @@ import {
   removeFromCart,
   updateQuantity,
 } from "@/redux/features/cart/cartSlice";
+import { useCreateOrderMutation } from "@/redux/features/order/orderApi.ts";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Minus, Plus, ShieldCheck } from "lucide-react";
 import moment from "moment";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
+  const [createOrder, { isLoading, isSuccess, data, isError, error }] =
+    useCreateOrderMutation();
   const cartData = useAppSelector((state) => state.cart);
   const cartProducts = cartData.items || [];
 
-  //   console.log("cartData", cartData.);
+  //   console.log("cartData", cartProducts);
 
   const deliveryDate = moment().add(7, "days").format("ddd MMM D");
+
+  const handlePlacedOrder = async () => {
+    const res = await createOrder({ products: cartProducts });
+    console.log("order_res", res.data);
+  };
+
+  const toastId = "cart";
+  useEffect(() => {
+    if (isLoading) toast.loading("Processing...", { id: toastId });
+
+    if (isSuccess) {
+      toast.success(data?.message, { id: toastId });
+      if (data?.data) {
+        setTimeout(() => {
+          window.location.href = data.data;
+        }, 1000);
+      }
+    }
+
+    if (isError) toast.error(JSON.stringify(error), { id: toastId });
+  }, [data?.data, data?.message, error, isError, isLoading, isSuccess]);
 
   return (
     <>
@@ -145,7 +171,10 @@ const Cart = () => {
                     </h3>
                   </div>
 
-                  <button className="mt-6 hover:cursor-pointer w-full rounded uppercase text-lg font-medium bg-secondary text-primary-bg px-14 py-3">
+                  <button
+                    onClick={handlePlacedOrder}
+                    className="mt-6 hover:cursor-pointer w-full rounded uppercase text-lg font-medium bg-secondary text-primary-bg px-14 py-3"
+                  >
                     Place Order
                   </button>
                 </div>
