@@ -26,7 +26,7 @@ const loginUserFromDB = async (payload: TLoginUser) => {
 
   // Create token use jwt and sent to the client
   const jwtPayload = {
-    userEmail: user.email,
+    email: user.email,
     role: user.role,
   };
 
@@ -56,10 +56,10 @@ const refreshToken = async (token: string) => {
   // checking if the given token is valid
   const decoded = verifyToken(token, config.jwt_refresh_secret_token as string);
 
-  const { userEmail } = decoded;
+  const { email } = decoded;
 
   // checking if the user is exist
-  const user = await UserModel.isUserExistsByCustomEmail(userEmail);
+  const user = await UserModel.isUserExistsByCustomEmail(email);
 
   if (!user) {
     throw new AppError(StatusCodes.NOT_FOUND, 'This user is not found !');
@@ -79,7 +79,7 @@ const refreshToken = async (token: string) => {
   }
 
   const jwtPayload = {
-    userEmail: user.email,
+    email: user.email,
     role: user.role,
   };
 

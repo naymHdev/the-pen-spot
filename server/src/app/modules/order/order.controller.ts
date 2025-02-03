@@ -9,6 +9,7 @@ const createOrder = catchAsync(async (req, res) => {
   // console.log('order-controller', req.body, 'user', user);
 
   const order = await OrderService.createOrder(user, req.body, req.ip!);
+  // console.log('c__order', order);
 
   sendResponse(res, {
     success: true,

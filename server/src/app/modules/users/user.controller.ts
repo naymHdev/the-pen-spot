@@ -17,8 +17,8 @@ const getMe = catchAsync(async (req, res) => {
 
   // console.log(req.user);
 
-  const { userEmail, role } = req.user;
-  const result = await UserService.getMe(userEmail, role);
+  const { email, role } = req.user;
+  const result = await UserService.getMe(email, role);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -29,8 +29,8 @@ const getMe = catchAsync(async (req, res) => {
 });
 
 const updateProfile = catchAsync(async (req, res) => {
-  const { userEmail } = req.user;
-  const updateUser = await UserService.updateMeFromDB(userEmail, req.body);
+  const { email } = req.user;
+  const updateUser = await UserService.updateMeFromDB(email, req.body);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

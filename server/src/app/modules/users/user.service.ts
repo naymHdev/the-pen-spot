@@ -6,22 +6,24 @@ const registeredUserIntoDB = async (payload: TUser) => {
   return result;
 };
 
-const getMe = async (userEmail: string, role: string) => {
+const getMe = async (email: string, role: string) => {
+  // console.log('C___email', email);
+
   let result = null;
   if (role === 'user') {
-    result = await UserModel.findOne({ email: userEmail });
+    result = await UserModel.findOne({ email });
   }
   if (role === 'admin') {
-    result = await UserModel.findOne({ email: userEmail });
+    result = await UserModel.findOne({ email });
   }
 
   return result;
 };
 
 // ✅ Update user profile
-const updateMeFromDB = async (userEmail: string, payload: Partial<TUser>) => {
+const updateMeFromDB = async (email: string, payload: Partial<TUser>) => {
   const updateUser = await UserModel.findOneAndUpdate(
-    { email: userEmail },
+    { email: email },
     { $set: payload },
     {
       new: true,

@@ -33,6 +33,8 @@ const createOrder = async (
     totalPrice,
   });
 
+  console.log('s_order', user);
+
   // payment integration
   const shurjopayPayload = {
     amount: totalPrice,
@@ -48,6 +50,7 @@ const createOrder = async (
   };
 
   const payment = await orderUtils.makePaymentAsync(shurjopayPayload);
+  console.log('payment', payment);
 
   if (payment?.transactionStatus) {
     order = await order.updateOne({
@@ -68,7 +71,7 @@ const getOrders = async () => {
 
 const verifyPayment = async (order_id: string) => {
   const verifiedPayment = await orderUtils.verifyPaymentAsync(order_id);
-1
+
   if (verifiedPayment.length) {
     await Order.findOneAndUpdate(
       {

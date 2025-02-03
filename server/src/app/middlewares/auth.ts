@@ -30,10 +30,11 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     } catch {
       throw new AppError(StatusCodes.UNAUTHORIZED, 'Invalid or expired token');
     }
-    const { userEmail, role } = decoded;
+    const { email, role } = decoded;
+    // console.log('decoded', decoded);
 
     // checking if the user is exist
-    // const isUser = await UserModel.findOne({ email: userEmail });
+    // const isUser = await UserModel.findOne({ email: email });
 
     // if (!isUser) {
     //   throw new AppError(StatusCodes.NOT_FOUND, 'This user is not found !');
@@ -41,7 +42,7 @@ export const auth = (...requiredRoles: TUserRole[]) => {
 
     // --------------------
 
-    const user = await UserModel.isUserExistsByCustomEmail(userEmail);
+    const user = await UserModel.isUserExistsByCustomEmail(email);
 
     // console.log('existingUser', decoded, { user });
 
@@ -65,11 +66,12 @@ export const auth = (...requiredRoles: TUserRole[]) => {
     }
     // decoded undefined
     // req.user = decoded as JwtPayload & { role: string };
-    req.user = {
-      _id: user._id,
-      userEmail: user.email,
-      role: user.role,
-    };
+    // req.user = {
+    //   _id: user._id,
+    //   email: user.email,
+    //   role: user.role,
+    // };
+    req.user = user;
     next();
   });
 };
