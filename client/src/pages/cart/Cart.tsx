@@ -1,4 +1,5 @@
 import {
+  placeOrder,
   removeFromCart,
   updateQuantity,
 } from "@/redux/features/cart/cartSlice";
@@ -21,8 +22,19 @@ const Cart = () => {
   const deliveryDate = moment().add(7, "days").format("ddd MMM D");
 
   const handlePlacedOrder = async () => {
-    const res = await createOrder({ products: cartProducts });
-    console.log("order_res", res.data);
+    try {
+      const res = await createOrder({ products: cartProducts });
+
+      console.log("order_res", res.data);
+
+      if (res.data.success) {
+        dispatch(placeOrder());
+      } else {
+        toast.error("Order placement failed:", res.data.message);
+      }
+    } catch {
+      toast.error("Error placing order:");
+    }
   };
 
   const toastId = "cart";
@@ -34,12 +46,20 @@ const Cart = () => {
       if (data?.data) {
         setTimeout(() => {
           window.location.href = data.data;
-        }, 1000);
+        }, 500);
       }
     }
 
     if (isError) toast.error(JSON.stringify(error), { id: toastId });
   }, [data?.data, data?.message, error, isError, isLoading, isSuccess]);
+
+  if (cartProducts.length === 0) {
+    return (
+      <p className="text-secondary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-lg">
+        Your cart is empty. Start adding products!
+      </p>
+    );
+  }
 
   return (
     <>

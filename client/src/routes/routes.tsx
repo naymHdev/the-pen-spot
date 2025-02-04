@@ -13,6 +13,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import About from "@/pages/about/About";
 import MyProfile from "@/pages/profile/MyProfile";
 import UpdateProfile from "@/pages/profile/UpdateProfile";
+import OrderVerification from "@/pages/orders/OrderVerification";
+import OrderDetails from "@/pages/orders/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: "/order-verify",
+        element: (
+          <ProtectedRoute role="user">
+            <OrderVerification />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   {
@@ -70,6 +80,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute role="user">
             <UpdateProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "order-details",
+        element: (
+          <ProtectedRoute role="user">
+            <OrderDetails />
           </ProtectedRoute>
         ),
       },

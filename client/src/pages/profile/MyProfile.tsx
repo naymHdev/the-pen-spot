@@ -4,7 +4,9 @@ import image from "../../assets/testimonial/1.jpg";
 import { toast } from "sonner";
 
 const MyProfile = () => {
-  const { data: myDataInfo } = useGetMeQuery(undefined);
+  const { data: myDataInfo } = useGetMeQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   // console.log('myDataInfo', myDataInfo);
 

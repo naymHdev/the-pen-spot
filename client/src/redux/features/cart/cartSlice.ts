@@ -5,7 +5,7 @@ export interface ICartItem {
   name: string;
   price: number;
   quantity: number;
-  stock: number;
+  stockQuantity: number;
   image: string;
 }
 
@@ -60,9 +60,20 @@ const cartSlice = createSlice({
         state.items = state.items.filter((item) => item.product !== itemId);
       }
     },
+    placeOrder(state) {
+      state.items.forEach((item) => {
+        item.stockQuantity = Math.max(0, item.stockQuantity - item.quantity);
+      });
+
+      // Clear cart
+      state.items = [];
+      state.totalQuantity = 0;
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { addToCart, updateQuantity, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateQuantity, removeFromCart, placeOrder } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

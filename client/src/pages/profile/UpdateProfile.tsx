@@ -19,7 +19,9 @@ import {
 import { toast } from "sonner";
 
 const UpdateProfile = () => {
-  const { data: myDataInfo } = useGetMeQuery(undefined);
+  const { data: myDataInfo } = useGetMeQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const getUserInfo = myDataInfo?.data;
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
 

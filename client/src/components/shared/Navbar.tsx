@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const token = useAppSelector(useCurrentToken);
@@ -95,7 +96,10 @@ const Navbar = () => {
                   )}
                 </div>
                 <div className=" flex items-center justify-center space-x-5">
-                  <div>
+                  <div
+                    className=" hover:cursor-pointer"
+                    onClick={() => toast.warning("Its page underconstraction!")}
+                  >
                     <Heart size={30} />
                   </div>
                   <div className="relative">
