@@ -7,25 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllUsersQuery } from "@/redux/features/auth/authApi";
-
-interface TUser {
-  _id: string;
-  name: string;
-  role: string;
-  email: string;
-  phone?: string;
-  address?: string;
-  status: string;
-}
-
-export interface UsersResponse {
-  result: TUser[];
-}
+import { TUser } from "@/types/user.types";
 
 const ManageUsers = () => {
-  const { data: userData } = useGetAllUsersQuery(undefined) || [];
+  const { data: userData } = useGetAllUsersQuery(undefined);
+  const usersInfo = userData?.data || [];
 
-  // console.log("allUsers", userData?.data);
+  console.log("allUsers", usersInfo);
 
   return (
     <>
@@ -46,7 +34,7 @@ const ManageUsers = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {userData?.data?.map((user: TUser) => (
+              {usersInfo?.map((user: TUser) => (
                 <TableRow
                   key={user._id}
                   className=" border-neutral-400 text-primary-text"
