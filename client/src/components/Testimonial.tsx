@@ -5,7 +5,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
-import rating from "../../public/icons/star.png";
+import rating from "../../public/assets/icons/star.png";
 
 const Testimonial = () => {
   return (

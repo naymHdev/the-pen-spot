@@ -1,6 +1,6 @@
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import logo from "../../../public/images/logo.svg";
+import logo from "../../../public/assets/images/logo.svg";
 import { Heart, Search, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";

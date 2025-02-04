@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ratings from "../../../public/icons/star.png";
+import ratings from "../../../public/assets/icons/star.png";
 import { TProducts } from "@/types/products.type";
 
 export type TCardData = Pick<

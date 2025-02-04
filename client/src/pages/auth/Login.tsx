@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import google from "../../../public/icons/google.png";
-import facebook from "../../../public/icons/facebook.png";
+import google from "../../../public/assets/icons/google.png";
+import facebook from "../../../public/assets/icons/facebook.png";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
