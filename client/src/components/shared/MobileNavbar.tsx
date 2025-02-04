@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import logo from "../../../public/assets/images/logo.svg";
+import logo from "/assets/images/logo.svg";
 
 const navItems = [
   { name: "Home", link: "/", hasSubmenu: false },

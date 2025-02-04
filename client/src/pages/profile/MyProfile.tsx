@@ -1,6 +1,6 @@
 import { useGetMeQuery } from "@/redux/features/auth/authApi";
 import { UserRoundPen } from "lucide-react";
-import image from "../../../public/assets/testimonial/1.jpg";
+import image from "/assets/testimonial/1.jpg";
 import { toast } from "sonner";
 
 const MyProfile = () => {

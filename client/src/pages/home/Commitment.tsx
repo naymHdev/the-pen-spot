@@ -8,7 +8,7 @@ const Commitment = () => {
               <div>
                 <img
                   className=" w-16 h-full"
-                  src="/public/assets/icons/delivery-truck.png"
+                  src="/assets/icons/delivery-truck.png"
                   alt=""
                 />
               </div>
@@ -25,7 +25,7 @@ const Commitment = () => {
               <div>
                 <img
                   className=" w-16 h-full"
-                  src="/public/assets/icons/credit-card.png"
+                  src="/assets/icons/credit-card.png"
                   alt=""
                 />
               </div>
@@ -42,7 +42,7 @@ const Commitment = () => {
               <div>
                 <img
                   className=" w-16 h-full"
-                  src="/public/assets/icons/gift-cards.png"
+                  src="/assets/icons/gift-cards.png"
                   alt=""
                 />
               </div>
@@ -59,7 +59,7 @@ const Commitment = () => {
               <div>
                 <img
                   className=" w-16 h-full"
-                  src="/public/assets/icons/online-chat.png"
+                  src="/assets/icons/online-chat.png"
                   alt=""
                 />
               </div>
