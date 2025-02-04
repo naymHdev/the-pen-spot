@@ -27,7 +27,7 @@ const productsApi = baseApi.injectEndpoints({
         // console.log("response", response);
         return {
           data: response?.data?.result,
-          meta: response?.data?.meta,
+          meta: response?.data,
         };
       },
     }),

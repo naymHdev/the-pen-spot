@@ -5,7 +5,7 @@ export interface ICartItem {
   name: string;
   price: number;
   quantity: number;
-  stockQuantity: number;
+  stock: number;
   image: string;
 }
 
@@ -62,7 +62,7 @@ const cartSlice = createSlice({
     },
     placeOrder(state) {
       state.items.forEach((item) => {
-        item.stockQuantity = Math.max(0, item.stockQuantity - item.quantity);
+        item.stock = Math.max(0, item.stock - item.quantity);
       });
 
       // Clear cart

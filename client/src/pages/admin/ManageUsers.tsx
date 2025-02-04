@@ -45,7 +45,7 @@ const ManageUsers = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {userData?.data?.map((user: TUser) => (
+              {userData?.data?.map((user) => (
                 <TableRow
                   key={user._id}
                   className=" border-neutral-400 text-primary-text"

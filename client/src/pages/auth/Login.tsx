@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import google from "../../assets/icons/google.png";
 import facebook from "../../assets/icons/facebook.png";
@@ -42,7 +43,7 @@ const Login = () => {
       const res = (await login(userInfo).unwrap()) as TResponse<any>;
       // console.log("result", res);
 
-      const user = verifyToken(res?.data.token) as TUser;
+      const user = verifyToken(res?.data.token) as unknown as TUser;
       dispatch(setUser({ user: user, token: res?.data.token }));
 
       if (res.data) {

@@ -9,7 +9,30 @@ import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { verifyToken } from "@/utils/verifyToken";
 
-const ProductDetailsCard = ({ details }) => {
+interface DecodedToken {
+  role: string;
+  // other properties if available
+}
+
+interface ProductDetails {
+  name: string;
+  author: string;
+  description: string;
+  category: string;
+  price: number;
+  stockQuantity: number;
+  brand: string;
+  color: string;
+  size: string;
+  material: string;
+  productImg: string;
+  tags: string[];
+  discount: { percentage: number; validUntil: string };
+  status: string;
+  _id: string;
+}
+
+const ProductDetailsCard = ({ details }: { details: ProductDetails }) => {
   const {
     name,
     author,
@@ -28,17 +51,12 @@ const ProductDetailsCard = ({ details }) => {
     _id,
   } = details || {};
 
-  const dividedTags = tags.map((tag: string, index: string) => (
-    <span key={index} className="px-1 underline">
-      #{tag},
-    </span>
-  ));
   const navigate = useNavigate();
   const token = useAppSelector(useCurrentToken);
   const dispatch = useAppDispatch();
 
   // check user exists
-  let user: string;
+  let user: DecodedToken | null = null;
   if (token) {
     user = verifyToken(token);
   }
@@ -130,7 +148,7 @@ const ProductDetailsCard = ({ details }) => {
                 Tk {price}
               </h2>
               <p className=" text-secondary font-medium">
-                Hurry, Only {parseInt(stockQuantity)} left!
+                Hurry, Only {stockQuantity} left!
               </p>
 
               <h2 className=" font-semibold text-primary-text mt-6">
@@ -177,7 +195,7 @@ const ProductDetailsCard = ({ details }) => {
                     <p>{color ? color : "No color"}</p>
                     <p>{size ? size : "No size"}</p>
                     <p>{material ? material : "No material"}</p>
-                    <p>{dividedTags && dividedTags}</p>
+                    <p>{tags && tags}</p>
                     <p>{status}</p>
                   </div>
                 </div>

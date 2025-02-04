@@ -1,7 +1,7 @@
 import React from "react";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const FiltersProducts = ({ setFilterQuery }) => {
+const FiltersProducts = ({ setFilterQuery }: any) => {
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
@@ -9,7 +9,7 @@ const FiltersProducts = ({ setFilterQuery }) => {
 
     console.log("onChange", name, value);
 
-    setFilterQuery((prevParams) => {
+    setFilterQuery((prevParams: any) => {
       const updateQuery = prevParams ? [...prevParams] : [];
       const filteredQuery = updateQuery?.filter((query) => query.name !== name);
 

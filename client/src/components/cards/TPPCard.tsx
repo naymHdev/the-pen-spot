@@ -49,14 +49,14 @@ const TPPCard = ({
               (999)
             </div>
             <p className=" font-bold text-primary-text">
-              Tk {parseInt(price).toFixed(2)}
+              Tk {price.toFixed(2)}
             </p>
             <p className=" font-medium text-md text-primary-text">
               {brand && brand}
             </p>
           </div>
           <div className=" mt-4">
-            {parseInt(stockQuantity) > 0 ? (
+            {stockQuantity > 0 ? (
               <>
                 <p className=" font-medium text-green-600">In stock</p>
               </>
