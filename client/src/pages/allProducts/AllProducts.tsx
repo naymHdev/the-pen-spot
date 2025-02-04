@@ -22,14 +22,6 @@ const AllProducts = () => {
   );
   const isProducts: TProducts[] = productsData?.data || [];
 
-  if (isFetching && isLoading) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="md:mt-0 mt-[100px] relative">
       <Container>
@@ -71,10 +63,7 @@ const AllProducts = () => {
               {isLoading || isFetching ? (
                 // Skeleton loading state
                 Array.from({ length: 12 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="p-4 bg-white rounded-lg shadow-md"
-                  >
+                  <div key={index} className="p-4 bg-slate-500 animate-pulse">
                     <Skeleton />
                     <Skeleton className="mt-4" />
                     <Skeleton className="mt-2" />
