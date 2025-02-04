@@ -1,5 +1,5 @@
 import TPButton from "../buttons/TPButton";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../../public/images/logo.svg";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();

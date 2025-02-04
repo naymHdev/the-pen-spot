@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ShoppingCart, Zap } from "lucide-react";
-import ratings from "../../assets/icons/star.png";
-import priceTag from "../../assets/icons/price-tag.png";
+import ratings from "../../../public/icons/star.png";
+import priceTag from "../../../public/icons/price-tag.png";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";

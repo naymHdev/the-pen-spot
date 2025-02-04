@@ -1,7 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import google from "../../assets/icons/google.png";
-import facebook from "../../assets/icons/facebook.png";
-import bigSale from "../../assets/images/registration-big-sale.jpg";
+import google from "../../../public/icons/google.png";
+import facebook from "../../../public/icons/facebook.png";
+import bigSale from "../../../public/images/registration-big-sale.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";

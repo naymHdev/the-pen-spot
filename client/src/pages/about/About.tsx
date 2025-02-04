@@ -1,15 +1,15 @@
 import { CalendarRange, FolderKanban, UserRoundCheck } from "lucide-react";
 import { MessageCircle, Shield, MapPin, Phone } from "lucide-react";
-import logo from "../../assets/images/logo.svg";
-import about1 from "../../assets/images/a1.webp";
-import about2 from "../../assets/images/a4.jpeg";
-import about3 from "../../assets/images/a2.jpeg";
-import about4 from "../../assets/images/a3.jpeg";
+import logo from "../../../public/images/logo.svg";
+import about1 from "../../../public/images/a1.webp";
+import about2 from "../../../public/images/a4.jpeg";
+import about3 from "../../../public/images/a2.jpeg";
+import about4 from "../../../public/images/a3.jpeg";
 import MultiMarque from "@/components/MultiMarque";
-import innovation from "../../assets/images/technology-image.png";
+import innovation from "../../../public/images/technology-image.png";
 import TPButton from "@/components/buttons/TPButton";
 import { toast } from "sonner";
-import globalMap from "../../assets/images/global-map.png";
+import globalMap from "../../../public/images/global-map.png";
 
 const contacts = [
   {
