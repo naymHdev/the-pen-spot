@@ -3,7 +3,7 @@ const Commitment = () => {
     <>
       <div className=" bg-primary-bg">
         <div className=" container mx-auto py-8">
-          <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center">
+          <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center lg:space-y-0 space-y-10">
             <div className=" flex items-center gap-5 pl-8">
               <div>
                 <img

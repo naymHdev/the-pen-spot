@@ -36,7 +36,7 @@ const MobileNavbar = () => {
         <div
           className={`fixed  top-2 left-0 h-full w-full shadow-lg transform ${
             isOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out md:hidden `}
+          } transition-transform duration-300 ease-in-out md:hidden bg-primary-bg `}
         >
           <div className="p-6">
             {/* <img src={logo} alt="Logo" /> */}
@@ -69,17 +69,17 @@ const MobileNavbar = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img
-                  src="/src/assets/icons/united-kingdom.png"
+                  src="/assets/icons/united-kingdom.png"
                   alt="UK"
                   className="w-6"
                 />
                 <img
-                  src="/src/assets/icons/germany.png"
+                  src="/assets/icons/germany.png"
                   alt="Germany"
                   className="w-6"
                 />
                 <img
-                  src="/src/assets/icons/italy.png"
+                  src="/assets/icons/italy.png"
                   alt="Italy"
                   className="w-6"
                 />

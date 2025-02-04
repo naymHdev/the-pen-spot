@@ -8,14 +8,14 @@ const Banner = () => {
           <div className="grid grid-cols-1 lg:grid-cols-7 gap-5 items-center justify-center w-full">
             <div className="col-span-1 lg:col-span-5">
               <div className="bg-[url(/assets/images/h5_banner1.jpg)] bg-center bg-no-repeat bg-cover h-[70vh] w-full relative">
-                <div className=" absolute top-24 left-20 lg:w-1/2">
-                  <h4 className=" font-medium text-3xl text-primary-text">
+                <div className=" absolute top-24 left-10 lg:left-20 lg:w-1/2">
+                  <h4 className=" font-medium lg:text-3xl text-primary-text">
                     Mix & Match
                   </h4>
-                  <h2 className=" mt-8 text-6xl font-semibold text-primary-text leading-16">
+                  <h2 className=" mt-8 text-4xl lg:text-6xl font-semibold text-primary-text lg:leading-16">
                     With Our 3 For 2 Stationery
                   </h2>
-                  <div className=" mt-14">
+                  <div className="lg:mt-14 mt-6">
                     <TPButton
                       className=" bg-primary-text border-none text-white hover:bg-secondary py-4 px-9"
                       text="Shop Now"

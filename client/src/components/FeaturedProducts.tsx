@@ -11,6 +11,7 @@ import { useGetAllProductsQuery } from "@/redux/features/products/productsApi";
 import TPPCard from "./cards/TPPCard";
 import { Link } from "react-router-dom";
 import TPButton from "./buttons/TPButton";
+import Container from "./layouts/Container";
 
 const FeaturedProducts = () => {
   const { data: productsData } = useGetAllProductsQuery(undefined);
@@ -21,21 +22,23 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <div className="relative container mx-auto mt-20">
-        <div className=" flex items-center justify-between">
-          <div>
-            <h2 className=" font-semibold text-2xl text-primary-text">
-              Flash Deals
-            </h2>
-            <p className=" font-medium text-secondary mt-1">Up to 65% off</p>
+      <div className="relative mt-20">
+        <Container>
+          <div className=" flex items-center justify-between">
+            <div>
+              <h2 className=" font-semibold text-2xl text-primary-text">
+                Flash Deals
+              </h2>
+              <p className=" font-medium text-secondary mt-1">Up to 65% off</p>
+            </div>
+            <Link to="/all-products">
+              <TPButton
+                className="border hover:bg-secondary hover:border-neutral-100 hover:text-white"
+                text="View all"
+              />
+            </Link>
           </div>
-          <Link to="/all-products">
-            <TPButton
-              className="border hover:bg-secondary hover:border-neutral-100 hover:text-white"
-              text="View all"
-            />
-          </Link>
-        </div>
+        </Container>
         <div className="mt-6">
           <Swiper
             slidesPerView={4}
