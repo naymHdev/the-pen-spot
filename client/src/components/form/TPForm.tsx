@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 import {
   useForm,
@@ -42,7 +43,7 @@ const TPForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onFinish={methods.handleSubmit(submit)}  className="space-y-4">
+      <form onSubmit={methods.handleSubmit(submit)} className="space-y-4">
         {children}
       </form>
     </FormProvider>

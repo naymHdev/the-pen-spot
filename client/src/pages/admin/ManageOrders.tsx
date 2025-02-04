@@ -9,6 +9,19 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export interface IOrder {
+  _id: string;
+  order: string;
+  totalPrice: number;
+  status: string;
+  transaction?: {
+    bank_status?: string;
+    id?: string;
+    sp_code?: string;
+    method?: string;
+  };
+}
+
 const ManageOrders = () => {
   const {
     data: allOrders,
@@ -51,18 +64,18 @@ const ManageOrders = () => {
                 {allOrders?.data
                   ?.slice()
                   ?.reverse()
-                  ?.map((user) => (
+                  ?.map((order: IOrder) => (
                     <TableRow
-                      key={user._id}
+                      key={order._id}
                       className="border-neutral-400 text-primary-text"
                     >
-                      <TableCell>{user.user}</TableCell>
-                      <TableCell>{user.totalPrice}</TableCell>
-                      <TableCell>{user?.transaction?.bank_status}</TableCell>
-                      <TableCell>{user?.transaction?.id}</TableCell>
-                      <TableCell>{user?.transaction?.sp_code}</TableCell>
-                      <TableCell>{user?.transaction?.method}</TableCell>
-                      <TableCell>{user.status}</TableCell>
+                      <TableCell>{order.order}</TableCell>
+                      <TableCell>{order.totalPrice}</TableCell>
+                      <TableCell>{order?.transaction?.bank_status}</TableCell>
+                      <TableCell>{order?.transaction?.id}</TableCell>
+                      <TableCell>{order?.transaction?.sp_code}</TableCell>
+                      <TableCell>{order?.transaction?.method}</TableCell>
+                      <TableCell>{order.status}</TableCell>
                     </TableRow>
                   ))}
               </TableBody>

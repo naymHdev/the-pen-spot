@@ -23,7 +23,7 @@ const Navbar = () => {
   const { data: myInfo } = useGetMeQuery(undefined);
   const name = myInfo?.data?.name;
 
-  let initials: string;
+  let initials: string = "";
   if (name) {
     const nameParts = name.split(" ");
     const firstInitial = nameParts[0].charAt(0);
@@ -39,9 +39,11 @@ const Navbar = () => {
 
   // Dynamic dashboard link handle
   const dashboardLink =
-    (user?.role === "admin" && "/dashboard/admin-dashboard") ||
-    (user?.role === "user" && "/dashboard/profile");
-  // console.log("user", user);
+    user?.role === "admin"
+      ? "/dashboard/admin-dashboard"
+      : user?.role === "user"
+      ? "/dashboard/profile"
+      : "/";
 
   return (
     <>
@@ -69,7 +71,7 @@ const Navbar = () => {
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger>
-                            <Link to={dashboardLink}>
+                            <Link to={dashboardLink || "/"}>
                               <Avatar className="border border-primary-text">
                                 <AvatarFallback>{initials}</AvatarFallback>
                               </Avatar>
