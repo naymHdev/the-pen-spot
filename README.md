@@ -96,7 +96,10 @@ The application will be available at `http://localhost:3000`
 
 ## 📸 Screenshots
 
+### Cart Page
 ![The Pen Spot Cart Page](/public/assets/cart.png)
+
+### About Us Page
 ![The Pen Spot About Page](/public/assets/about.png)
 
 ## 🛡️ Security & Best Practices
