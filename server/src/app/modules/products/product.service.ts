@@ -23,6 +23,8 @@ const createStationeryProductIntoDB = async (
 };
 
 const getAllProductFromDB = async (query: Record<string, unknown>) => {
+  // console.log('Received Query:', query);
+
   const stationaryProductQuery = new QueryBuilder(
     StationeryProductModel.find(),
     query,

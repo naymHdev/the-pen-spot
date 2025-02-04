@@ -22,6 +22,10 @@ const createOrder = async (
       if (product) {
         const subtotal = product ? (product.price || 0) * item.quantity : 0;
         totalPrice += subtotal;
+
+        const stockQuantity = product.stockQuantity - item.quantity;
+        product.stockQuantity = stockQuantity;
+        product.save();
         return item;
       }
     }),

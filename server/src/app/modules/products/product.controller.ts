@@ -19,6 +19,8 @@ const createStationaryProduct = catchAsync(async (req, res) => {
 });
 
 const getALlStationaryProduct = catchAsync(async (req, res) => {
+  // console.log('query', req.query);
+
   const result = await ProductServices.getAllProductFromDB(req.query);
   sendResponse(res, {
     success: true,
