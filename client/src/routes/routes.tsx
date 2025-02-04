@@ -15,6 +15,9 @@ import MyProfile from "@/pages/profile/MyProfile";
 import UpdateProfile from "@/pages/profile/UpdateProfile";
 import OrderVerification from "@/pages/orders/OrderVerification";
 import OrderDetails from "@/pages/orders/OrderDetails";
+import ManageUsers from "@/pages/admin/ManageUsers";
+import ManageOrders from "@/pages/admin/ManageOrders";
+import ManageProducts from "@/pages/admin/ManageProducts";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +91,30 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute role="user">
             <OrderDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <ProtectedRoute role="admin">
+            <ManageUsers />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "manage-orders",
+        element: (
+          <ProtectedRoute role="admin">
+            <ManageOrders />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "manage-products",
+        element: (
+          <ProtectedRoute role="admin">
+            <ManageProducts />
           </ProtectedRoute>
         ),
       },
