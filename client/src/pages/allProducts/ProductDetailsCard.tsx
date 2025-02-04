@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ShoppingCart, Zap } from "lucide-react";
 import ratings from "../../assets/icons/star.png";
 import priceTag from "../../assets/icons/price-tag.png";
@@ -14,25 +15,25 @@ interface DecodedToken {
   // other properties if available
 }
 
-interface ProductDetails {
-  name: string;
-  author: string;
-  description: string;
-  category: string;
-  price: number;
-  stockQuantity: number;
-  brand: string;
-  color: string;
-  size: string;
-  material: string;
-  productImg: string;
-  tags: string[];
-  discount: { percentage: number; validUntil: string };
-  status: string;
-  _id: string;
-}
+// interface ProductDetails {
+//   name: string;
+//   author: string;
+//   description: string;
+//   category: string;
+//   price: number;
+//   stockQuantity: number;
+//   brand: string;
+//   color: string;
+//   size: string;
+//   material: string;
+//   productImg: string;
+//   tags: string[];
+//   discount: { percentage: number; validUntil: string };
+//   status: string;
+//   _id: string;
+// }
 
-const ProductDetailsCard = ({ details }: { details: ProductDetails }) => {
+const ProductDetailsCard = ({ details }: { details: Record<string, any> }) => {
   const {
     name,
     author,

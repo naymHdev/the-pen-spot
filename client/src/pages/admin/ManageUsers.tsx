@@ -23,8 +23,7 @@ export interface UsersResponse {
 }
 
 const ManageUsers = () => {
-  const { data: userData } =
-    useGetAllUsersQuery<UsersResponse>(undefined) || {};
+  const { data: userData } = useGetAllUsersQuery(undefined) || [];
 
   // console.log("allUsers", userData?.data);
 
