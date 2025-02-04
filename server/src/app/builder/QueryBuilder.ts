@@ -42,7 +42,7 @@ class QueryBuilder<T> {
     excludeFields.forEach((el) => delete queryObj[el]);
 
     // Price Range Filtering
-    const filterQuery: FilterQuery<T> = { ...queryObj };
+    const filterQuery = { ...queryObj };
 
     if (this.query.minPrice || this.query.maxPrice) {
       filterQuery.price = {};
