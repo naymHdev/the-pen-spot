@@ -3,7 +3,7 @@ import google from "../../assets/icons/google.png";
 import facebook from "../../assets/icons/facebook.png";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hooks";
 import { TResponse } from "@/types/globalTypes";
 import { setUser, TUser } from "@/redux/features/auth/authSlice";
@@ -12,6 +12,10 @@ import { verifyToken } from "@/utils/verifyToken";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   /* 
   email: "admin@gmail.com",
@@ -43,7 +47,7 @@ const Login = () => {
 
       if (res.data) {
         toast.success(res.message, { id: toastId });
-        return navigate("/");
+        return navigate(from, { replace: true });
       } else if (res?.error) {
         toast.error(res.error.data.message, { id: toastId });
         return navigate("/login");

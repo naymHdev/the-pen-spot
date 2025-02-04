@@ -30,7 +30,7 @@ const TPPCard = ({
           .replace(/\s+/g, "-")
           .toLowerCase()}/${_id}`}
       >
-        <div className=" flex flex-col relative group w-full h-full mx-auto p-4 hover:cursor-pointer hover:shadow-2xl transition-shadow duration-300">
+        <div className=" flex flex-col relative group w-full mx-auto p-4 hover:cursor-pointer hover:shadow-2xl transition-shadow duration-300">
           <div className=" flex items-center justify-center py-8">
             <img src={productImg} alt="" />
           </div>

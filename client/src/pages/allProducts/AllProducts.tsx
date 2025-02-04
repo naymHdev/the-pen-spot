@@ -8,18 +8,18 @@ import { TProducts } from "@/types/products.type";
 import FiltersProducts from "./FiltersProducts";
 import clsx from "clsx";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TQueryParam } from "@/types/globalTypes";
 
 const AllProducts = () => {
   const [isSideBarOpen, setSidebarOpen] = useState(false);
-  const [filterQuery, setFilterQuery] = useState<Record<string, any>>({});
-
+  const [filterQuery, setFilterQuery] = useState<TQueryParam[] | undefined>(
+    undefined
+  );
   const {
     data: productsData,
     isFetching,
     isLoading,
-  } = useGetAllProductsQuery(
-    Object.entries(filterQuery).length ? filterQuery : undefined
-  );
+  } = useGetAllProductsQuery(filterQuery);
   const isProducts: TProducts[] = productsData?.data || [];
 
   return (
@@ -58,7 +58,7 @@ const AllProducts = () => {
             <FiltersProducts setFilterQuery={setFilterQuery} />
           </aside>
           <div className="lg:col-span-5">
-            <div className="h-screen overflow-auto hide-scrollbar grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="h-screen overflow-auto hide-scrollbar grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-">
               {/* Check if loading or fetching */}
               {isLoading || isFetching ? (
                 // Skeleton loading state

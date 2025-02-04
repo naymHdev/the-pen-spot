@@ -10,7 +10,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const defaultValues = {
-  name: "Graphing Calculator",
+  name: "Graphing Calculators",
   author: "GraphIt",
   brand: "GraphPro",
   description:
@@ -21,7 +21,7 @@ const defaultValues = {
   color: "Gray",
   size: "Standard",
   material: "Plastic",
-  sku: "c00145",
+  sku: "c001ee45",
   rating: 4,
   isFeatured: true,
   tags: ["graphing", "calculator", "complex"],

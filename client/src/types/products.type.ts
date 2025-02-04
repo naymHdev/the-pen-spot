@@ -38,3 +38,8 @@ export type TProducts = {
   discount?: TDiscount;
   status: TProductStatus;
 };
+
+export type TQueryParams = {
+  name: string;
+  value: string;
+};

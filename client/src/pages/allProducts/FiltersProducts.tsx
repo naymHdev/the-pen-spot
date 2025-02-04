@@ -1,13 +1,28 @@
+import React from "react";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const FiltersProducts = ({ setFilterQuery }) => {
-  // Handle Input Change for Filters
-  const handleFilterChange = (name: string, value: any) => {
-    setFilterQuery((prev) => ({ ...prev, [name]: value }));
+  const handleFilterChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+
+    console.log("onChange", name, value);
+
+    setFilterQuery((prevParams) => {
+      const updateQuery = prevParams ? [...prevParams] : [];
+      const filteredQuery = updateQuery?.filter((query) => query.name !== name);
+
+      if (value) {
+        filteredQuery.push({ name, value });
+      }
+      return filteredQuery;
+    });
   };
 
   // Reset Filters
   const resetFilters = () => {
-    setFilterQuery({});
+    setFilterQuery([]);
   };
 
   return (
@@ -24,7 +39,8 @@ const FiltersProducts = ({ setFilterQuery }) => {
               type="text"
               placeholder="Search by name..."
               className="w-full p-2 border-b border-neutral-300 focus:outline-none"
-              onChange={(e) => handleFilterChange("searchTerm", e.target.value)}
+              name="searchTerm"
+              onChange={handleFilterChange}
             />
 
             {/* Price Range */}
@@ -33,15 +49,17 @@ const FiltersProducts = ({ setFilterQuery }) => {
             </h3>
             <input
               type="number"
+              name="minPrice"
               placeholder="Min Price"
               className="w-full p-2 border-b border-neutral-300 focus:outline-none"
-              onChange={(e) => handleFilterChange("minPrice", e.target.value)}
+              onChange={handleFilterChange}
             />
             <input
               type="number"
+              name="maxPrice"
               placeholder="Max Price"
               className="w-full p-2 border-b border-neutral-300 focus:outline-none mt-2"
-              onChange={(e) => handleFilterChange("maxPrice", e.target.value)}
+              onChange={handleFilterChange}
             />
 
             {/* Category */}
@@ -50,7 +68,8 @@ const FiltersProducts = ({ setFilterQuery }) => {
             </h3>
             <select
               className="w-full p-2 border-b border-neutral-300 focus:outline-none"
-              onChange={(e) => handleFilterChange("category", e.target.value)}
+              onChange={handleFilterChange}
+              name="category"
             >
               <option value="">All</option>
               <option value="Notebooks">Notebooks</option>
@@ -69,12 +88,11 @@ const FiltersProducts = ({ setFilterQuery }) => {
             </h3>
             <select
               className="w-full p-2 border-b border-neutral-300 focus:outline-none"
-              onChange={(e) =>
-                handleFilterChange("availability", e.target.value)
-              }
+              onChange={handleFilterChange}
+              name="status"
             >
               <option value="">All</option>
-              <option value="inStock">In Stock</option>
+              <option value="available">In Stock</option>
               <option value="outOfStock">Out of Stock</option>
             </select>
 
