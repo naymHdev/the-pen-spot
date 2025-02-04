@@ -26,7 +26,7 @@ const Register = () => {
         toast.success(res.data.message, { id: toastId });
         return navigate("/login");
       } else if (res?.error) {
-        toast.error(res.error.data.message, { id: toastId });
+        toast.error(res.error.toString(), { id: toastId });
         return navigate("/register");
       } else {
         toast.error("Sign in failed!", { id: toastId });

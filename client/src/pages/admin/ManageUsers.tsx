@@ -23,7 +23,9 @@ export interface UsersResponse {
 }
 
 const ManageUsers = () => {
-  const { data: userData } = useGetAllUsersQuery<UsersResponse>(undefined);
+  const { data: userData } =
+    useGetAllUsersQuery<UsersResponse>(undefined) || {};
+
   // console.log("allUsers", userData?.data);
 
   return (
@@ -45,7 +47,7 @@ const ManageUsers = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {userData?.data?.map((user) => (
+              {userData?.data?.map((user: TUser) => (
                 <TableRow
                   key={user._id}
                   className=" border-neutral-400 text-primary-text"
