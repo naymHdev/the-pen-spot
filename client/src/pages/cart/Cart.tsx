@@ -1,3 +1,4 @@
+import Container from "@/components/layouts/Container";
 import {
   placeOrder,
   removeFromCart,
@@ -63,15 +64,15 @@ const Cart = () => {
 
   return (
     <>
-      <div className=" mt-2">
-        <div className=" container mx-auto">
-          <div className=" grid grid-cols-1 lg:grid-cols-8 gap-4">
+      <div className=" mt-[77px] md:mt-4">
+        <Container className="">
+          <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-4">
             <div className=" col-span-1 lg:col-span-5 border rounded-md shadow border-primary-bg ">
               <div className=" h-screen overflow-auto hide-scrollbar">
                 {cartProducts?.map((product) => (
                   <div
                     key={product.product}
-                    className=" border-b border-neutral-200 py-4"
+                    className=" border-b border-neutral-200 py-4 px-3 lg:px-0"
                   >
                     <div className=" grid grid-cols-1 lg:grid-cols-7 gap-2">
                       <div className=" col-span-1 lg:col-span-2">
@@ -126,7 +127,7 @@ const Cart = () => {
                             TK {product.price}
                           </p>
                         </div>
-                        <div className=" absolute bottom-0">
+                        <div className=" lg:absolute mt-2 bottom-0">
                           <button
                             onClick={() =>
                               dispatch(removeFromCart(product.product))
@@ -201,7 +202,7 @@ const Cart = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
     </>
   );
