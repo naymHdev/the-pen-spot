@@ -11,7 +11,7 @@ const Footer = () => {
         <Container>
           <div className="">
             <div className="py-6 lg:flex items-center justify-between">
-              <div className=" lg:w-1/2">
+              <div className=" w-[90%]">
                 <h2 className=" text-2xl font-semibold text-primary-text">
                   Stay Inspired with Our Stationery Updates
                 </h2>
@@ -22,8 +22,8 @@ const Footer = () => {
                   and elevate your workspace with stylish essentials!
                 </p>
               </div>
-              <div className=" relative">
-                <form>
+              <div className=" relative mt-6 lg:mt-0">
+                <form className="grid">
                   <input
                     className="bg-white rounded-full lg:w-[500px] px-4 py-2 border border-primary-text focus:outline-none"
                     type="email"
@@ -48,7 +48,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className=" col-span-1 lg:col-span-5">
-                <div className=" grid grid-cols-1 lg:grid-cols-7 gap-10 justify-between">
+                <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-10 justify-between">
                   <div className=" col-span-1 lg:col-span-2">
                     <h2 className=" text-lg font-semibold text-primary-text">
                       Help

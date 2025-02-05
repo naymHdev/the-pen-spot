@@ -58,12 +58,12 @@ const AllProducts = () => {
             <FiltersProducts setFilterQuery={setFilterQuery} />
           </aside>
           <div className="lg:col-span-5">
-            <div className="h-screen overflow-auto hide-scrollbar grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-">
+            <div className="h-screen overflow-auto hide-scrollbar grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {/* Check if loading or fetching */}
               {isLoading || isFetching ? (
                 // Skeleton loading state
                 Array.from({ length: 12 }).map((_, index) => (
-                  <div key={index} className="p-4 bg-slate-500 animate-pulse">
+                  <div key={index} className="p-4 bg-slate-400 animate-pulse">
                     <Skeleton />
                     <Skeleton className="mt-4" />
                     <Skeleton className="mt-2" />
@@ -71,8 +71,8 @@ const AllProducts = () => {
                 ))
               ) : // Check if no products are available
               isProducts.length === 0 ? (
-                <div className="col-span-full text-center text-lg text-primary-text">
-                  No products available
+                <div className="col-span-full text-center text-lg text-secondary mt-20 font-semibold">
+                  No products available!!!
                 </div>
               ) : (
                 // Render products if available

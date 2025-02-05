@@ -10,6 +10,7 @@ import innovation from "/assets/images/technology-image.png";
 import TPButton from "@/components/buttons/TPButton";
 import { toast } from "sonner";
 import globalMap from "/assets/images/global-map.png";
+import Container from "@/components/layouts/Container";
 
 const contacts = [
   {
@@ -49,12 +50,12 @@ const contacts = [
 const About = () => {
   return (
     <>
-      <div>
-        <div className="mt-10 container mx-auto">
+      <div className="">
+        <Container className="mt-10">
           <div className="grid md:flex justify-between p-6">
-            <div>
+            <div className=" mt-10 lg:mt-0">
               <img src={logo} alt="The Pen Spot Logo" />
-              <h1 className="mt-4 text-4xl font-bold text-primary-text">
+              <h1 className="mt-4 text-2xl md:text-4xl font-bold text-primary-text">
                 About The Pen Spot
               </h1>
               <p className=" text-primary-text mt-4 lg:w-1/2 font-medium">
@@ -63,14 +64,14 @@ const About = () => {
                 come to life!
               </p>
               <div className="mt-10 flex items-center">
-                <div className="space-y-2 border-r border-neutral-200 px-6">
+                <div className="space-y-2 border-r border-neutral-200 px-1 lg:px-6">
                   <div className=" h-12 w-12 rounded-full bg-primary-bg text-primary-text flex items-center justify-center border-none">
                     <CalendarRange />
                   </div>
                   <p className="font-medium text-sm text-foreground">
                     Monthly unique visit
                   </p>
-                  <h2 className="font-semibold text-primary-text text-xl">
+                  <h2 className="font-semibold text-primary-text text-sm md:text-xl">
                     50,150,450
                   </h2>
                 </div>
@@ -81,8 +82,8 @@ const About = () => {
                   <p className="font-medium text-sm text-foreground">
                     Active customers
                   </p>
-                  <h2 className="font-semibold text-primary-text text-xl">
-                    100 Trillion
+                  <h2 className="font-semibold text-primary-text text-sm md:text-xl">
+                    10 Trillion
                   </h2>
                 </div>
                 <div className="space-y-2 border-r border-neutral-200 px-6">
@@ -92,7 +93,7 @@ const About = () => {
                   <p className="font-medium text-sm text-foreground">
                     Products for any need
                   </p>
-                  <h2 className="font-semibold text-primary-text text-xl">
+                  <h2 className="font-semibold text-primary-text text-sm md:text-xl">
                     1 Billions
                   </h2>
                 </div>
@@ -131,20 +132,20 @@ const About = () => {
             </div>
           </div>
           {/* Slider */}
-        </div>
+        </Container>
         <div className=" mt-20">
           <MultiMarque />
         </div>
-        <div className="mt-20 container mx-auto relative">
+        <Container className="mt-20 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between">
             <div>
               <img className="" src={innovation} alt="Technical Innovation" />
             </div>
             <div className=" space-y-4">
-              <h2 className=" text-primary-text uppercase text-2xl font-bold">
+              <h2 className=" text-primary-text uppercase text-xl md:text-2xl font-bold">
                 Technology at Flipkart
               </h2>
-              <h1 className=" font-black text-primary-text text-6xl uppercase">
+              <h1 className=" font-black text-primary-text text-3xl md:text-6xl uppercase">
                 Innovation
               </h1>
               <p>
@@ -165,7 +166,7 @@ const About = () => {
           <div className="mt-20">
             <div className=" text-center space-y-3">
               <p className=" font-black text-secondary">Contact us</p>
-              <h2 className=" font-semibold text-4xl">
+              <h2 className=" font-semibold text-2xl md:text-4xl">
                 Get in touch with our team
               </h2>
               <p className=" text-sm font-medium text-primary-text">
@@ -173,8 +174,8 @@ const About = () => {
               </p>
             </div>
             <img className="" src={globalMap} alt="" />
-            <div className="md:absolute w-full bottom-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
+            <div className="w-[90%] mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
                 {contacts?.map((contact, index) => (
                   <div
                     key={index}
@@ -195,7 +196,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
     </>
   );
