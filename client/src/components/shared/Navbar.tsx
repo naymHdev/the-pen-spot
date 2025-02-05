@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import logo from "/assets/images/logo.svg";
@@ -32,10 +33,14 @@ const Navbar = () => {
   }
 
   // check user exists
-  let user;
+  let user: any;
   if (token) {
     user = verifyToken(token);
   }
+
+  const userBaseCartProducts = cartData?.items?.filter(
+    (itm) => itm.userEmail === user?.email
+  );
 
   // Dynamic dashboard link handle
   const dashboardLink =
@@ -108,9 +113,9 @@ const Navbar = () => {
                     <Link to="/cart">
                       <ShoppingCart size={30} />
                     </Link>
-                    {cartData.items.length > 0 && (
+                    {userBaseCartProducts?.length > 0 && (
                       <div className="absolute -top-2 -right-2 flex items-center justify-center text-sm font-medium bg-primary-bg border rounded-full w-5 h-5">
-                        {cartData.items.length}
+                        {userBaseCartProducts?.length}
                       </div>
                     )}
                   </div>

@@ -7,6 +7,7 @@ export interface ICartItem {
   quantity: number;
   stock: number;
   image: string;
+  userEmail?: string;
 }
 
 interface CartState {

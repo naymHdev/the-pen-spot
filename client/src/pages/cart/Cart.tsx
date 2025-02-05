@@ -1,4 +1,5 @@
 import Container from "@/components/layouts/Container";
+import { useGetMeQuery } from "@/redux/features/auth/authApi";
 import {
   placeOrder,
   removeFromCart,
@@ -13,12 +14,21 @@ import { toast } from "sonner";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
+  const { data: userInfo } = useGetMeQuery(undefined);
   const [createOrder, { isLoading, isSuccess, data, isError, error }] =
     useCreateOrderMutation();
   const cartData = useAppSelector((state) => state.cart);
-  const cartProducts = cartData.items || [];
 
-  //   console.log("cartData", cartProducts);
+  const cartProducts = cartData?.items || [];
+  const userEmail = userInfo?.data?.email;
+
+  const userBaseCartProducts = cartProducts?.filter(
+    (itm) => itm.userEmail === userEmail
+  );
+
+  // console.log("cartData", cartProducts);
+  // console.log("userBaseCartProducts", userBaseCartProducts);
+  // console.log("userInfo", userInfo?.data?.email);
 
   const deliveryDate = moment().add(7, "days").format("ddd MMM D");
 
@@ -69,7 +79,7 @@ const Cart = () => {
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-4">
             <div className=" col-span-1 lg:col-span-5 border rounded-md shadow border-primary-bg ">
               <div className=" h-screen overflow-auto hide-scrollbar">
-                {cartProducts?.map((product) => (
+                {userBaseCartProducts?.map((product) => (
                   <div
                     key={product.product}
                     className=" border-b border-neutral-200 py-4 px-3 lg:px-0"

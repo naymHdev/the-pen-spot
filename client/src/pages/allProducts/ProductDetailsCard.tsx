@@ -12,27 +12,8 @@ import { verifyToken } from "@/utils/verifyToken";
 
 interface DecodedToken {
   role: string;
-  // other properties if available
+  email?: string;
 }
-
-// interface ProductDetails {
-//   name: string;
-//   author: string;
-//   description: string;
-//   category: string;
-//   price: number;
-//   stockQuantity: number;
-//   brand: string;
-//   color: string;
-//   size: string;
-//   material: string;
-//   productImg: string;
-//   tags: string[];
-//   discount: { percentage: number; validUntil: string };
-//   status: string;
-//   _id: string;
-// }
-
 const ProductDetailsCard = ({ details }: { details: Record<string, any> }) => {
   const {
     name,
@@ -61,6 +42,7 @@ const ProductDetailsCard = ({ details }: { details: Record<string, any> }) => {
   if (token) {
     user = verifyToken(token);
   }
+  // console.log("user", user);
 
   const handleAddToCart = () => {
     try {
@@ -72,6 +54,7 @@ const ProductDetailsCard = ({ details }: { details: Record<string, any> }) => {
           quantity: 1,
           stock: stockQuantity,
           image: productImg,
+          userEmail: user?.email,
         })
       );
 
@@ -92,6 +75,7 @@ const ProductDetailsCard = ({ details }: { details: Record<string, any> }) => {
             quantity: 1,
             stock: stockQuantity,
             image: productImg,
+            userEmail: user?.email,
           })
         );
 
