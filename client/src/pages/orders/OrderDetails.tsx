@@ -1,39 +1,20 @@
 import Skeleton from "@/components/Skeletons/Skeleton";
 import { Badge } from "@/components/ui/badge";
+import { useGetMeQuery } from "@/redux/features/auth/authApi";
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi.ts";
-export interface Transaction {
-  id: string;
-  transactionStatus: string | null;
-  bank_status: string;
-  date_time: string;
-  method: string;
-  sp_code: string;
-  sp_message: string;
-}
-
-export interface Product {
-  product: string;
-  quantity: number;
-  _id: string;
-}
-
-export interface Order {
-  transaction: Transaction;
-  _id: string;
-  user: string;
-  products: Product[];
-  totalPrice: number;
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import { Order } from "@/types/orderDetails.types";
+import clsx from "clsx";
 
 export default function OrderDetails() {
+  const { data: userInfo } = useGetMeQuery(undefined);
   const { isLoading, data } = useGetOrdersQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
+
   const orderData: Order[] = data?.data;
+  const userId = userInfo?.data?._id;
+
+  const userBaseOrders = orderData?.filter((itm) => itm.user === userId);
 
   return isLoading ? (
     <Skeleton />
@@ -43,7 +24,7 @@ export default function OrderDetails() {
         My Orders
       </div>
       <div className="mx-auto columns-1">
-        {orderData
+        {userBaseOrders
           ?.slice()
           .reverse()
           .map((order) => (
@@ -51,7 +32,7 @@ export default function OrderDetails() {
               key={order._id}
               className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6 my-6 border border-neutral-300 rounded-2xl"
             >
-              <div>
+              <div className=" space-y-2">
                 <h3 className="font-semibold text-primary-text">
                   Customer Information
                 </h3>
@@ -61,34 +42,42 @@ export default function OrderDetails() {
                   Last Updated: {new Date(order?.updatedAt).toLocaleString()}
                 </p>
               </div>
-              <div>
+              <div className=" space-y-2">
                 <h3 className="font-semibold text-primary-text">
                   Order Summary
                 </h3>
                 <p>Total Price: ${order?.totalPrice?.toFixed(2)}</p>
-                <p>
-                  Status:{" "}
+                <div className=" flex items-center gap-2">
+                  Status:
                   <Badge
+                    className={clsx(
+                      "px-3 py-1 text-sm font-medium",
+                      order?.status === "Pending"
+                        ? " bg-secondary text-white"
+                        : order?.status === "Paid"
+                        ? "border bg-green-500 text-white"
+                        : "border border-gray-500 text-gray-500"
+                    )}
                     variant={
                       order?.status === "Pending" ? "outline" : "default"
                     }
                   >
                     {order?.status}
                   </Badge>
-                </p>
+                </div>
               </div>
-              <div className="">
+              <div className=" space-y-2">
                 <h3 className="font-semibold text-primary-text">Products</h3>
-                <ul>
+                <ul className=" space-y-1">
                   {order?.products?.map((product, i) => (
                     <li key={i}>
-                      Product ID: {product?.product}, Quantity:{" "}
+                      Product ID: {product?.product}, Quantity:
                       {product?.quantity}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="">
+              <div className=" space-y-2">
                 <h3 className="font-semibold text-primary-text">
                   Transaction Details
                 </h3>
