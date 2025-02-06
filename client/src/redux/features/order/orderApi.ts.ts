@@ -8,6 +8,7 @@ const orderApi = baseApi.injectEndpoints({
         method: "POST",
         body: userInfo,
       }),
+      invalidatesTags: ["orders"],
     }),
     getOrders: builder.query({
       query: () => {
@@ -16,6 +17,7 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["orders"],
     }),
     verifyOrder: builder.query({
       query: (order_id) => ({

@@ -31,3 +31,16 @@ export interface OrderData {
   method: string;
   date_time: string;
 }
+
+export interface IOrder {
+  _id: string;
+  order: string;
+  totalPrice: number;
+  status: string;
+  transaction?: {
+    bank_status?: string;
+    id?: string;
+    sp_code?: string;
+    method?: string;
+  };
+}

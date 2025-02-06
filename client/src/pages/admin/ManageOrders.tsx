@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi.ts";
 import {
   Table,
@@ -8,26 +9,48 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-
-export interface IOrder {
-  _id: string;
-  order: string;
-  totalPrice: number;
-  status: string;
-  transaction?: {
-    bank_status?: string;
-    id?: string;
-    sp_code?: string;
-    method?: string;
-  };
-}
+import { IOrder } from "@/types/order.type";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useUpdateOrderStatusMutation } from "@/redux/features/admin/adminApi";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const ManageOrders = () => {
+  const [loadingOrderId, setLoadingOrderId] = useState<string | null>(null);
+  const [updateOrderStatus] = useUpdateOrderStatusMutation();
   const {
     data: allOrders,
     isFetching,
     isLoading,
   } = useGetOrdersQuery(undefined);
+
+  const handleStatusChange = async (
+    orderId: string,
+    currentStatus: string,
+    newStatus: "Shipped"
+  ) => {
+    if (currentStatus === newStatus) return;
+
+    setLoadingOrderId(orderId);
+    try {
+      const res = await updateOrderStatus({
+        orderId,
+        status: newStatus,
+      }).unwrap();
+      toast.success(res.message);
+    } catch (error: any) {
+      toast.error(error.data.message);
+    } finally {
+      setLoadingOrderId(null);
+    }
+  };
 
   return (
     <>
@@ -35,8 +58,6 @@ const ManageOrders = () => {
         <h2 className="text-2xl px-1 font-black text-primary-text dark:text-white">
           Manage Orders
         </h2>
-
-        {/* ✅ Show Loading State */}
         {isLoading ? (
           <div className="mt-10 space-y-4">
             {Array.from({ length: 5 }).map((_, index) => (
@@ -75,7 +96,35 @@ const ManageOrders = () => {
                       <TableCell>{order?.transaction?.id}</TableCell>
                       <TableCell>{order?.transaction?.sp_code}</TableCell>
                       <TableCell>{order?.transaction?.method}</TableCell>
-                      <TableCell>{order.status}</TableCell>
+                      <TableCell>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              className="border-neutral-300"
+                              size="sm"
+                              disabled={loadingOrderId === order._id}
+                            >
+                              {loadingOrderId === order._id
+                                ? "Updating..."
+                                : order.status}
+                              <ChevronDown className="ml-1 h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent className="bg-primary-bg border-neutral-300">
+                            <DropdownMenuItem
+                              onClick={() =>
+                                handleStatusChange(
+                                  order._id,
+                                  order.status,
+                                  "Shipped"
+                                )
+                              }
+                            >
+                              Shipped
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
                     </TableRow>
                   ))}
               </TableBody>

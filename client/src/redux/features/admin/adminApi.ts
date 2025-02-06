@@ -9,7 +9,16 @@ const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+    updateOrderStatus: builder.mutation({
+      query: ({ orderId, status }) => ({
+        url: `/admins/${orderId}/status`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["orders"],
+    }),
   }),
 });
 
-export const { useUserStatusUpdateMutation } = adminApi;
+export const { useUserStatusUpdateMutation, useUpdateOrderStatusMutation } =
+  adminApi;
