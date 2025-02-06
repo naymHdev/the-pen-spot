@@ -54,19 +54,6 @@ const authApi = baseApi.injectEndpoints({
         body: userData,
       }),
       invalidatesTags: ["user"],
-      // async onQueryStarted(userData, { dispatch, queryFulfilled }) {
-      //   try {
-      //     // Optimistically update cache before API call
-      //     dispatch(
-      //       baseApi.util.updateQueryData("getMe", undefined, (draft: TUser) => {
-      //         return { ...draft, ...userData };
-      //       })
-      //     );
-      //     await queryFulfilled;
-      //   } catch (error) {
-      //     console.error("Profile update failed", error);
-      //   }
-      // },
     }),
   }),
 });

@@ -16,6 +16,15 @@ export default function OrderDetails() {
 
   const userBaseOrders = orderData?.filter((itm) => itm.user === userId);
 
+  if (!userBaseOrders?.length) {
+    return (
+      <div>
+        <p className="text-secondary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-medium text-lg">
+          You don’t have any orders yet. Start shopping now!
+        </p>
+      </div>
+    );
+  }
   return isLoading ? (
     <Skeleton />
   ) : (

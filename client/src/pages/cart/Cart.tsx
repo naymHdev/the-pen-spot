@@ -36,7 +36,7 @@ const Cart = () => {
     try {
       const res = await createOrder({ products: cartProducts });
 
-      console.log("order_res", res.data);
+      // console.log("order_res", res.data);
 
       if (res.data.success) {
         dispatch(placeOrder());
@@ -64,7 +64,7 @@ const Cart = () => {
     if (isError) toast.error(JSON.stringify(error), { id: toastId });
   }, [data?.data, data?.message, error, isError, isLoading, isSuccess]);
 
-  if (cartProducts.length === 0) {
+  if (!cartProducts?.length) {
     return (
       <p className="text-secondary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-lg">
         Your cart is empty. Start adding products!
