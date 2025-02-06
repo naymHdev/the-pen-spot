@@ -3,7 +3,6 @@ import Skeleton from "@/components/Skeletons/Skeleton";
 import { Badge } from "@/components/ui/badge";
 import { useGetMeQuery } from "@/redux/features/auth/authApi";
 import { useGetOrdersQuery } from "@/redux/features/order/orderApi.ts";
-import { Order } from "@/types/orderDetails.types";
 import clsx from "clsx";
 
 export default function OrderDetails() {
@@ -12,7 +11,7 @@ export default function OrderDetails() {
     refetchOnMountOrArgChange: true,
   });
 
-  const orderData: Order[] = data?.data;
+  const orderData = data?.data;
   const userId = userInfo?.data?._id;
 
   const userBaseOrders = orderData?.filter((itm) => itm.user === userId);
