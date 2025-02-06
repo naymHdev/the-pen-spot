@@ -29,39 +29,19 @@ const blockUserFromDB = async (userId: string) => {
   await user.save();
 };
 
-const updateOrderStatus = async (orderId: string, newStatus: OrderStatus) => {
-  const validStatuses = [
-    'Pending',
-    'Paid',
-    'Shipped',
-    'Completed',
-    'Cancelled',
-  ];
-
-  if (!validStatuses.includes(newStatus)) {
-    throw new AppError(
-      StatusCodes.BAD_REQUEST,
-      'Invalid order status provided.',
-    );
-  }
-
+const updateOrderStatus = async (orderId: string, status: OrderStatus) => {
   const order = await Order.findById(orderId);
-
   if (!order) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'Order not found.');
+    throw new AppError(StatusCodes.NOT_FOUND, 'Order not found');
   }
 
-  if (order.status === 'Completed' || order.status === 'Cancelled') {
-    throw new AppError(
-      StatusCodes.BAD_REQUEST,
-      'This order has already been finalized and cannot be updated.',
-    );
+  if (!status) {
+    throw new AppError(StatusCodes.BAD_REQUEST, 'Order status is required');
   }
 
-  order.status = newStatus;
+  order.status = status;
   await order.save();
-
-  return order;
+  return { message: 'Order status updated successfully' };
 };
 
 export const AdminServices = {
