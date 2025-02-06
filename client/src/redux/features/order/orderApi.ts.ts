@@ -1,4 +1,6 @@
 import { baseApi } from "@/redux/api/baseApi";
+import { TResponseRedux } from "@/types/globalTypes";
+import { Order } from "@/types/orderDetails.types";
 
 const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -18,6 +20,13 @@ const orderApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ["orders"],
+      transformResponse: (response: TResponseRedux<{ result: Order[] }>) => {
+        // console.log("response", response);
+        return {
+          data: response?.data?.result,
+          meta: response?.data,
+        };
+      },
     }),
     verifyOrder: builder.query({
       query: (order_id) => ({

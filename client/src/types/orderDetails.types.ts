@@ -15,6 +15,7 @@ export interface Product {
 }
 
 export interface Order {
+  [x: string]: ReactNode;
   transaction: Transaction;
   _id: string;
   user: string;

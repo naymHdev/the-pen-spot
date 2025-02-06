@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import { IOrder } from "@/types/order.type";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { useUpdateOrderStatusMutation } from "@/redux/features/admin/adminApi";
 import { useState } from "react";
 import { toast } from "sonner";
+import Loading from "@/components/Loading";
 
 const ManageOrders = () => {
   const [loadingOrderId, setLoadingOrderId] = useState<string | null>(null);
@@ -30,6 +30,8 @@ const ManageOrders = () => {
     isFetching,
     isLoading,
   } = useGetOrdersQuery(undefined);
+
+  // console.log("allOrders", allOrders);
 
   const handleStatusChange = async (
     orderId: string,
@@ -51,6 +53,10 @@ const ManageOrders = () => {
       setLoadingOrderId(null);
     }
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -85,7 +91,7 @@ const ManageOrders = () => {
                 {allOrders?.data
                   ?.slice()
                   ?.reverse()
-                  ?.map((order: IOrder) => (
+                  ?.map((order) => (
                     <TableRow
                       key={order._id}
                       className="border-neutral-400 text-primary-text"
