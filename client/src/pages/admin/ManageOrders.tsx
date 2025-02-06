@@ -21,6 +21,7 @@ import { useUpdateOrderStatusMutation } from "@/redux/features/admin/adminApi";
 import { useState } from "react";
 import { toast } from "sonner";
 import Loading from "@/components/Loading";
+import clsx from "clsx";
 
 const ManageOrders = () => {
   const [loadingOrderId, setLoadingOrderId] = useState<string | null>(null);
@@ -106,7 +107,13 @@ const ManageOrders = () => {
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button
-                              className="border-neutral-300"
+                              className={clsx(
+                                order.status === "Pending" && "text-secondary",
+                                order.status === "Paid" && "text-green-500",
+                                order.status === "Shipped" && "text-blue-500",
+                                order.status === "Completed" && "text-gray-500",
+                                order.status === "Cancelled" && "text-red-500"
+                              )}
                               size="sm"
                               disabled={loadingOrderId === order._id}
                             >
