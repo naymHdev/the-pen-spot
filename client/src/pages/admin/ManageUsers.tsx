@@ -24,7 +24,11 @@ import { toast } from "sonner";
 import Loading from "@/components/Loading";
 
 const ManageUsers = () => {
-  const { data: userData, isLoading } = useGetAllUsersQuery(undefined);
+  const {
+    data: userData,
+    isLoading,
+    isFetching,
+  } = useGetAllUsersQuery(undefined);
   const usersInfo = userData?.data || [];
 
   const [updateStatus] = useUserStatusUpdateMutation();
@@ -48,7 +52,7 @@ const ManageUsers = () => {
     }
   };
 
-  if (isLoading) {
+  if (isFetching && isLoading) {
     return <Loading />;
   }
 
