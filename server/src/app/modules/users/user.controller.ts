@@ -41,6 +41,9 @@ const updateProfile = catchAsync(async (req, res) => {
 });
 
 const findAllUser = catchAsync(async (req, res) => {
+
+  console.log('User----C', req.user);
+
   const result = await UserService.findAllUserFromDB();
 
   sendResponse(res, {

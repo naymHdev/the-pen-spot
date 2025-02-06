@@ -3,6 +3,7 @@ import { UserRoutes } from '../modules/users/user.routes';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { ProductRoutes } from '../modules/products/product.routes';
 import { OrderRoutes } from '../modules/order/order.route';
+import { AdminRoutes } from '../modules/admin/amin.route';
 
 const router = Router();
 
@@ -10,6 +11,10 @@ const moduleRoutes = [
   {
     path: '/users',
     route: UserRoutes,
+  },
+  {
+    path: '/admins',
+    route: AdminRoutes,
   },
   {
     path: '/auth',
