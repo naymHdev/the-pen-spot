@@ -1,5 +1,12 @@
 import { Document, Types } from 'mongoose';
 
+export type OrderStatus =
+  | 'Pending'
+  | 'Paid'
+  | 'Shipped'
+  | 'Completed'
+  | 'Cancelled';
+
 export interface IOrder extends Document {
   user: Types.ObjectId;
   products: {
@@ -7,7 +14,7 @@ export interface IOrder extends Document {
     quantity: number;
   }[];
   totalPrice: number;
-  status: 'Pending' | 'Paid' | 'Shipped' | 'Completed' | 'Cancelled';
+  status: OrderStatus;
   transaction: {
     id: string;
     transactionStatus: string;

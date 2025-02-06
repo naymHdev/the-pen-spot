@@ -5,7 +5,6 @@ import { AdminServices } from './admin.service';
 import { sendResponse } from '../../utils/sendResponse';
 
 const blockUser = catchAsync(async (req, res) => {
-
   const { userId } = req.params;
 
   if (req.user?.role !== 'admin') {
@@ -25,4 +24,25 @@ const blockUser = catchAsync(async (req, res) => {
   });
 });
 
-export const AdminControllers = { blockUser };
+const updateOrder = catchAsync(async (req, res) => {
+  const { orderId } = req.params;
+  const { status } = req.body;
+
+  if (!status) {
+    throw new AppError(StatusCodes.BAD_REQUEST, 'Order status is required.');
+  }
+
+  const updatedOrder = await AdminServices.updateOrderStatus(orderId, status);
+
+  sendResponse(res, {
+    success: true,
+    message: 'Order status updated successfully.',
+    statusCode: StatusCodes.OK,
+    data: updatedOrder,
+  });
+});
+
+export const AdminControllers = {
+  blockUser,
+  updateOrder,
+};

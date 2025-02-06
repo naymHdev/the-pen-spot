@@ -48,17 +48,26 @@ export const auth = (...requiredRoles: TUserRole[]) => {
 
     // Check user exist or no!
     if (!user) {
-      throw new AppError(StatusCodes.NOT_FOUND, 'This user is not found');
+      throw new AppError(
+        StatusCodes.NOT_FOUND,
+        'User not found. Please check the ID and try again.',
+      );
     }
 
     // check user is deleted or not!
     if (user.isDeleted) {
-      throw new AppError(StatusCodes.FORBIDDEN, 'This user is already deleted');
+      throw new AppError(
+        StatusCodes.FORBIDDEN,
+        'This account has been deleted and is no longer accessible.',
+      );
     }
 
     // check user is blocked or not!
     if (user.status === 'blocked') {
-      throw new AppError(StatusCodes.FORBIDDEN, 'This user is blocked!');
+      throw new AppError(
+        StatusCodes.FORBIDDEN,
+        'Your account has been blocked. Please contact support for assistance.',
+      );
     }
 
     if (requiredRoles && !requiredRoles.includes(role)) {
