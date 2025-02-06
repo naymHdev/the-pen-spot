@@ -103,6 +103,7 @@ const Login = () => {
                   <input
                     className=" w-full px-4 py-3 bg-primary-bg rounded-lg focus:outline-none border-none"
                     placeholder="password***"
+                    type="password"
                     {...register("password")}
                   />
                 </div>
