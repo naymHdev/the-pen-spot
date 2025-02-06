@@ -4,6 +4,7 @@ import { orderUtils } from './order.utils';
 import { StationeryProductModel } from '../products/product.model';
 import Order from './order.model';
 import { TUser } from '../users/user.interface';
+import QueryBuilder from '../../builder/QueryBuilder';
 
 const createOrder = async (
   user: TUser,
@@ -68,9 +69,16 @@ const createOrder = async (
   return payment.checkout_url;
 };
 
-const getOrders = async () => {
-  const data = await Order.find();
-  return data;
+const getOrders = async (query: Record<string, unknown>) => {
+  const orderQuery = new QueryBuilder(Order.find(), query)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await orderQuery.modelQuery;
+  const meta = await orderQuery.countTotal();
+  return { result, meta };
 };
 
 const verifyPayment = async (order_id: string) => {

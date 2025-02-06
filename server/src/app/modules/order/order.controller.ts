@@ -20,7 +20,7 @@ const createOrder = catchAsync(async (req, res) => {
 });
 
 const getAllOrder = catchAsync(async (req, res) => {
-  const order = await OrderService.getOrders();
+  const order = await OrderService.getOrders(req.query);
 
   sendResponse(res, {
     success: true,
