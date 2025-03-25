@@ -20,7 +20,7 @@ const Testimonial = () => {
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
-            slidesPerView={4}
+            slidesPerView={3}
             spaceBetween={20}
             loop={true}
             autoplay={{
@@ -38,8 +38,8 @@ const Testimonial = () => {
             breakpoints={{
               320: { slidesPerView: 2 },
               640: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-              1280: { slidesPerView: 4 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 3 },
             }}
             modules={[EffectCoverflow, Pagination, Autoplay]}
             className="mySwiper"

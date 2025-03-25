@@ -2,6 +2,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import Banner from "./Banner";
 import Commitment from "./Commitment";
 import Testimonial from "@/components/Testimonial";
+import DealOff from "./DealOff";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Banner />
         <Commitment />
         <FeaturedProducts />
+        <DealOff />
         <Testimonial />
       </div>
     </>

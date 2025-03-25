@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <div className="relative mt-20">
+      <div className="relative mt-10  md:mt-20">
         <Container>
           <div className=" flex items-center justify-between">
             <div>
@@ -71,9 +71,6 @@ const FeaturedProducts = () => {
                     price={itm.price}
                     productImg={itm.productImg}
                     stockQuantity={itm.stockQuantity}
-                    brand={itm.brand}
-                    author={itm.author}
-                    category={itm.category}
                   />
                 </SwiperSlide>
               </div>
