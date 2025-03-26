@@ -25,9 +25,24 @@ const createStationeryProductIntoDB = async (
 const getAllProductFromDB = async (query: Record<string, unknown>) => {
   // console.log('Received Query:', query);
 
+  const { category, ...pQuery } = query
+  const filter: Record<string, any> = {};
+
+  // Category base Filters 
+  if (category) {
+    const categoryArray =
+      typeof category === 'string'
+        ? category.split(',')
+        : Array.isArray(category)
+          ? category
+          : [category];
+
+    filter.categories = { $in: categoryArray };
+  }
+
   const stationaryProductQuery = new QueryBuilder(
     StationeryProductModel.find(),
-    query,
+    pQuery,
   )
     .search(StationeryProductSearchableFields)
     .filter()

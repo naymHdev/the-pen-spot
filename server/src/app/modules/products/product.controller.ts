@@ -25,7 +25,7 @@ const getALlStationaryProduct = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     message: 'Product found successfully',
-    statusCode: StatusCodes.CREATED,
+    statusCode: StatusCodes.OK,
     data: result,
   });
 });

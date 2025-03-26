@@ -26,36 +26,14 @@ class QueryBuilder<T> {
   }
 
   filter() {
-    const queryObj = { ...this.query };
+    const queryObj = { ...this.query }; // copy
 
     // Filtering
-    const excludeFields = [
-      'searchTerm',
-      'sort',
-      'limit',
-      'page',
-      'fields',
-      'minPrice',
-      'maxPrice',
-    ];
+    const excludeFields = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
 
     excludeFields.forEach((el) => delete queryObj[el]);
 
-    // Price Range Filtering
-    const filterQuery = { ...queryObj };
-
-    if (this.query.minPrice || this.query.maxPrice) {
-      filterQuery.price = {};
-      if (this.query.minPrice) {
-        filterQuery.price.$gte = Number(this.query.minPrice);
-      }
-      if (this.query.maxPrice) {
-        filterQuery.price.$lte = Number(this.query.maxPrice);
-      }
-    }
-
-    // Apply Filters
-    this.modelQuery = this.modelQuery.find(filterQuery);
+    this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
 
     return this;
   }
@@ -98,6 +76,20 @@ class QueryBuilder<T> {
       total,
       totalPage,
     };
+  }
+
+  priceRange(minPrice?: number, maxPrice?: number) {
+    const priceFilter: Record<string, unknown> = {};
+    if (minPrice !== undefined) priceFilter.$gte = minPrice;
+    if (maxPrice !== undefined) priceFilter.$lte = maxPrice;
+
+    if (minPrice !== undefined || maxPrice !== undefined) {
+      this.modelQuery = this.modelQuery.find({
+        price: priceFilter,
+      } as FilterQuery<T>);
+    }
+
+    return this;
   }
 }
 
