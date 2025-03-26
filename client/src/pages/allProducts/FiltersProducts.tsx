@@ -2,12 +2,13 @@ import React from "react";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const FiltersProducts = ({ setFilterQuery }: any) => {
+  // Fillters product
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
     const { name, value } = e.target;
 
-    console.log("onChange", name, value);
+    // console.log("onChange", name, value);
 
     setFilterQuery((prevParams: any) => {
       const updateQuery = prevParams ? [...prevParams] : [];

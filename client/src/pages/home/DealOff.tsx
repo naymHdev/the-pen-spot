@@ -1,6 +1,7 @@
 import TPButton from "@/components/buttons/TPButton";
 import Container from "@/components/layouts/Container";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const DealOff = () => {
   // Target time (modify this based on actual expiry date)
@@ -72,10 +73,12 @@ const DealOff = () => {
             </div>
           </div>
           <div className="mt-10">
-            <TPButton
-              className="bg-secondary text-white px-6 py-3 rounded-full"
-              text="Shop Now"
-            />
+            <Link to="/all-products">
+              <TPButton
+                className="bg-secondary text-white px-6 py-3 rounded-full"
+                text="Shop Now"
+              />
+            </Link>
           </div>
         </div>
       </Container>
