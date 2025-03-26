@@ -15,7 +15,7 @@ const cretaBlog = catchAsync(async (req, res) => {
 });
 
 const getAllBlogs = catchAsync(async (req, res) => {
-  const result = await BlogsServices.getAllBlogs();
+  const result = await BlogsServices.getAllBlogs(req.query);
 
   sendResponse(res, {
     success: true,

@@ -13,7 +13,6 @@ export const blogSchema = z.object({
         views: z.number().min(0).default(0),
         likes: z.array(z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid user ID")).optional(),
         published: z.boolean().default(false),
-        publishedAt: z.date().optional(),
     })
 });
 

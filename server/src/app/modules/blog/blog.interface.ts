@@ -11,7 +11,4 @@ export interface IBlog {
     coverImage?: string;
     views: number;
     published: boolean;
-    publishedAt?: Date;
-    createdAt: Date;
-    updatedAt: Date;
 }
