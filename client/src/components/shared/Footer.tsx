@@ -25,7 +25,7 @@ const Footer = () => {
               <div className=" relative mt-6 lg:mt-0">
                 <form className="grid">
                   <input
-                    className="bg-white rounded-full lg:w-[500px] px-4 py-2 border border-primary-text focus:outline-none"
+                    className="bg-white rounded-full lg:w-[500px] px-4 py-2 border border-neutral-400 focus:outline-none"
                     type="email"
                     placeholder="Enter your email"
                   />
