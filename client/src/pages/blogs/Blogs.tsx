@@ -14,7 +14,11 @@ const BlogsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Unique categories from blogs
-  const categories = ["All", ...new Set(blogs.map((blog) => blog?.category))];
+  const categories = [
+    "All",
+    ...new Set(blogs.flatMap((blog) => blog.categories)),
+  ];
+//   console.log("categories", categories);
 
   // Filtering logic
   const filteredBlogs = blogs.filter((blog) => {
@@ -22,13 +26,13 @@ const BlogsPage = () => {
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
-      selectedCategory === "All" || blog?.category === selectedCategory;
+      selectedCategory === "All" || blog.categories.includes(selectedCategory);
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <Container>
-      <div className="flex flex-col md:flex-row gap-8 py-10">
+    <Container className=" mt-5">
+      <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 space-y-6">
           {/* Search */}
@@ -44,7 +48,9 @@ const BlogsPage = () => {
 
           {/* Categories Filter */}
           <div className="border border-neutral-300 p-4">
-            <h3 className="text-lg font-semibold mb-2 text-gray-600">Categories</h3>
+            <h3 className="text-lg font-semibold mb-2 text-gray-600">
+              Categories
+            </h3>
             <ul className="space-y-1 text-gray-600">
               {categories?.map((category) => (
                 <li key={category}>
@@ -52,8 +58,8 @@ const BlogsPage = () => {
                     onClick={() => setSelectedCategory(category)}
                     className={`block w-full text-left p-2 rounded-md ${
                       selectedCategory === category
-                        ? "bg-primary text-white"
-                        : "hover:bg-gray-200"
+                        ? "bg-primary"
+                        : " hover:text-secondary"
                     }`}
                   >
                     {category}
