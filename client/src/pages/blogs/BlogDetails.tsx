@@ -3,7 +3,6 @@ import Container from "@/components/layouts/Container";
 import { useGetAllBlogsQuery } from "@/redux/features/blogs/blogsApi";
 import { IBlog } from "@/types/blogs.type";
 import { Badge } from "@/components/ui/badge";
-import { Avatar } from "@/components/ui/avatar";
 import moment from "moment";
 
 const BlogDetailsPage = () => {
