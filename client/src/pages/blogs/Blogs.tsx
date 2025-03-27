@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "@/components/layouts/Container";
 import { useGetAllBlogsQuery } from "@/redux/features/blogs/blogsApi";
 import { IBlog } from "@/types/blogs.type";
+import TPButton from "@/components/buttons/TPButton";
 
 const BlogsPage = () => {
   const { data: blogsData } = useGetAllBlogsQuery(undefined);
@@ -31,19 +32,19 @@ const BlogsPage = () => {
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 space-y-6">
           {/* Search */}
-          <div className="border p-4 rounded-lg shadow">
+          <div className="border border-neutral-300 p-4">
             <input
               type="text"
               placeholder="Search blogs..."
-              className="w-full px-4 py-2 border rounded-md focus:outline-none"
+              className="w-full px-4 py-2 border border-neutral-300 rounded-md focus:outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
           {/* Categories Filter */}
-          <div className="border p-4 rounded-lg shadow">
-            <h3 className="text-lg font-semibold mb-2">Categories</h3>
+          <div className="border border-neutral-300 p-4">
+            <h3 className="text-lg font-semibold mb-2 text-gray-600">Categories</h3>
             <ul className="space-y-1 text-gray-600">
               {categories?.map((category) => (
                 <li key={category}>
@@ -71,7 +72,7 @@ const BlogsPage = () => {
               <img
                 src={filteredBlogs[0].coverImage}
                 alt={filteredBlogs[0].title}
-                className="w-full h-72 object-cover rounded-lg shadow"
+                className="w-full h-[70vh] object-cover"
               />
               <h2 className="text-2xl font-semibold mt-4">
                 {filteredBlogs[0].title}
@@ -79,11 +80,8 @@ const BlogsPage = () => {
               <p className="text-gray-600">
                 {filteredBlogs[0].content.slice(0, 150)}...
               </p>
-              <Link
-                to={`/blogs/${filteredBlogs[0].slug}`}
-                className="text-primary font-semibold mt-2 inline-block"
-              >
-                Read More →
+              <Link to={`/blog-deatils/${filteredBlogs[0]._id}`}>
+                <TPButton text="Read More" className="hover:text-secondary" />
               </Link>
             </div>
           )}
@@ -91,25 +89,22 @@ const BlogsPage = () => {
           {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredBlogs?.slice(1).map((blog) => (
-              <div
-                key={blog._id}
-                className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition"
-              >
+              <div key={blog._id} className="overflow-hidden transition">
                 <img
                   src={blog.coverImage}
                   alt={blog.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-[250px] object-cover"
                 />
                 <div className="p-4">
                   <h2 className="text-lg font-semibold">{blog.title}</h2>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-sm mb-4">
                     {blog.content.slice(0, 100)}...
                   </p>
-                  <Link
-                    to={`/blogs/${blog.slug}`}
-                    className="text-primary font-semibold mt-2 inline-block"
-                  >
-                    Read More →
+                  <Link to={`/blog-deatils/${blog._id}`}>
+                    <TPButton
+                      text="Read More"
+                      className="hover:text-secondary"
+                    />
                   </Link>
                 </div>
               </div>

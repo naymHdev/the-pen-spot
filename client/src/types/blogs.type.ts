@@ -1,5 +1,6 @@
 // Interface for the Blog schema
 export interface IBlog {
+  category: any;
   _id?: string;
   title: string;
   slug: string;
