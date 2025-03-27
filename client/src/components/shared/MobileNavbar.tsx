@@ -7,7 +7,8 @@ const navItems = [
   { name: "Books", link: "/books", hasSubmenu: false },
   { name: "Trending", link: "/trending", hasSubmenu: false },
   { name: "Best Sell", link: "/bestSell", hasSubmenu: false },
-  { name: "All Products", link: "/allProducts", hasSubmenu: false },
+  { name: "Shop", link: "/allProducts", hasSubmenu: false },
+  { name: "Blogs", link: "/blogs", hasSubmenu: false },
 ];
 
 const MobileNavbar = () => {

@@ -18,6 +18,8 @@ import OrderDetails from "@/pages/orders/OrderDetails";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import ManageOrders from "@/pages/admin/ManageOrders";
 import ManageProducts from "@/pages/admin/ManageProducts";
+import BlogsPage from "@/pages/blogs/Blogs";
+import BlogDetailsPage from "@/pages/blogs/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogsPage />,
+      },
+      {
+        path: "/blog-deatils/:id",
+        element: <BlogDetailsPage />,
       },
       {
         path: "/cart",

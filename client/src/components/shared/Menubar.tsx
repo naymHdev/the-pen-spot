@@ -25,7 +25,10 @@ const Menubar = () => {
                     <li>About</li>
                   </Link>
                   <Link to="/all-products">
-                    <li>All Products</li>
+                    <li>Shop</li>
+                  </Link>
+                  <Link to="/blogs">
+                    <li>Blogs</li>
                   </Link>
                 </ul>
               </div>

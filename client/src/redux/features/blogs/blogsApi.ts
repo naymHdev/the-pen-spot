@@ -13,7 +13,7 @@ const blogsApi = baseApi.injectEndpoints({
       },
       providesTags: ["blogs"],
       transformResponse: (response: TResponseRedux<{ result: IBlog[] }>) => {
-        console.log("response", response);
+        // console.log("response", response);
         return {
           data: response?.data?.result,
           meta: response?.meta,

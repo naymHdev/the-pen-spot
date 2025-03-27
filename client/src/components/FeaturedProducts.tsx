@@ -63,7 +63,7 @@ const FeaturedProducts = () => {
             }}
           >
             {isFeatured?.map((itm) => (
-              <div key={itm._id}>
+              <div key={itm?._id}>
                 <SwiperSlide>
                   <TPPCard
                     _id={itm._id}
