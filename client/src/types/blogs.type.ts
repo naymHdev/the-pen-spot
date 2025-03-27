@@ -1,5 +1,6 @@
 // Interface for the Blog schema
 export interface IBlog {
+  _id?: string;
   title: string;
   slug: string;
   content: string;
@@ -9,6 +10,6 @@ export interface IBlog {
   coverImage?: string;
   views: number;
   published: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | undefined;
+  updatedAt?: Date | undefined;
 }

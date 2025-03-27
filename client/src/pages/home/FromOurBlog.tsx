@@ -1,6 +1,9 @@
 import { useGetAllBlogsQuery } from "@/redux/features/blogs/blogsApi";
 import Container from "../../components/layouts/Container";
 import { IBlog } from "@/types/blogs.type";
+import moment from "moment";
+import TPButton from "@/components/buttons/TPButton";
+import { Link } from "react-router-dom";
 
 const FromOurBlog = () => {
   const { data: blogsData } = useGetAllBlogsQuery(undefined);
@@ -15,26 +18,42 @@ const FromOurBlog = () => {
               From Our Blog
             </h2>
 
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
               {blogs?.slice(0, 3).map((blog) => (
                 <div
-                  key={blog.slug}
-                  className="bg-white shadow-md rounded-lg overflow-hidden"
+                  key={blog._id}
+                  className="bg-white overflow-hidden flex flex-col h-full"
                 >
-                  <div className="w-full h-48">
+                  {/* Image Section */}
+                  <div className="w-full h-[250px]">
                     <img
                       src={blog.coverImage}
                       alt={blog.title}
-                      className="w-full h-full object-cover rounded-t-lg"
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-4">
-                    <p className="text-sm text-gray-500">
-                      {new Date(blog.createdAt).toLocaleDateString()}
+
+                  {/* Content Section */}
+                  <div className="p-4 text-center flex flex-col flex-grow">
+                    <p className="text-sm uppercase text-gray-500">
+                      Post Date : {moment(blog.createdAt).format("LL")}
                     </p>
                     <h2 className="text-lg font-semibold text-gray-800 mt-2">
                       {blog.title}
                     </h2>
+
+                    {/* Spacer to push button to the bottom */}
+                    <div className="flex-grow"></div>
+
+                    {/* Button Section (Always at the Bottom) */}
+                    <div className="flex justify-center pb-4">
+                      <Link to={`/blog-deatils/${blog._id}`}>
+                        <TPButton
+                          text="Read More"
+                          className="hover:text-secondary"
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
