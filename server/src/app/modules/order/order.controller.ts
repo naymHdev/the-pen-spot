@@ -2,9 +2,10 @@ import { StatusCodes } from 'http-status-codes';
 import { OrderService } from './order.service';
 import { catchAsync } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
+import { TUser } from '../users/user.interface';
 
 const createOrder = catchAsync(async (req, res) => {
-  const user= req.user;
+  const user = req.user as TUser;
 
   // console.log('order-controller', req.body, 'user', user);
 
