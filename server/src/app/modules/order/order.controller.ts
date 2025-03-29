@@ -4,7 +4,7 @@ import { catchAsync } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
 
 const createOrder = catchAsync(async (req, res) => {
-  const user = req.user;
+  const user= req.user;
 
   // console.log('order-controller', req.body, 'user', user);
 
