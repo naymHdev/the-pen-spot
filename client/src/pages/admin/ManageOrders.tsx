@@ -97,7 +97,7 @@ const ManageOrders = () => {
                       key={order._id}
                       className="border-neutral-400 text-primary-text"
                     >
-                      <TableCell>{order.order}</TableCell>
+                      <TableCell>{order?.order}</TableCell>
                       <TableCell>{order.totalPrice}</TableCell>
                       <TableCell>{order?.transaction?.bank_status}</TableCell>
                       <TableCell>{order?.transaction?.id}</TableCell>
