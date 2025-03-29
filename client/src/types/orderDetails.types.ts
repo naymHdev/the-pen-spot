@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Transaction {
   id: string;
   transactionStatus: string | null;
@@ -15,6 +17,7 @@ export interface Product {
 }
 
 export interface Order {
+  order: ReactNode;
   transaction: Transaction;
   _id: string;
   user: string;

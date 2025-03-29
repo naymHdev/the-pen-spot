@@ -2,6 +2,7 @@ export type TRole = "admin" | "user";
 export type TUserStatus = "active" | "blocked";
 
 export type TUser = {
+  length: any;
   _id?: string;
   name: string;
   email: string;

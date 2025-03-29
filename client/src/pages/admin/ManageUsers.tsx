@@ -22,6 +22,11 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
 import Loading from "@/components/Loading";
+import Container from "@/components/layouts/Container";
+import { UserStats } from "./UserStats/UserStats";
+import { ActiveUsers } from "./UserStats/ActiveUsers";
+import { BlockedUsers } from "./UserStats/BlockedUsers";
+import { VerifiedUsers } from "./UserStats/VerifiedUsers";
 
 const ManageUsers = () => {
   const {
@@ -58,11 +63,14 @@ const ManageUsers = () => {
 
   return (
     <>
-      <div>
-        <h2 className="text-2xl px-1 font-black text-primary-text dark:text-white">
-          Manage Users
-        </h2>
-        <div className="mt-10">
+      <div className="m-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <UserStats usersInfo={usersInfo} />
+        <ActiveUsers usersInfo={usersInfo} />
+        <BlockedUsers usersInfo={usersInfo} />
+        <VerifiedUsers usersInfo={usersInfo} />
+      </div>
+      <Container className="my-8">
+        <div className="border rounded-lg border-neutral-300">
           <Table>
             <TableHeader>
               <TableRow className="border-neutral-400 text-primary-text font-semibold text-xl">
@@ -136,7 +144,7 @@ const ManageUsers = () => {
             </TableBody>
           </Table>
         </div>
-      </div>
+      </Container>
     </>
   );
 };
